@@ -13,11 +13,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Аким Коваленко | Digital Builder & AI Systems",
-    template: "%s | Аким Коваленко"
+    default: "Akim Core",
+    template: "%s | Akim Core"
   },
   description:
-    "Персональный сайт Акима Коваленко: digital, AI systems, бизнес-анализ, project management и event production.",
+    "Digital Builder / AI Systems / Business Analysis / Event Production",
   metadataBase: new URL("https://akimkovalenko.com"),
   icons: {
     icon: "/icon.svg",
@@ -25,18 +25,18 @@ export const metadata: Metadata = {
     apple: "/icon.svg"
   },
   openGraph: {
-    title: "Аким Коваленко | Digital Builder & AI Systems",
+    title: "Akim Core",
     description:
-     "Цифровые решения, AI-инструменты, бизнес-процессы, production-системы и запуск проектов.",
+      "Digital Builder / AI Systems / Business Analysis / Event Production",
     type: "website",
     locale: "ru_RU",
-    siteName: "Аким Коваленко"
+    siteName: "Akim Core"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Аким Коваленко | Digital Builder & AI Systems",
+    title: "Akim Core",
     description:
-      "Digital, AI systems, бизнес-анализ, проектное управление и event production."
+      "Digital Builder / AI Systems / Business Analysis / Event Production"
   }
 };
 

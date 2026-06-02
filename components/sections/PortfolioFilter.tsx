@@ -1,51 +1,42 @@
 "use client";
 
 import {
-  portfolioCategories,
-  portfolioItems,
-  type PortfolioCategory
+  portfolioFilters,
+  type PortfolioFilter as PortfolioFilterType
 } from "@/data/portfolio";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import { PortfolioCard, type PortfolioCardItem } from "@/components/sections/PortfolioCard";
 import { cardReveal, MotionSection, staggerContainer } from "@/components/ui/MotionPrimitives";
 
-const allLabel = "All";
+type PortfolioFilterProps = {
+  items: PortfolioCardItem[];
+};
 
-export function PortfolioFilter() {
-  const [activeCategory, setActiveCategory] = useState<PortfolioCategory | typeof allLabel>(allLabel);
+export function PortfolioFilter({ items }: PortfolioFilterProps) {
+  const [activeCategory, setActiveCategory] = useState<PortfolioFilterType["value"]>("all");
 
   const filteredItems = useMemo(() => {
-    if (activeCategory === allLabel) return portfolioItems;
-    return portfolioItems.filter((item) => item.category === activeCategory);
-  }, [activeCategory]);
+    if (activeCategory === "all") return items;
+    return items.filter((item) => item.category === activeCategory);
+  }, [activeCategory, items]);
 
   return (
     <MotionSection className="pb-20 sm:pb-24">
       <div className="section-shell">
         <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setActiveCategory(allLabel)}
-            className={`rounded-full border px-4 py-2 text-sm transition ${
-              activeCategory === allLabel
-                ? "border-electric-cyan/40 bg-electric-cyan/10 text-frost shadow-glow"
-                : "border-white/10 bg-white/[0.04] text-muted hover:text-frost"
-            }`}
-          >
-            All
-          </button>
-          {portfolioCategories.map((category) => (
+          {portfolioFilters.map((filter) => (
             <button
-              key={category.name}
+              key={filter.value}
               type="button"
-              onClick={() => setActiveCategory(category.name)}
+              onClick={() => setActiveCategory(filter.value)}
               className={`rounded-full border px-4 py-2 text-sm transition ${
-                activeCategory === category.name
+                activeCategory === filter.value
                   ? "border-electric-cyan/40 bg-electric-cyan/10 text-frost shadow-glow"
-                  : "border-white/10 bg-white/[0.04] text-muted hover:text-frost"
+                  : "border-white/10 bg-white/[0.04] text-muted hover:border-white/20 hover:text-frost"
               }`}
             >
-              {category.name}
+              {filter.label}
             </button>
           ))}
         </div>
@@ -53,40 +44,25 @@ export function PortfolioFilter() {
         <motion.div layout variants={staggerContainer} className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item) => (
-              <motion.article
-                key={item.title}
+              <motion.div
+                key={item.id}
                 layout
                 variants={cardReveal}
                 initial="hidden"
                 animate="visible"
-                exit={{ opacity: 0, y: 10, transition: { duration: 0.22 } }}
-                whileHover={{ y: -7 }}
-                data-cursor="hover"
-                className="group rounded-2xl border border-white/10 bg-white/[0.045] p-6 transition hover:border-electric-cyan/45 hover:bg-white/[0.07] hover:shadow-glow"
+                exit={{ opacity: 0, y: 10, transition: { duration: 0.18 } }}
               >
-                <span className="rounded-full border border-white/10 bg-ink-950/60 px-3 py-1 text-xs font-semibold text-electric-cyan">
-                  {item.category}
-                </span>
-                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-frost">{item.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-muted">{item.description}</p>
-                <div className="mt-6 border-t border-white/10 pt-5">
-                  <p className="text-xs uppercase tracking-[0.2em] text-muted">Artifact</p>
-                  <p className="mt-2 text-sm font-semibold text-frost">{item.artifact}</p>
-                </div>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-xs text-muted"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.article>
+                <PortfolioCard item={item} />
+              </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {filteredItems.length === 0 ? (
+          <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6 text-sm text-muted">
+            В этом направлении кейсы скоро появятся.
+          </div>
+        ) : null}
       </div>
     </MotionSection>
   );

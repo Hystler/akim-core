@@ -1,98 +1,112 @@
-export type PortfolioCategory =
-  | "Sites"
-  | "AI Systems"
-  | "Business Analysis"
-  | "Presentations"
-  | "Financial Models"
-  | "Event Production";
-
-export type PortfolioCategoryInfo = {
-  name: PortfolioCategory;
-  detail: string;
-};
-
 export type PortfolioItem = {
+  id: string;
   title: string;
-  category: PortfolioCategory;
+  category:
+    | "presentation"
+    | "landing"
+    | "brand"
+    | "ai"
+    | "business-analysis"
+    | "production";
+  client: string;
+  year: string;
   description: string;
+  role: string;
   artifact: string;
+  cover: string;
+  href?: string;
+  file?: string;
   tags: string[];
 };
 
-export const portfolioCategories: PortfolioCategoryInfo[] = [
+export type PortfolioCategory = PortfolioItem["category"];
+
+export type PortfolioFilter = {
+  label: string;
+  value: "all" | PortfolioCategory;
+};
+
+export const portfolioFilters: PortfolioFilter[] = [
   {
-    name: "Sites",
-    detail: "Персональные сайты, лендинги, MVP и интерфейсы для запуска идей."
+    label: "Все",
+    value: "all"
   },
   {
-    name: "AI Systems",
-    detail: "AI-ассистенты, промт-системы, CLI-сценарии и автоматизация задач."
+    label: "Презентации",
+    value: "presentation"
   },
   {
-    name: "Business Analysis",
-    detail: "Процессы, регламенты, CJM, dashboard-логика и проектная структура."
+    label: "Лендинги",
+    value: "landing"
   },
   {
-    name: "Event Production",
-    detail: "Production-планы, координация команд, подрядчиков, площадок и таймингов."
+    label: "Брендинг",
+    value: "brand"
   },
   {
-    name: "Presentations",
-    detail: "Презентации, коммерческие предложения, проектная упаковка и storytelling."
+    label: "AI",
+    value: "ai"
   },
   {
-    name: "Financial Models",
-    detail: "Сценарии, юнит-экономика, финансовая логика и понятная подача чисел."
+    label: "Аналитика",
+    value: "business-analysis"
+  },
+  {
+    label: "Продакшн",
+    value: "production"
   }
 ];
 
+export const portfolioCategoryLabels: Record<PortfolioCategory, string> = {
+  presentation: "Презентация",
+  landing: "Лендинг",
+  brand: "Брендинг",
+  ai: "AI",
+  "business-analysis": "Аналитика",
+  production: "Продакшн"
+};
+
 export const portfolioItems: PortfolioItem[] = [
   {
-    title: "Personal Digital Portfolio",
-    category: "Sites",
+    id: "chess-jazz",
+    title: "Chess & Jazz",
+    category: "presentation",
+    client: "Chess & Jazz",
+    year: "2026",
     description:
-      "Сайт-витрина для личного бренда с премиальной dark-подачей, структурой страниц и clear user journey.",
-    artifact: "Next.js сайт + структура контента",
-    tags: ["Next.js", "Brand", "UX"]
+      "Презентация на 10 слайдов для проекта Chess & Jazz: структура подачи, визуальная логика и упаковка материала в премиальный формат.",
+    role: "Presentation structure / slide design",
+    artifact: "10-slide presentation",
+    cover: "/portfolio/chess-jazz/cover.png",
+    file: "/portfolio/chess-jazz/chess-jazz.pdf",
+    tags: ["Presentation", "Deck", "Premium"]
   },
   {
-    title: "AI-агенты и CLI-системы",
-    category: "AI Systems",
+    id: "tatyana-vesennyaya",
+    title: "Лендинг для Татьяны Весенней",
+    category: "landing",
+    client: "Татьяна Весенняя",
+    year: "2026",
     description:
-      "Промт-системы, сценарии и постановки задач для AI-ассистентов, CLI-разработки и автоматизации.",
-    artifact: "Prompt system + prototype logic",
-    tags: ["AI", "CLI", "Prompts"]
+      "Лендинг для 3D-визуализатора: персональная подача, структура услуг, визуальный акцент на портфолио и доверие.",
+    role: "Landing structure / UX / visual concept",
+    artifact: "Personal landing page",
+    cover: "/portfolio/tatyana-vesennyaya/cover.png",
+    href: "/portfolio/tatyana-vesennyaya",
+    tags: ["Landing", "Personal Brand", "3D Visual"]
   },
   {
-    title: "Business Process Architecture",
-    category: "Business Analysis",
+    id: "velvet-whisper",
+    title: "Velvet Whisper",
+    category: "presentation",
+    client: "Velvet Whisper",
+    year: "2026",
     description:
-      "Разбор ролей, процессов, зон ответственности и логики работы команды в понятную операционную схему.",
-    artifact: "Карта процессов + регламенты",
-    tags: ["BPM", "CJM", "Operations"]
-  },
-  {
-    title: "Presentations & Commercial Proposals",
-    category: "Presentations",
-    description:
-      "Структура презентаций, коммерческих предложений и проектных материалов с ясной логикой и визуальной подачей.",
-    artifact: "Deck + offer structure",
-    tags: ["Decks", "Storytelling", "Offer"]
-  },
-  {
-    title: "Финансовая модель франшизы",
-    category: "Financial Models",
-    description:
-      "Юнит-экономика, расходы, сценарии запуска и презентационная логика для финансовой модели проекта.",
-    artifact: "Модель + логика презентации",
-    tags: ["Finance", "Model", "Scenarios"]
-  },
-  {
-    title: "Event Production & Coordination",
-    category: "Event Production",
-    description:
-      "Координация production-процессов, площадок, подрядчиков, таймингов и задач для реализации мероприятия.",
-    artifact: "План, тайминг, структура реализации",
-    tags: ["Events", "Production", "Timing"]
+      "Презентация на 5 слайдов для бренда одежды Velvet Whisper: визуальная упаковка, брендовая атмосфера и лаконичная подача.",
+    role: "Presentation design / brand packaging",
+    artifact: "5-slide presentation",
+    cover: "/portfolio/velvet-whisper/cover.png",
+    file: "/portfolio/velvet-whisper/velvet-whisper.pdf",
+    tags: ["Fashion", "Presentation", "Brand"]
   }
 ];
