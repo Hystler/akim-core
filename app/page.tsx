@@ -8,17 +8,9 @@ import { ProjectsPreview } from "@/components/sections/ProjectsPreview";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { portfolioItems } from "@/data/portfolio";
 
-function publicFileExists(path: string) {
-  return existsSync(join(process.cwd(), "public", path.replace(/^\//, "")));
-}
-
 export default function HomePage() {
   const hasProfileImage = existsSync(join(process.cwd(), "public", "images", "profile.jpg"));
-  const previewItems = portfolioItems.slice(0, 3).map((item) => ({
-    ...item,
-    coverAvailable: publicFileExists(item.cover),
-    fileAvailable: item.file ? publicFileExists(item.file) : false
-  }));
+  const previewItems = portfolioItems.slice(0, 3);
 
   return (
     <>

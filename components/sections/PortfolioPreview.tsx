@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { PortfolioCard, type PortfolioCardItem } from "@/components/sections/PortfolioCard";
+import { PortfolioCard } from "@/components/sections/PortfolioCard";
 import { cardReveal, MotionSection, staggerContainer } from "@/components/ui/MotionPrimitives";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import type { PortfolioItem } from "@/data/portfolio";
 
 type PortfolioPreviewProps = {
-  items: PortfolioCardItem[];
+  items: PortfolioItem[];
 };
 
 export function PortfolioPreview({ items }: PortfolioPreviewProps) {

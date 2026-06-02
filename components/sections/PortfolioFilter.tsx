@@ -2,15 +2,16 @@
 
 import {
   portfolioFilters,
+  type PortfolioItem,
   type PortfolioFilter as PortfolioFilterType
 } from "@/data/portfolio";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
-import { PortfolioCard, type PortfolioCardItem } from "@/components/sections/PortfolioCard";
+import { PortfolioCard } from "@/components/sections/PortfolioCard";
 import { cardReveal, MotionSection, staggerContainer } from "@/components/ui/MotionPrimitives";
 
 type PortfolioFilterProps = {
-  items: PortfolioCardItem[];
+  items: PortfolioItem[];
 };
 
 export function PortfolioFilter({ items }: PortfolioFilterProps) {
