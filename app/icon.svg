@@ -1,0 +1,28 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#080A0F"/>
+  <circle cx="32" cy="32" r="15" fill="#0F172A" stroke="#22D3EE" stroke-opacity="0.18" stroke-width="4"/>
+  <g opacity="0.78">
+    <ellipse cx="32" cy="32" rx="27" ry="8" transform="rotate(-20 32 32)" stroke="url(#orbit)" stroke-width="1.45"/>
+    <ellipse cx="32" cy="32" rx="26" ry="7.5" transform="rotate(25 32 32)" stroke="url(#orbit)" stroke-opacity="0.58" stroke-width="1.35"/>
+    <ellipse cx="32" cy="32" rx="24" ry="7" transform="rotate(68 32 32)" stroke="url(#orbit)" stroke-opacity="0.42" stroke-width="1.2"/>
+  </g>
+  <circle cx="56" cy="31" r="2.1" fill="#22D3EE"/>
+  <circle cx="12" cy="29" r="1.6" fill="#3B82F6"/>
+  <circle cx="44" cy="11" r="1.7" fill="#8B5CF6"/>
+  <path d="M17 52L29 12H35L47 52H39.3L36.8 43.2H27.2L24.7 52H17Z" fill="url(#aCore)"/>
+  <path d="M29.1 37H34.9L32 25.9L29.1 37Z" fill="#080A0F" fill-opacity="0.94"/>
+  <path d="M26 41.5H38" stroke="#F8FAFC" stroke-opacity="0.82" stroke-width="1.8" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="aCore" x1="20" y1="13" x2="45" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="0.38" stop-color="#22D3EE"/>
+      <stop offset="0.72" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="orbit" x1="5" y1="19" x2="59" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.52" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+</svg>
