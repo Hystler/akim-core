@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -11,6 +12,7 @@ type PortfolioGalleryProps = {
 
 export function PortfolioGallery({ images, title }: PortfolioGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const shouldReduceMotion = useReducedMotion();
   const activeImage = activeIndex === null ? null : images[activeIndex];
 
   useEffect(() => {
@@ -34,11 +36,12 @@ export function PortfolioGallery({ images, title }: PortfolioGalleryProps) {
       }
     }
 
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [activeIndex, images.length]);
@@ -65,71 +68,93 @@ export function PortfolioGallery({ images, title }: PortfolioGalleryProps) {
             key={image}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="group relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-ink-900 text-left transition hover:-translate-y-1 hover:border-electric-cyan/45 hover:shadow-glow"
+            className="focus-ring group relative aspect-[16/10] overflow-hidden rounded-md border border-white/10 bg-ink-900 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/30"
           >
             <Image
               src={image}
-              alt={`${title} image ${index + 1}`}
+              alt={`${title}, изображение ${index + 1}`}
               fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover transition duration-300 group-hover:scale-[1.015] group-hover:opacity-95"
+              sizes="(min-width: 1440px) 660px, (min-width: 768px) 50vw, 100vw"
+              className="object-cover transition duration-500 group-hover:scale-[1.012] group-hover:opacity-90"
             />
-            <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-ink-950/70 px-3 py-1 text-xs font-semibold text-frost backdrop-blur">
+            <span className="absolute bottom-3 left-3 text-xs font-medium text-white drop-shadow">
               {String(index + 1).padStart(2, "0")}
             </span>
           </button>
         ))}
       </div>
 
-      {activeImage ? (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${title} image preview`}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
-        >
-          <button
-            type="button"
-            onClick={() => setActiveIndex(null)}
-            className="absolute right-4 top-4 inline-flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-frost transition hover:border-white/30 hover:bg-white/15"
-            aria-label="Закрыть"
+      <AnimatePresence>
+        {activeImage ? (
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${title}: просмотр изображения`}
+            initial={shouldReduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) {
+                setActiveIndex(null);
+              }
+            }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/[0.94] p-4 sm:p-8"
           >
-            <X size={20} aria-hidden="true" />
-          </button>
+            <button
+              type="button"
+              onClick={() => setActiveIndex(null)}
+              className="focus-ring absolute right-4 top-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-frost transition hover:border-white/50 hover:bg-white/10 sm:right-6 sm:top-6"
+              aria-label="Закрыть"
+            >
+              <X size={20} aria-hidden="true" />
+            </button>
 
-          {images.length > 1 ? (
-            <>
-              <button
-                type="button"
-                onClick={showPrevious}
-                className="absolute left-4 top-1/2 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 text-frost transition hover:border-white/30 hover:bg-white/15"
-                aria-label="Предыдущее изображение"
-              >
-                <ChevronLeft size={22} aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                onClick={showNext}
-                className="absolute right-4 top-1/2 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 text-frost transition hover:border-white/30 hover:bg-white/15"
-                aria-label="Следующее изображение"
-              >
-                <ChevronRight size={22} aria-hidden="true" />
-              </button>
-            </>
-          ) : null}
+            {images.length > 1 ? (
+              <>
+                <button
+                  type="button"
+                  onClick={showPrevious}
+                  className="focus-ring absolute bottom-4 left-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-frost transition hover:border-white/50 hover:bg-white/10 sm:bottom-auto sm:left-6 sm:top-1/2 sm:-translate-y-1/2"
+                  aria-label="Предыдущее изображение"
+                >
+                  <ChevronLeft size={22} aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={showNext}
+                  className="focus-ring absolute bottom-4 right-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-frost transition hover:border-white/50 hover:bg-white/10 sm:bottom-auto sm:right-6 sm:top-1/2 sm:-translate-y-1/2"
+                  aria-label="Следующее изображение"
+                >
+                  <ChevronRight size={22} aria-hidden="true" />
+                </button>
+              </>
+            ) : null}
 
-          <div className="relative h-[78vh] w-full max-w-6xl">
-            <Image
-              src={activeImage}
-              alt={`${title} image ${(activeIndex ?? 0) + 1}`}
-              fill
-              sizes="100vw"
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
-      ) : null}
+            <motion.div
+              key={activeImage}
+              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.985 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+              className="pointer-events-none relative h-[76vh] w-full max-w-6xl"
+            >
+              <Image
+                src={activeImage}
+                alt={`${title}, изображение ${(activeIndex ?? 0) + 1}`}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+            </motion.div>
+
+            <p className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 text-xs text-frost/65">
+              {String((activeIndex ?? 0) + 1).padStart(2, "0")} /{" "}
+              {String(images.length).padStart(2, "0")}
+            </p>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }

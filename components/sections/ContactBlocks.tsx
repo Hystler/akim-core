@@ -1,8 +1,12 @@
 "use client";
 
-import { ArrowUpRight, Mail, Send } from "lucide-react";
 import { motion } from "framer-motion";
-import { cardReveal, MotionSection, staggerContainer } from "@/components/ui/MotionPrimitives";
+import { ArrowUpRight, Mail, Send } from "lucide-react";
+import {
+  cardReveal,
+  MotionSection,
+  staggerContainer
+} from "@/components/ui/MotionPrimitives";
 
 const contacts = [
   {
@@ -19,89 +23,102 @@ const contacts = [
   }
 ];
 
-const briefOptions = ["Сайт", "Презентация", "AI-система", "Бизнес-процесс", "Мероприятие / production"];
+const briefOptions = [
+  "Сайт",
+  "Презентация",
+  "AI-система",
+  "Бизнес-процесс",
+  "Мероприятие / production"
+];
 
 const requestTopics = [
-  "Нужно быстро упаковать идею в понятный артефакт",
-  "Нужен сайт, презентация или MVP-логика",
-  "Нужно разложить процессы, роли и задачи",
-  "Нужен AI-сценарий, промт-система или CLI-задача",
-  "Нужно спланировать production или мероприятие"
+  "Что есть сейчас",
+  "Какой результат нужен",
+  "Для кого собираем",
+  "Есть ли срок или запуск",
+  "Какие материалы уже готовы"
 ];
 
 export function ContactBlocks() {
   return (
-    <MotionSection className="pb-20 sm:pb-24">
-      <div className="section-shell grid gap-8 lg:grid-cols-[1fr_0.95fr]">
-        <div className="premium-border relative overflow-hidden rounded-3xl bg-ink-900 p-6 sm:p-8">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_18%_20%,rgba(34,211,238,0.14),transparent_34%),radial-gradient(ellipse_at_90%_80%,rgba(139,92,246,0.16),transparent_36%)]" />
-          <div className="relative">
-            <h2 className="text-3xl font-semibold tracking-tight text-frost">Mini brief</h2>
-            <p className="mt-4 text-base leading-8 text-muted">
-              Можно написать коротко: что есть сейчас, что нужно собрать и какой результат нужен.
-            </p>
-            <p className="mt-8 text-sm font-semibold text-frost">Что нужно собрать?</p>
-            <motion.div variants={staggerContainer} className="mt-4 flex flex-wrap gap-2">
-              {briefOptions.map((option) => (
-                <motion.span
-                  key={option}
+    <MotionSection className="bg-paper py-16 text-ink-950 sm:py-24">
+      <div className="section-shell grid gap-14 lg:grid-cols-[1.15fr_0.85fr]">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-800/55">
+            Direct contact
+          </p>
+          <motion.div variants={staggerContainer} className="mt-6 border-t border-ink-950/20">
+            {contacts.map((contact) => {
+              const Icon = contact.icon;
+
+              return (
+                <motion.a
+                  key={contact.label}
                   variants={cardReveal}
-                  className="rounded-full border border-white/10 bg-ink-950/58 px-4 py-2 text-sm text-muted"
+                  href={contact.href}
+                  className="group grid gap-5 border-b border-ink-950/20 py-7 transition-colors hover:bg-white/35 sm:grid-cols-[44px_120px_1fr_auto] sm:items-center sm:px-3"
                 >
-                  {option}
-                </motion.span>
-              ))}
-            </motion.div>
-
-            <a
-              href="https://t.me/akimkovalenko"
-              className="shine-cta group mt-8 inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-frost px-6 py-4 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-electric-cyan hover:shadow-glow"
-            >
-              <span className="relative z-10">Написать в Telegram</span>
-              <ArrowUpRight
-                className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                aria-hidden="true"
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className="grid gap-4">
-          {contacts.map((contact) => {
-            const Icon = contact.icon;
-
-            return (
-              <a
-                key={contact.label}
-                href={contact.href}
-                data-cursor="hover"
-                className="group rounded-2xl border border-white/10 bg-white/[0.045] p-5 transition hover:-translate-y-1 hover:border-electric-cyan/50 hover:bg-white/[0.07] hover:shadow-glow"
-              >
-                <span className="flex items-center gap-2 text-sm text-muted">
-                  <Icon className="h-4 w-4 text-electric-cyan" aria-hidden="true" />
-                  {contact.label}
-                </span>
-                <span className="mt-2 flex items-center justify-between gap-4 text-lg font-semibold text-frost">
-                  {contact.value}
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                  <span className="text-sm text-ink-800/60">{contact.label}</span>
+                  <span className="break-all text-lg font-medium text-ink-950 sm:text-xl">
+                    {contact.value}
+                  </span>
                   <ArrowUpRight
-                    className="h-4 w-4 text-electric-cyan transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                    className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     aria-hidden="true"
                   />
-                </span>
-              </a>
-            );
-          })}
+                </motion.a>
+              );
+            })}
+          </motion.div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-5">
-            <h2 className="text-xl font-semibold text-frost">С чем можно обратиться</h2>
-            <ul className="mt-4 grid gap-3 text-sm leading-7 text-muted">
-              {requestTopics.map((topic) => (
-                <li key={topic} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric-cyan" />
-                  {topic}
-                </li>
-              ))}
-            </ul>
+          <a
+            href="https://t.me/akimkovalenko"
+            className="focus-ring group mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-ink-950 px-6 py-3 text-sm font-semibold text-frost transition hover:-translate-y-0.5 hover:bg-ink-800"
+          >
+            Написать в Telegram
+            <ArrowUpRight
+              className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+
+        <div className="border-t border-ink-950/20 pt-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-800/55">
+            Mini brief
+          </p>
+          <h2 className="mt-5 text-3xl font-medium leading-tight text-ink-950">
+            Достаточно нескольких строк
+          </h2>
+          <p className="mt-4 max-w-lg text-base leading-8 text-ink-800/70">
+            Не нужно готовить идеальное ТЗ. Напишите свободно, а структуру соберём в
+            разговоре.
+          </p>
+
+          <div className="mt-7 flex flex-wrap gap-2">
+            {briefOptions.map((option) => (
+              <span
+                key={option}
+                className="rounded-full border border-ink-950/20 px-3 py-1.5 text-xs text-ink-800/70"
+              >
+                {option}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-8 border-t border-ink-950/20">
+            {requestTopics.map((topic, index) => (
+              <div
+                key={topic}
+                className="grid grid-cols-[36px_1fr] border-b border-ink-950/20 py-4 text-sm"
+              >
+                <span className="text-ink-800/45">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>{topic}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,30 +1,27 @@
-import { PrimaryLink } from "@/components/ui/PrimaryLink";
+import Link from "next/link";
 import { MotionSection } from "@/components/ui/MotionPrimitives";
 
 export function CtaSection() {
   return (
-    <MotionSection className="pb-20 pt-8 sm:pb-24">
+    <MotionSection className="bg-paper py-20 text-ink-950 sm:py-28">
       <div className="section-shell">
-        <div className="premium-border overflow-hidden rounded-3xl bg-ink-900 p-6 sm:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-electric-cyan">
-                Contact
-              </p>
-              <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-frost sm:text-5xl">
-                Есть идея, проект или задача, где нужен быстрый порядок?
-              </h2>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-muted sm:text-lg">
-                Можно прийти с хаосом, наброском, таблицей, презентацией или просто
-                формулировкой цели.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-              <PrimaryLink href="/contact">Связаться</PrimaryLink>
-              <PrimaryLink href="/projects" variant="secondary">
-                Смотреть проекты
-              </PrimaryLink>
-            </div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-800/60">
+          Start a project
+        </p>
+        <div className="mt-6 grid gap-10 border-t border-ink-950/20 pt-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <h2 className="text-balance max-w-5xl text-4xl font-medium leading-[1.04] text-ink-950 sm:text-6xl lg:text-7xl">
+            Есть сложная идея? Сделаем её понятной и работающей.
+          </h2>
+          <div className="lg:justify-self-end">
+            <p className="max-w-md text-base leading-8 text-ink-800/70">
+              Можно прийти с хаосом, наброском, таблицей или одной формулировкой цели.
+            </p>
+            <Link
+              href="/contact"
+              className="focus-ring mt-7 inline-flex min-h-12 items-center justify-center rounded-md bg-ink-950 px-6 py-3 text-sm font-semibold text-frost transition hover:-translate-y-0.5 hover:bg-ink-800"
+            >
+              Обсудить задачу
+            </Link>
           </div>
         </div>
       </div>

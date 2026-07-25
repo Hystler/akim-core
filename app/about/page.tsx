@@ -12,8 +12,8 @@ export default function AboutPage() {
     <>
       <PageIntro
         eyebrow="About"
-        title="Обо мне: между идеей, структурой и запуском"
-        text="Я соединяю digital, AI, бизнес-анализ, project management и production, чтобы быстро превращать неопределённость в понятный рабочий результат."
+        title="Idea. Structure. Launch."
+        text="Соединяю digital, AI, бизнес-анализ, project management и production, чтобы превращать неопределённость в понятный рабочий результат."
       />
       <AboutStory />
     </>

@@ -12,8 +12,8 @@ export default function ProjectsPage() {
     <>
       <PageIntro
         eyebrow="Projects"
-        title="Проекты как мини-кейсы"
-        text="Здесь собраны задачи, где важен не только красивый результат, но и роль, логика, артефакт и путь к запуску."
+        title="Systems before spectacle"
+        text="Задачи, где результат держится на ясной логике, точной роли и артефакте, который помогает проекту двигаться дальше."
       />
       <ProjectCaseGrid />
     </>

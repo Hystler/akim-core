@@ -16,6 +16,14 @@ function getPortfolioItem(id: string) {
   return portfolioItems.find((item) => item.id === id);
 }
 
+function getImageCountLabel(count: number) {
+  if (count % 10 === 1 && count % 100 !== 11) return `${count} изображение`;
+  if ([2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)) {
+    return `${count} изображения`;
+  }
+  return `${count} изображений`;
+}
+
 export function generateStaticParams() {
   return portfolioItems.map((item) => ({
     id: item.id
@@ -54,67 +62,51 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
   }
 
   return (
-    <section className="pb-20 pt-16 sm:pb-24 sm:pt-20">
+    <article className="pb-20 pt-10 sm:pb-28 sm:pt-14">
       <div className="section-shell">
         <Link
           href="/portfolio"
-          className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-electric-cyan transition hover:text-frost"
+          className="focus-ring inline-flex items-center gap-2 rounded-sm text-sm text-muted transition hover:text-frost"
         >
           <ArrowLeft size={16} aria-hidden="true" />
-          Портфолио
+          Все работы
         </Link>
 
-        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full border border-electric-cyan/25 bg-electric-cyan/10 px-3 py-1 text-xs font-semibold text-electric-cyan">
-                {portfolioCategoryLabels[item.category]}
-              </span>
-              <span className="text-sm text-muted">
-                {item.client} / {item.year}
-              </span>
-            </div>
+        <header className="mt-10 border-t border-white/10 pt-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.16em] text-muted">
+            <span>{portfolioCategoryLabels[item.category]}</span>
+            <span>{item.year}</span>
+          </div>
 
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-frost sm:text-6xl">
+          <div className="mt-8 grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+            <h1 className="text-balance text-5xl font-medium leading-[0.95] text-frost sm:text-7xl lg:text-8xl">
               {item.title}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-muted">{item.description}</p>
+            <p className="text-pretty text-base leading-8 text-muted lg:pb-1">
+              {item.description}
+            </p>
+          </div>
 
-            <div className="mt-8 grid gap-5 border-t border-white/10 pt-6">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
-                  Client
-                </p>
-                <p className="mt-2 text-sm font-semibold text-frost">{item.client}</p>
+          <dl className="mt-10 grid gap-6 border-y border-white/10 py-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["Client", item.client],
+              ["Year", item.year],
+              ["Role", item.role],
+              ["Artifact", item.artifact]
+            ].map(([label, value]) => (
+              <div key={label}>
+                <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">
+                  {label}
+                </dt>
+                <dd className="mt-2 text-sm leading-6 text-frost">{value}</dd>
               </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
-                  Year
-                </p>
-                <p className="mt-2 text-sm font-semibold text-frost">{item.year}</p>
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
-                  Role
-                </p>
-                <p className="mt-2 text-sm font-semibold text-frost">{item.role}</p>
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
-                  Artifact
-                </p>
-                <p className="mt-2 text-sm font-semibold text-frost">{item.artifact}</p>
-              </div>
-            </div>
+            ))}
+          </dl>
 
-            <div className="mt-7 flex flex-wrap gap-2">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-6">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted">
               {item.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-xs text-muted"
-                >
-                  {tag}
-                </span>
+                <span key={tag}>{tag}</span>
               ))}
             </div>
 
@@ -123,43 +115,47 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                 href={item.externalUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-8 inline-flex items-center gap-2 rounded-full border border-electric-cyan/35 bg-electric-cyan/10 px-5 py-3 text-sm font-semibold text-frost transition hover:border-electric-cyan/70 hover:bg-electric-cyan/15"
+                className="focus-ring group inline-flex min-h-12 items-center gap-2 rounded-md border border-frost bg-frost px-5 py-3 text-sm font-semibold text-ink-950 transition hover:bg-transparent hover:text-frost"
               >
                 Открыть лендинг
-                <ExternalLink size={16} aria-hidden="true" />
+                <ExternalLink
+                  size={16}
+                  className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
               </Link>
             ) : null}
           </div>
+        </header>
 
-          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-ink-900 shadow-glow">
-            <Image
-              src={item.cover}
-              alt={item.title}
-              fill
-              sizes="(min-width: 1024px) 58vw, 100vw"
-              className="object-cover"
-              priority
-            />
-          </div>
+        <div className="relative mt-12 aspect-[16/10] overflow-hidden rounded-md border border-white/10 bg-ink-900">
+          <Image
+            src={item.cover}
+            alt={item.title}
+            fill
+            sizes="(min-width: 1440px) 1344px, 100vw"
+            className="object-cover"
+            priority
+          />
         </div>
 
         {item.images?.length ? (
-          <div className="mt-16 sm:mt-20">
-            <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <section className="mt-20 sm:mt-28">
+            <div className="mb-8 flex items-end justify-between gap-6 border-b border-white/10 pb-6">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-electric-cyan">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                   Gallery
                 </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-frost">
+                <h2 className="mt-4 text-3xl font-medium text-frost sm:text-4xl">
                   Материалы кейса
                 </h2>
               </div>
-              <p className="text-sm text-muted">{item.images.length} изображений</p>
+              <p className="text-sm text-muted">{getImageCountLabel(item.images.length)}</p>
             </div>
             <PortfolioGallery images={item.images} title={item.title} />
-          </div>
+          </section>
         ) : null}
       </div>
-    </section>
+    </article>
   );
 }

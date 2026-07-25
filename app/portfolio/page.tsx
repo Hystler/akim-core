@@ -14,8 +14,8 @@ export default function PortfolioPage() {
     <>
       <PageIntro
         eyebrow="Portfolio"
-        title="Портфолио Akim Core"
-        text="Статичная витрина первых работ: презентации, лендинги и проектная упаковка без базы данных и backend-слоя."
+        title="Selected work"
+        text="Презентации, лендинги и визуальные системы, в которых структура работает на впечатление, доверие и следующий шаг."
       />
       <PortfolioFilter items={portfolioItems} />
     </>

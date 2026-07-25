@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { CustomCursor } from "@/components/layout/CustomCursor";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#080A0F"
+  themeColor: "#050607"
 };
 
 export default function RootLayout({
@@ -52,9 +51,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="scroll-smooth">
+    <html lang="ru" className="scroll-smooth" data-scroll-behavior="smooth">
       <body className={`${inter.variable} bg-ink-950 font-sans text-frost antialiased`}>
-        <CustomCursor />
         <Header />
         <main>{children}</main>
         <Footer />

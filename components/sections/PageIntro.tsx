@@ -8,17 +8,20 @@ type PageIntroProps = {
 
 export function PageIntro({ eyebrow, title, text }: PageIntroProps) {
   return (
-    <MotionSection className="relative overflow-hidden pb-12 pt-20 sm:pb-16 sm:pt-24">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(34,211,238,0.14),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(139,92,246,0.12),transparent_32%)]" />
+    <MotionSection className="border-b border-white/10 pb-12 pt-20 sm:pb-16 sm:pt-28">
       <div className="section-shell">
-        <div className="max-w-4xl">
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.28em] text-electric-cyan">
+        <div className="grid gap-8 lg:grid-cols-[0.35fr_1.65fr] lg:items-start">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
             {eyebrow}
           </p>
-          <h1 className="text-4xl font-semibold tracking-tight text-frost sm:text-6xl">
-            {title}
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted">{text}</p>
+          <div>
+            <h1 className="text-balance max-w-6xl text-4xl font-medium leading-[1.02] text-frost sm:text-6xl lg:text-7xl">
+              {title}
+            </h1>
+            <p className="text-pretty mt-7 max-w-3xl text-base leading-8 text-muted sm:text-lg">
+              {text}
+            </p>
+          </div>
         </div>
       </div>
     </MotionSection>

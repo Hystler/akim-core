@@ -1,27 +1,32 @@
 "use client";
 
-import { services } from "@/data/services";
-import { Bot, CalendarClock, FileStack, GitBranch, Globe2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { cardReveal, MotionSection, staggerContainer } from "@/components/ui/MotionPrimitives";
+import { Bot, CalendarClock, FileStack, GitBranch, Globe2 } from "lucide-react";
+import { services } from "@/data/services";
+import {
+  cardReveal,
+  MotionSection,
+  staggerContainer
+} from "@/components/ui/MotionPrimitives";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const icons = [Bot, Globe2, GitBranch, CalendarClock, FileStack];
 
 export function ServicesPreview() {
   return (
-    <MotionSection className="relative py-20 sm:py-24">
-      <div className="pointer-events-none absolute inset-x-0 top-10 -z-10 h-80 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08),transparent_62%)]" />
+    <MotionSection className="bg-paper py-20 text-ink-950 sm:py-28">
       <div className="section-shell">
-        <div className="flex flex-col gap-6 lg:max-w-3xl">
+        <div className="flex flex-col gap-6 lg:max-w-4xl">
           <SectionHeading
-            eyebrow="Directions"
-            title="Где я включаюсь"
-            text="Короткая карта направлений: от AI-сценариев и сайтов до процессов, презентаций и production-координации."
+            eyebrow="Capabilities"
+            index="02"
+            tone="light"
+            title="От стратегии до собранного результата"
+            text="Подключаюсь там, где нужно разобраться в задаче, найти сильную структуру и довести её до конкретного цифрового или физического артефакта."
           />
         </div>
 
-        <motion.div variants={staggerContainer} className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <motion.div variants={staggerContainer} className="mt-14 border-t border-ink-950/20">
           {services.map((service, index) => {
             const Icon = icons[index];
 
@@ -29,16 +34,18 @@ export function ServicesPreview() {
               <motion.article
                 key={service.title}
                 variants={cardReveal}
-                whileHover={{ y: -8 }}
-                data-cursor="hover"
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-electric-cyan/45 hover:bg-white/[0.07] hover:shadow-glow"
+                className="group grid gap-5 border-b border-ink-950/20 py-7 transition-colors hover:bg-white/35 sm:grid-cols-[56px_0.8fr_1.2fr] sm:items-center sm:px-3"
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-electric-cyan via-electric-blue to-transparent" />
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-ink-950/70 text-electric-cyan">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-md border border-ink-950/20 text-ink-950">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
                 </div>
-                <h3 className="text-lg font-semibold tracking-tight text-frost">{service.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-muted">{service.description}</p>
+                <div className="flex items-baseline gap-4">
+                  <span className="text-xs font-medium text-ink-800/45">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-xl font-medium text-ink-950">{service.title}</h3>
+                </div>
+                <p className="text-sm leading-7 text-ink-800/70">{service.description}</p>
               </motion.article>
             );
           })}

@@ -12,8 +12,8 @@ export default function ContactPage() {
     <>
       <PageIntro
         eyebrow="Contact"
-        title="Контакты и быстрый brief"
-        text="Напишите, что нужно собрать: сайт, презентацию, AI-систему, бизнес-процесс или production-план."
+        title="Let’s make it real"
+        text="Расскажите, что нужно собрать: сайт, презентацию, AI-систему, бизнес-процесс или production-план."
       />
       <ContactBlocks />
     </>

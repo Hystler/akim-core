@@ -7,9 +7,9 @@ import { MotionSection, staggerContainer } from "@/components/ui/MotionPrimitive
 
 export function ProjectCaseGrid() {
   return (
-    <MotionSection className="pb-20 sm:pb-24">
+    <MotionSection className="pb-20 pt-12 sm:pb-28 sm:pt-16">
       <div className="section-shell">
-        <motion.div variants={staggerContainer} className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div variants={staggerContainer} className="border-t border-white/15">
           {projects.map((project, index) => (
             <CaseCard key={project.title} project={project} index={index} />
           ))}

@@ -13,23 +13,24 @@ type PortfolioPreviewProps = {
 
 export function PortfolioPreview({ items }: PortfolioPreviewProps) {
   return (
-    <MotionSection className="py-20 sm:py-24">
+    <MotionSection className="bg-ink-950 py-20 sm:py-28">
       <div className="section-shell">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Portfolio"
-            title="Первые работы"
-            text="Три стартовых кейса Akim Core: презентации, лендинг и визуальная упаковка проектов."
+            index="01"
+            title="Работы, которые можно рассмотреть в деталях"
+            text="Презентации, лендинг и брендовая упаковка. Каждый кейс открыт целиком, без декоративных мокапов."
           />
-          <Link href="/portfolio" className="text-sm font-semibold text-electric-cyan transition hover:text-frost">
-            Смотреть портфолио →
+          <Link href="/portfolio" className="border-b border-white/25 pb-1 text-sm font-semibold text-frost transition hover:border-frost">
+            Все работы
           </Link>
         </div>
 
-        <motion.div variants={staggerContainer} className="mt-12 grid gap-5 md:grid-cols-3">
-          {items.map((item) => (
+        <motion.div variants={staggerContainer} className="mt-12 grid gap-x-5 gap-y-10 md:grid-cols-3">
+          {items.map((item, index) => (
             <motion.div key={item.id} variants={cardReveal}>
-              <PortfolioCard item={item} compact />
+              <PortfolioCard item={item} compact priority={index === 0} />
             </motion.div>
           ))}
         </motion.div>

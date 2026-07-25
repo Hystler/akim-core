@@ -1,21 +1,25 @@
 "use client";
 
-import { roles } from "@/data/roles";
 import { motion } from "framer-motion";
-import { cardReveal, MotionSection, staggerContainer } from "@/components/ui/MotionPrimitives";
+import { roles } from "@/data/roles";
+import {
+  cardReveal,
+  MotionSection,
+  staggerContainer
+} from "@/components/ui/MotionPrimitives";
 
 const storyBlocks = [
   {
     title: "Кто я",
-    text: "Я работаю там, где идея ещё не до конца оформлена, а результат уже нужен быстро. Моя роль — собрать смысл, логику, артефакт и движение к запуску."
+    text: "Работаю там, где идея ещё не до конца оформлена, а результат уже нужен быстро. Моя роль — собрать смысл, логику, артефакт и движение к запуску."
   },
   {
     title: "Чем полезен",
-    text: "Помогаю превратить набор мыслей, таблиц, задач и вводных в понятную структуру: сайт, презентацию, процесс, AI-сценарий или production-план."
+    text: "Превращаю набор мыслей, таблиц, задач и вводных в понятную структуру: сайт, презентацию, процесс, AI-сценарий или production-план."
   },
   {
     title: "Как я думаю",
-    text: "Сначала ищу цель и ограничения, потом собираю карту решения: кто участвует, что должно получиться, какой артефакт нужен и как его быстрее довести до рабочего состояния."
+    text: "Сначала нахожу цель и ограничения. Затем собираю карту решения: кто участвует, что должно получиться и как быстрее довести результат до рабочего состояния."
   },
   {
     title: "Какой опыт соединяю",
@@ -25,38 +29,35 @@ const storyBlocks = [
 
 export function AboutStory() {
   return (
-    <MotionSection className="pb-20 sm:pb-24">
-      <div className="section-shell grid gap-10 lg:grid-cols-[1fr_0.9fr]">
-        <motion.div variants={staggerContainer} className="grid gap-4">
-          {storyBlocks.map((block) => (
+    <MotionSection className="pb-20 pt-12 sm:pb-28 sm:pt-16">
+      <div className="section-shell grid gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+        <motion.div variants={staggerContainer} className="border-t border-white/15">
+          {storyBlocks.map((block, index) => (
             <motion.article
               key={block.title}
               variants={cardReveal}
-              data-cursor="hover"
-              className="rounded-3xl border border-white/10 bg-white/[0.045] p-6 transition hover:border-electric-cyan/40 hover:bg-white/[0.07] hover:shadow-glow"
+              className="grid gap-4 border-b border-white/15 py-8 sm:grid-cols-[56px_180px_1fr]"
             >
-              <h2 className="text-2xl font-semibold tracking-tight text-frost">{block.title}</h2>
-              <p className="mt-4 text-base leading-8 text-muted">{block.text}</p>
+              <span className="text-xs text-muted">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h2 className="text-xl font-medium text-frost">{block.title}</h2>
+              <p className="text-base leading-8 text-muted">{block.text}</p>
             </motion.article>
           ))}
         </motion.div>
 
-        <div className="premium-border h-fit rounded-3xl bg-ink-900/70 p-6 lg:sticky lg:top-24">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-electric-cyan">
-            Задачи
+        <aside className="h-fit border-t border-white/15 lg:sticky lg:top-28">
+          <p className="py-5 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+            What I cover
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-frost">
-            Что закрываю
-          </h2>
-          <div className="mt-6 grid gap-3">
-            {roles.map((role) => (
-              <div key={role.title} className="rounded-2xl border border-white/10 bg-white/[0.045] p-4">
-                <h3 className="font-semibold text-frost">{role.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted">{role.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+          {roles.map((role) => (
+            <div key={role.title} className="border-t border-white/15 py-5">
+              <h3 className="font-medium text-frost">{role.title}</h3>
+              <p className="mt-2 text-sm leading-7 text-muted">{role.description}</p>
+            </div>
+          ))}
+        </aside>
       </div>
     </MotionSection>
   );
