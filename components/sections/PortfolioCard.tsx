@@ -1,105 +1,95 @@
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { portfolioCategoryLabels, type PortfolioItem } from "@/data/portfolio";
+import { TrackedLink } from "@/components/ui/TrackedLink";
+import {
+  portfolioStatusLabels,
+  type PortfolioItem
+} from "@/data/portfolio";
+
+const blurDataUrl =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAoLDAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
 type PortfolioCardProps = {
   item: PortfolioItem;
-  compact?: boolean;
   priority?: boolean;
 };
 
-export function PortfolioCard({
-  item,
-  compact = false,
-  priority = false
-}: PortfolioCardProps) {
+export function PortfolioCard({ item, priority = false }: PortfolioCardProps) {
+  const href = `/portfolio/${item.slug}`;
+
   return (
-    <article className="group flex h-full flex-col">
-      <Link
-        href={item.href ?? "/portfolio"}
-        aria-label={`Смотреть кейс: ${item.title}`}
-        className="focus-ring relative block aspect-[16/10] overflow-hidden rounded-md border border-white/10 bg-ink-900"
+    <article className="group flex h-full flex-col border-b border-white/15 pb-8">
+      <TrackedLink
+        href={href}
+        goal="case_open"
+        goalParams={{ case: item.slug, source: "cover" }}
+        aria-label={`Смотреть кейс «${item.title}»`}
+        className="focus-ring relative block aspect-[16/9] overflow-hidden rounded-md border border-white/10 bg-ink-900"
       >
         <Image
-          src={item.cover}
-          alt={item.title}
+          src={item.coverImage}
+          alt={item.coverAlt}
           fill
-          sizes={
-            compact
-              ? "(min-width: 768px) 33vw, 100vw"
-              : "(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-          }
+          sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
           priority={priority}
-          className="object-cover transition duration-500 group-hover:scale-[1.018] group-hover:opacity-90"
+          placeholder="blur"
+          blurDataURL={blurDataUrl}
+          className="object-cover transition duration-300 group-hover:scale-[1.012] group-hover:opacity-90"
         />
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/75 to-transparent p-4 pt-14">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70">
-            {portfolioCategoryLabels[item.category]}
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/75 to-transparent p-4 pt-16">
+          <span className="text-[11px] font-semibold text-white/75">
+            {portfolioStatusLabels[item.status]}
           </span>
           <ArrowUpRight
             className="h-5 w-5 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             aria-hidden="true"
           />
         </div>
-      </Link>
+      </TrackedLink>
 
       <div className="flex flex-1 flex-col pt-5">
         <div className="flex items-center justify-between gap-4 text-xs text-muted">
-          <span>{item.client}</span>
+          <span>{item.projectType}</span>
           <span>{item.year}</span>
         </div>
-        <h3 className="mt-3 text-2xl font-medium leading-tight text-frost">{item.title}</h3>
+        <h3 className="mt-3 font-heading text-2xl font-medium leading-tight text-frost sm:text-3xl">
+          {item.title}
+        </h3>
+        <p className="mt-4 max-w-xl text-base leading-7 text-muted">
+          {item.description}
+        </p>
 
-        {!compact ? (
-          <>
-            <p className="mt-4 text-sm leading-7 text-muted">{item.description}</p>
+        <div className="mt-5 border-t border-white/10 pt-4">
+          <p className="text-[11px] font-semibold uppercase text-muted">
+            Что сделано
+          </p>
+          <p className="mt-2 text-sm leading-7 text-frost/80">
+            {item.deliverables.slice(0, 3).join(" · ")}
+          </p>
+        </div>
 
-            <dl className="mt-6 grid gap-4 border-y border-white/10 py-5 sm:grid-cols-2">
-              <div>
-                <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">Role</dt>
-                <dd className="mt-2 text-sm text-frost">{item.role}</dd>
-              </div>
-              <div>
-                <dt className="text-[10px] uppercase tracking-[0.16em] text-muted">
-                  Artifact
-                </dt>
-                <dd className="mt-2 text-sm text-frost">{item.artifact}</dd>
-              </div>
-            </dl>
-
-            <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted">
-              {item.tags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
-          </>
-        ) : null}
-
-        <div className="mt-auto flex flex-wrap gap-4 pt-6">
-          {item.href ? (
-            <Link
-              href={item.href}
-              className="focus-ring inline-flex items-center gap-2 rounded-sm border-b border-white/30 pb-1 text-sm font-semibold text-frost transition hover:border-frost"
-            >
-              Смотреть кейс
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          ) : (
-            <span aria-disabled="true" className="text-sm font-semibold text-muted">
-              Скоро
-            </span>
-          )}
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <TrackedLink
+            href={href}
+            goal="case_open"
+            goalParams={{ case: item.slug, source: "button" }}
+            className="focus-ring inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-white/20 text-sm font-semibold text-frost transition hover:border-frost hover:bg-white/[0.04] sm:w-fit sm:px-5"
+          >
+            Смотреть кейс
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </TrackedLink>
           {item.externalUrl ? (
-            <Link
+            <TrackedLink
               href={item.externalUrl}
               target="_blank"
               rel="noreferrer"
-              className="focus-ring inline-flex items-center gap-2 rounded-sm text-sm font-semibold text-muted transition hover:text-frost"
+              goal="external_project_click"
+              goalParams={{ case: item.slug, source: "card" }}
+              className="focus-ring inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-frost px-5 text-sm font-semibold text-ink-950 transition hover:bg-electric-cyan sm:w-fit"
             >
               Открыть сайт
               <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </Link>
+            </TrackedLink>
           ) : null}
         </div>
       </div>

@@ -1,26 +1,48 @@
-export type PortfolioItem = {
-  id: string;
-  title: string;
-  category:
-    | "presentation"
-    | "landing"
-    | "brand"
-    | "ai"
-    | "business-analysis"
-    | "production";
-  client: string;
-  year: string;
-  description: string;
-  role: string;
-  artifact: string;
-  cover: string;
-  images?: string[];
-  href?: string;
-  externalUrl?: string;
-  tags: string[];
+export type PortfolioCategory =
+  | "presentation"
+  | "landing"
+  | "digital-product"
+  | "automation";
+
+export type PortfolioStatus = "client" | "internal" | "concept";
+
+export type PortfolioGalleryItem = {
+  src: string;
+  alt: string;
+  caption: string;
 };
 
-export type PortfolioCategory = PortfolioItem["category"];
+export type PortfolioItem = {
+  slug: string;
+  title: string;
+  category: PortfolioCategory;
+  status: PortfolioStatus;
+  projectType: string;
+  year: string;
+  client: string;
+  role: string;
+  scope: string;
+  description: string;
+  task: string;
+  audience: string;
+  sourceMaterials: string;
+  problem: string;
+  solution: string;
+  deliverables: string[];
+  result: string[];
+  coverImage: string;
+  coverAlt: string;
+  gallery: PortfolioGalleryItem[];
+  externalUrl?: string;
+  featured: boolean;
+  sortOrder: number;
+  visualSystem: {
+    colors: string;
+    typography: string;
+    grid: string;
+    principles: string[];
+  };
+};
 
 export type PortfolioFilter = {
   label: string;
@@ -28,111 +50,494 @@ export type PortfolioFilter = {
 };
 
 export const portfolioFilters: PortfolioFilter[] = [
-  {
-    label: "Все",
-    value: "all"
-  },
-  {
-    label: "Презентации",
-    value: "presentation"
-  },
-  {
-    label: "Лендинги",
-    value: "landing"
-  },
-  {
-    label: "Брендинг",
-    value: "brand"
-  },
-  {
-    label: "AI",
-    value: "ai"
-  },
-  {
-    label: "Аналитика",
-    value: "business-analysis"
-  },
-  {
-    label: "Продакшн",
-    value: "production"
-  }
+  { label: "Все", value: "all" },
+  { label: "Презентации", value: "presentation" },
+  { label: "Лендинги", value: "landing" },
+  { label: "Digital-продукты", value: "digital-product" },
+  { label: "Автоматизации", value: "automation" }
 ];
 
 export const portfolioCategoryLabels: Record<PortfolioCategory, string> = {
   presentation: "Презентация",
   landing: "Лендинг",
-  brand: "Брендинг",
-  ai: "AI",
-  "business-analysis": "Аналитика",
-  production: "Продакшн"
+  "digital-product": "Digital-продукт",
+  automation: "Автоматизация"
 };
 
-export const portfolioItems: PortfolioItem[] = [
+export const portfolioStatusLabels: Record<PortfolioStatus, string> = {
+  client: "Клиентский проект",
+  internal: "Внутренний продукт",
+  concept: "Концептуальный кейс"
+};
+
+export const portfolioItems = ([
   {
-    id: "chess-jazz",
+    slug: "chess-jazz",
     title: "Chess & Jazz",
     category: "presentation",
-    client: "Chess & Jazz",
+    status: "concept",
+    projectType: "Презентация мероприятия",
     year: "2026",
+    client: "Концепт для Chess & Jazz",
+    role: "Структура, storytelling и дизайн",
+    scope: "10 слайдов",
     description:
-      "Презентация на 10 слайдов для проекта Chess & Jazz: структура подачи, визуальная логика и упаковка материала в премиальный формат.",
-    role: "Presentation structure / slide design",
-    artifact: "10-slide presentation",
-    cover: "/portfolio/chess-jazz/chess-jazz-cover.png",
-    images: [
-      "/portfolio/chess-jazz/chess-jazz-slide-01.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-02.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-03.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-04.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-05.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-06.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-07.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-08.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-09.png",
-      "/portfolio/chess-jazz/chess-jazz-slide-10.png"
+      "Презентация фестивального проекта: от логики рассказа до цельной премиальной визуальной системы.",
+    task:
+      "Собрать презентацию, которая быстро объясняет формат Chess & Jazz, передаёт атмосферу события и последовательно раскрывает его содержание.",
+    audience:
+      "Партнёры, потенциальные участники и команда, которым нужно понять идею и масштаб проекта без длинного устного пояснения.",
+    sourceMaterials:
+      "Краткое описание формата, ключевые тезисы о событии и визуальные референсы летнего городского фестиваля.",
+    problem:
+      "Шахматы, джаз, городская площадка и программа воспринимались как отдельные темы. Без общей драматургии презентация могла превратиться в набор красивых, но несвязанных слайдов.",
+    solution:
+      "История построена от основной идеи к локации, программе и ценности формата. Тёмная палитра, тёплая фотография и крупная антиква создают камерный вечерний характер и удерживают единый ритм на всех слайдах.",
+    deliverables: [
+      "Структура презентации",
+      "Редактура и сокращение текстов",
+      "Storytelling",
+      "Визуальная концепция",
+      "Дизайн 10 слайдов",
+      "Подбор и композиция изображений"
     ],
-    href: "/portfolio/chess-jazz",
-    tags: ["Presentation", "Deck", "Premium"]
+    result: [
+      "Разработана презентация на 10 слайдов",
+      "Материалы собраны в последовательную историю",
+      "Создана единая визуальная система",
+      "Подготовлена цельная презентационная подача проекта"
+    ],
+    coverImage: "/portfolio/chess-jazz/chess-jazz-cover.png",
+    coverAlt:
+      "Обложка презентации Chess & Jazz с вечерним садом, сценой и шахматной доской",
+    gallery: [
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-01.png",
+        alt: "Титульный слайд презентации Chess & Jazz",
+        caption: "Обложка и премиальная тональность проекта"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-02.png",
+        alt: "Слайд о соединении шахмат, джаза и летней атмосферы",
+        caption: "Концепция фестиваля: шахматы, музыка и атмосфера"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-03.png",
+        alt: "Слайд о площадке фестиваля в саду Эрмитаж",
+        caption: "Локация как часть впечатления — сад «Эрмитаж»"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-04.png",
+        alt: "Разворот презентации Chess & Jazz о формате события",
+        caption: "Формат события и сценарий дня"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-05.png",
+        alt: "Слайд презентации Chess & Jazz о музыкальной программе",
+        caption: "Музыкальная программа и вечерний ритм"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-06.png",
+        alt: "Слайд презентации Chess & Jazz о шахматной программе",
+        caption: "Шахматная программа и игровые форматы"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-07.png",
+        alt: "Слайд презентации Chess & Jazz об аудитории проекта",
+        caption: "Аудитория и формат взаимодействия"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-08.png",
+        alt: "Слайд презентации Chess & Jazz с партнёрскими возможностями",
+        caption: "Партнёрские возможности проекта"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-09.png",
+        alt: "Атмосферный разворот презентации Chess & Jazz",
+        caption: "Детали события и визуальный ритм"
+      },
+      {
+        src: "/portfolio/chess-jazz/chess-jazz-slide-10.png",
+        alt: "Финальный слайд презентации Chess & Jazz",
+        caption: "Финальный слайд и завершение истории"
+      }
+    ],
+    featured: true,
+    sortOrder: 1,
+    visualSystem: {
+      colors: "Глубокий зелёный, графитовый, тёплое золото",
+      typography: "Контрастная антиква для заголовков и нейтральный гротеск для текста",
+      grid: "Широкая модульная сетка с крупными фотографическими зонами",
+      principles: [
+        "Один ключевой тезис на слайд",
+        "Фотография поддерживает содержание",
+        "Тёплые акценты ведут взгляд",
+        "Повторяемые элементы связывают историю"
+      ]
+    }
   },
   {
-    id: "tatyana-vesennyaya",
-    title: "Лендинг для Татьяны Весенней",
-    category: "landing",
-    client: "Татьяна Весенняя",
-    year: "2026",
-    description:
-      "Лендинг для 3D-визуализатора: персональная подача, структура услуг, визуальный акцент на портфолио и доверие.",
-    role: "Landing structure / UX / visual concept",
-    artifact: "Personal landing page",
-    cover: "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-cover.png",
-    images: [
-      "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-screen-01.png",
-      "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-screen-02.png",
-      "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-screen-03.png"
-    ],
-    href: "/portfolio/tatyana-vesennyaya",
-    externalUrl: "https://tatyana-vesennya-land.vercel.app/",
-    tags: ["Landing", "Personal Brand", "3D Visual"]
-  },
-  {
-    id: "velvet-whisper",
+    slug: "velvet-whisper",
     title: "Velvet Whisper",
     category: "presentation",
-    client: "Velvet Whisper",
+    status: "concept",
+    projectType: "Бренд-презентация",
     year: "2026",
+    client: "Концепт fashion-бренда",
+    role: "Визуальная концепция и дизайн",
+    scope: "5 слайдов",
     description:
-      "Презентация на 5 слайдов для бренда одежды Velvet Whisper: визуальная упаковка, брендовая атмосфера и лаконичная подача.",
-    role: "Presentation design / brand packaging",
-    artifact: "5-slide presentation",
-    cover: "/portfolio/velvet-whisper/velvet-whisper-cover.png",
-    images: [
-      "/portfolio/velvet-whisper/velvet-whisper-slide-01.png",
-      "/portfolio/velvet-whisper/velvet-whisper-slide-02.png",
-      "/portfolio/velvet-whisper/velvet-whisper-slide-03.png",
-      "/portfolio/velvet-whisper/velvet-whisper-slide-04.png",
-      "/portfolio/velvet-whisper/velvet-whisper-slide-05.png"
+      "Лаконичная презентация fashion-бренда, в которой продукт, настроение и характер коллекции собраны в единую подачу.",
+    task:
+      "Создать короткую презентацию бренда одежды, которая передаёт ощущение современной сдержанной роскоши и не перегружает зрителя информацией.",
+    audience:
+      "Партнёры, байеры и потенциальные клиенты, которым важно быстро считать характер бренда и первой коллекции.",
+    sourceMaterials:
+      "Название бренда, идея первой коллекции и направление визуального характера — мягкость, точность и современная элегантность.",
+    problem:
+      "Fashion-презентации легко становятся либо слишком декоративными, либо похожими на каталог. Требовалось сохранить атмосферу и при этом выстроить ясную последовательность.",
+    solution:
+      "Подача построена на большом количестве воздуха, спокойной молочной палитре и контрасте крупной типографики с портретной фотографией. Каждый слайд выполняет одну функцию и продолжает общий визуальный ритм.",
+    deliverables: [
+      "Структура короткой презентации",
+      "Визуальная концепция",
+      "Типографическая система",
+      "Композиция изображений",
+      "Дизайн 5 слайдов"
     ],
-    href: "/portfolio/velvet-whisper",
-    tags: ["Fashion", "Presentation", "Brand"]
+    result: [
+      "Создана презентация на 5 слайдов",
+      "Сформирована единая визуальная атмосфера бренда",
+      "Материал подготовлен в лаконичном презентационном формате"
+    ],
+    coverImage: "/portfolio/velvet-whisper/velvet-whisper-cover.png",
+    coverAlt:
+      "Обложка презентации Velvet Whisper с моделью в светлом костюме",
+    gallery: [
+      {
+        src: "/portfolio/velvet-whisper/velvet-whisper-slide-01.png",
+        alt: "Титульный слайд презентации Velvet Whisper",
+        caption: "Обложка и первое впечатление от бренда"
+      },
+      {
+        src: "/portfolio/velvet-whisper/velvet-whisper-slide-02.png",
+        alt: "Слайд презентации с идеей бренда Velvet Whisper",
+        caption: "Идея и характер бренда"
+      },
+      {
+        src: "/portfolio/velvet-whisper/velvet-whisper-slide-03.png",
+        alt: "Слайд о первой коллекции Velvet Whisper",
+        caption: "Первая коллекция и продуктовый фокус"
+      },
+      {
+        src: "/portfolio/velvet-whisper/velvet-whisper-slide-04.png",
+        alt: "Имиджевый разворот презентации Velvet Whisper",
+        caption: "Имиджевая подача и детали коллекции"
+      },
+      {
+        src: "/portfolio/velvet-whisper/velvet-whisper-slide-05.png",
+        alt: "Финальный слайд презентации Velvet Whisper",
+        caption: "Финальный разворот и завершение презентации"
+      }
+    ],
+    featured: true,
+    sortOrder: 2,
+    visualSystem: {
+      colors: "Молочный, графитовый, приглушённый серо-бежевый",
+      typography: "Редакционная антиква и лёгкий нейтральный гротеск",
+      grid: "Асимметричная fashion-сетка с крупными полями",
+      principles: [
+        "Минимум элементов на экране",
+        "Фотография остаётся главным носителем эмоции",
+        "Типографика работает как часть образа",
+        "Все слайды сохраняют спокойный темп"
+      ]
+    }
+  },
+  {
+    slug: "jk-finance",
+    title: "JK Finance",
+    category: "digital-product",
+    status: "concept",
+    projectType: "Финансовая модель и интерфейс",
+    year: "2026",
+    client: "Внутренний концепт",
+    role: "Продуктовая логика, модель и интерфейс",
+    scope: "Концепция продукта",
+    description:
+      "Финансовая модель и презентационная упаковка франшизы в формате понятного рабочего интерфейса.",
+    task:
+      "Соединить логику финансовой модели, сценарии запуска и ключевые показатели в одном цифровом продукте, которым удобно пользоваться без постоянной расшифровки таблиц.",
+    audience:
+      "Команда проекта и потенциальные партнёры, которым нужно сравнивать сценарии и понимать устройство модели.",
+    sourceMaterials:
+      "Структура расходов, логика юнит-экономики, сценарии запуска и набор разрозненных расчётных блоков.",
+    problem:
+      "Большая таблица показывает числа, но плохо объясняет связи между ними. Пользователю сложно увидеть, какие параметры влияют на сценарий и где находится главное решение.",
+    solution:
+      "Модель разделена на понятные смысловые уровни: вводные параметры, сценарии, структура расходов и итоговая сводка. Интерфейс использует спокойную финансовую визуальную систему и помогает сравнивать варианты без визуального шума.",
+    deliverables: [
+      "Структура финансовой модели",
+      "Логика сценариев",
+      "Информационная архитектура",
+      "Прототип интерфейса",
+      "Презентационная упаковка"
+    ],
+    result: [
+      "Собрана логика финансового продукта",
+      "Расчётные блоки объединены в последовательный сценарий",
+      "Подготовлена концепция интерфейса для работы с моделью"
+    ],
+    coverImage: "/case-assets/jk-finance/cover",
+    coverAlt:
+      "Концепция интерфейса JK Finance с финансовой моделью и сценариями",
+    gallery: [
+      {
+        src: "/case-assets/jk-finance/overview",
+        alt: "Обзорный экран финансовой модели JK Finance",
+        caption: "Обзор модели и основные смысловые блоки"
+      },
+      {
+        src: "/case-assets/jk-finance/scenarios",
+        alt: "Экран сравнения сценариев в JK Finance",
+        caption: "Сравнение базового, ростового и стресс-сценариев"
+      },
+      {
+        src: "/case-assets/jk-finance/structure",
+        alt: "Экран структуры расходов в JK Finance",
+        caption: "Структура расходов и логика юнит-экономики"
+      }
+    ],
+    featured: true,
+    sortOrder: 3,
+    visualSystem: {
+      colors: "Графитовый, холодный серый, светлый cyan",
+      typography: "Нейтральный гротеск с табличными цифрами",
+      grid: "12-колоночная продуктовая сетка",
+      principles: [
+        "Сначала решение, затем детализация",
+        "Числа сгруппированы по смыслу",
+        "Цвет используется только для статусов и сравнения",
+        "Интерфейс сохраняет плотность без ощущения таблицы"
+      ]
+    }
+  },
+  {
+    slug: "contract-architect",
+    title: "Contract Architect",
+    category: "digital-product",
+    status: "internal",
+    projectType: "B2B SaaS-концепция",
+    year: "2026",
+    client: "Внутренний продукт",
+    role: "Продуктовая структура и UX",
+    scope: "Прототип ключевого сценария",
+    description:
+      "Концепция B2B-инструмента, который помогает разбирать договоры, видеть риски и собирать согласование в одном рабочем пространстве.",
+    task:
+      "Превратить сложный процесс проверки договора в последовательный интерфейс: загрузка документа, разбор пунктов, фиксация рисков и подготовка решения.",
+    audience:
+      "Небольшие юридические и операционные команды, которым нужен прозрачный совместный процесс работы с документами.",
+    sourceMaterials:
+      "Карта процесса согласования, роли участников, типовые точки риска и набор действий, которые обычно происходят в переписке и документах.",
+    problem:
+      "Комментарии, версии и решения живут в разных каналах. Пользователь теряет контекст, не понимает статус документа и тратит время на повторный поиск спорных пунктов.",
+    solution:
+      "Сценарий собран вокруг документа: слева структура договора, в центре содержание, справа риски и решения. Статусы и история согласования видны в одном контексте, без перегруженной панели управления.",
+    deliverables: [
+      "Карта пользовательского сценария",
+      "Информационная архитектура",
+      "Логика статусов",
+      "Прототип интерфейса",
+      "Концепция автоматизации"
+    ],
+    result: [
+      "Сформирован ключевой пользовательский сценарий",
+      "Разрозненные действия объединены вокруг документа",
+      "Подготовлена визуальная концепция B2B-интерфейса"
+    ],
+    coverImage: "/case-assets/contract-architect/cover",
+    coverAlt:
+      "Концепция B2B-интерфейса Contract Architect для анализа договоров",
+    gallery: [
+      {
+        src: "/case-assets/contract-architect/overview",
+        alt: "Рабочее пространство Contract Architect с договором и рисками",
+        caption: "Единое рабочее пространство вокруг документа"
+      },
+      {
+        src: "/case-assets/contract-architect/review",
+        alt: "Экран проверки пунктов договора в Contract Architect",
+        caption: "Проверка пунктов, комментарии и уровни риска"
+      },
+      {
+        src: "/case-assets/contract-architect/approval",
+        alt: "Экран согласования договора в Contract Architect",
+        caption: "Статусы согласования и история решений"
+      }
+    ],
+    featured: true,
+    sortOrder: 4,
+    visualSystem: {
+      colors: "Почти чёрный, холодный белый, cyan для активных состояний",
+      typography: "Компактный гротеск с чёткой иерархией документа",
+      grid: "Трёхпанельная рабочая область на 12-колоночной сетке",
+      principles: [
+        "Документ остаётся главным объектом",
+        "Риски объясняются текстом, а не только цветом",
+        "История действий всегда доступна",
+        "Вторичные инструменты не конкурируют с содержанием"
+      ]
+    }
+  },
+  {
+    slug: "ai-youtube-script-agent",
+    title: "AI YouTube Script Agent",
+    category: "automation",
+    status: "internal",
+    projectType: "AI-автоматизация",
+    year: "2026",
+    client: "Внутренний продукт",
+    role: "Сценарий агента, prompt-система и UX",
+    scope: "Рабочая логика прототипа",
+    description:
+      "Система для подготовки YouTube-сценария: от исследования темы и структуры до связного черновика и редакторской проверки.",
+    task:
+      "Разложить подготовку сценария на управляемые этапы и описать взаимодействие человека с AI так, чтобы автор контролировал логику, тон и финальный текст.",
+    audience:
+      "Авторы и небольшие контент-команды, которым нужно ускорить исследование и черновую работу, не отдавая AI финальное редакторское решение.",
+    sourceMaterials:
+      "Типовой процесс подготовки ролика, требования к структуре сценария, набор промтов и правила проверки результата.",
+    problem:
+      "Один большой запрос даёт нестабильный сценарий: факты смешиваются с выводами, структура распадается, а автору трудно понять, на каком этапе появилась ошибка.",
+    solution:
+      "Процесс разделён на исследование, тезисы, структуру, черновик и редакторскую проверку. Каждый этап имеет понятный вход и выход, а пользователь подтверждает результат перед переходом дальше.",
+    deliverables: [
+      "Сценарий работы агента",
+      "Prompt-система",
+      "Логика этапов и проверок",
+      "Прототип рабочего процесса",
+      "Правила ручного контроля"
+    ],
+    result: [
+      "Подготовлена модульная логика AI-агента",
+      "Разделены исследование, структура и написание текста",
+      "Собран прототип процесса с ручным подтверждением этапов"
+    ],
+    coverImage: "/case-assets/ai-youtube-script-agent/cover",
+    coverAlt:
+      "Интерфейс AI YouTube Script Agent с этапами подготовки сценария",
+    gallery: [
+      {
+        src: "/case-assets/ai-youtube-script-agent/workflow",
+        alt: "Рабочий процесс AI YouTube Script Agent",
+        caption: "Последовательность от исследования до финального черновика"
+      },
+      {
+        src: "/case-assets/ai-youtube-script-agent/research",
+        alt: "Экран исследования темы в AI YouTube Script Agent",
+        caption: "Исследование источников и фиксация ключевых тезисов"
+      },
+      {
+        src: "/case-assets/ai-youtube-script-agent/editor",
+        alt: "Редактор сценария в AI YouTube Script Agent",
+        caption: "Редакторская проверка структуры, тона и переходов"
+      }
+    ],
+    featured: true,
+    sortOrder: 5,
+    visualSystem: {
+      colors: "Графитовый, молочный, холодный голубой",
+      typography: "Нейтральный интерфейсный гротеск",
+      grid: "Последовательная workflow-сетка с фиксированным прогрессом",
+      principles: [
+        "Один этап — одна понятная задача",
+        "AI предлагает, человек подтверждает",
+        "Источники отделены от чернового текста",
+        "Статус процесса виден без дополнительных экранов"
+      ]
+    }
+  },
+  {
+    slug: "tatyana-vesennyaya",
+    title: "Лендинг для Татьяны Весенней",
+    category: "landing",
+    status: "client",
+    projectType: "Персональный лендинг",
+    year: "2026",
+    client: "Татьяна Весенняя",
+    role: "Структура, UX и визуальная концепция",
+    scope: "Адаптивный лендинг",
+    description:
+      "Лендинг для 3D-визуализатора: персональная подача, понятные услуги и визуальный акцент на портфолио.",
+    task:
+      "Создать персональный сайт, который быстро объясняет специализацию 3D-визуализатора, показывает качество работ и переводит интерес в обращение.",
+    audience:
+      "Архитекторы, дизайнеры интерьеров и частные заказчики, которым нужен специалист по 3D-визуализации.",
+    sourceMaterials:
+      "Портфолио визуализаций, описание услуг, профессиональная информация и пожелания к характеру личного бренда.",
+    problem:
+      "Работы были сильнее их подачи: посетителю требовалось самому собирать представление об услугах, процессе и причинах доверить проект специалисту.",
+    solution:
+      "Структура ведёт от позиционирования и избранных работ к услугам, процессу и контакту. Тёмный фон и пластичная типографика помогают изображениям оставаться главным доказательством качества.",
+    deliverables: [
+      "Структура лендинга",
+      "Прототип",
+      "Редактура текстов",
+      "Визуальная концепция",
+      "Адаптивный дизайн",
+      "Разработка и публикация"
+    ],
+    result: [
+      "Собран и опубликован рабочий лендинг",
+      "Портфолио встроено в понятный сценарий знакомства",
+      "Услуги и процесс получили единую визуальную подачу",
+      "Сайт адаптирован для мобильных устройств"
+    ],
+    coverImage:
+      "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-cover.png",
+    coverAlt:
+      "Обложка персонального лендинга 3D-визуализатора Татьяны Весенней",
+    gallery: [
+      {
+        src: "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-screen-01.png",
+        alt: "Первый экран лендинга Татьяны Весенней",
+        caption: "Первый экран: позиционирование и визуальный характер"
+      },
+      {
+        src: "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-screen-02.png",
+        alt: "Блок портфолио на лендинге Татьяны Весенней",
+        caption: "Портфолио как главное доказательство качества"
+      },
+      {
+        src: "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-screen-03.png",
+        alt: "Блок услуг и контактов на лендинге Татьяны Весенней",
+        caption: "Услуги, процесс и переход к обращению"
+      }
+    ],
+    externalUrl: "https://tatyana-vesennya-land.vercel.app/",
+    featured: true,
+    sortOrder: 6,
+    visualSystem: {
+      colors: "Чёрный, холодный белый, приглушённый фиолетовый акцент",
+      typography: "Крупный редакционный заголовок и нейтральный текстовый гротеск",
+      grid: "Адаптивная сетка с широкими зонами для портфолио",
+      principles: [
+        "Работы появляются уже на первом экране",
+        "Текст поддерживает изображения, а не конкурирует с ними",
+        "У каждого блока есть понятный следующий шаг",
+        "Мобильная версия сохраняет визуальный характер"
+      ]
+    }
   }
-];
+] satisfies PortfolioItem[]).sort((a, b) => a.sortOrder - b.sortOrder);
+
+export function getPortfolioItem(slug: string) {
+  return portfolioItems.find((item) => item.slug === slug);
+}
+
+export function getNextPortfolioItem(slug: string) {
+  const index = portfolioItems.findIndex((item) => item.slug === slug);
+  if (index === -1) return undefined;
+  return portfolioItems[(index + 1) % portfolioItems.length];
+}

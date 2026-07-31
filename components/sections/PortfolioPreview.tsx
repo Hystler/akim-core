@@ -3,7 +3,10 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { PortfolioCard } from "@/components/sections/PortfolioCard";
-import { cardReveal, MotionSection, staggerContainer } from "@/components/ui/MotionPrimitives";
+import {
+  MotionSection,
+  staggerContainer
+} from "@/components/ui/MotionPrimitives";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { PortfolioItem } from "@/data/portfolio";
 
@@ -17,23 +20,37 @@ export function PortfolioPreview({ items }: PortfolioPreviewProps) {
       <div className="section-shell">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
-            eyebrow="Portfolio"
-            index="01"
-            title="Работы, которые можно рассмотреть в деталях"
-            text="Презентации, лендинг и брендовая упаковка. Каждый кейс открыт целиком, без декоративных мокапов."
+            eyebrow="Избранные кейсы"
+            title="Работы, в которых содержание и визуальная подача решают одну задачу"
+            text="Презентации остаются главным направлением. Лендинги и продуктовые интерфейсы показывают, как тот же подход работает в других digital-форматах."
           />
-          <Link href="/portfolio" className="border-b border-white/25 pb-1 text-sm font-semibold text-frost transition hover:border-frost">
-            Все работы
+          <Link
+            href="/portfolio"
+            className="focus-ring w-fit rounded-sm border-b border-white/30 pb-1 text-sm font-semibold text-frost transition hover:border-frost"
+          >
+            Все кейсы
           </Link>
         </div>
 
-        <motion.div variants={staggerContainer} className="mt-12 grid gap-x-5 gap-y-10 md:grid-cols-3">
-          {items.map((item, index) => (
-            <motion.div key={item.id} variants={cardReveal}>
-              <PortfolioCard item={item} compact priority={index === 0} />
+        <motion.div
+          variants={staggerContainer}
+          className="mt-12 grid gap-x-7 gap-y-14 md:grid-cols-2"
+        >
+          {items.map((item) => (
+            <motion.div key={item.slug} variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}>
+              <PortfolioCard item={item} />
             </motion.div>
           ))}
         </motion.div>
+
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/portfolio"
+            className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-6 text-sm font-semibold text-frost transition hover:border-frost hover:bg-white/[0.04]"
+          >
+            Смотреть все кейсы
+          </Link>
+        </div>
       </div>
     </MotionSection>
   );

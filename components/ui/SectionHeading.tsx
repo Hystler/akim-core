@@ -28,11 +28,11 @@ export function SectionHeading({
         }`}
       >
         {index ? <span className={`text-xs font-medium ${indexColor}`}>{index}</span> : null}
-        <p className={`text-xs font-semibold uppercase tracking-[0.18em] ${mutedColor}`}>
+        <p className={`text-xs font-semibold uppercase ${mutedColor}`}>
           {eyebrow}
         </p>
       </div>
-      <h2 className={`text-balance text-3xl font-medium leading-[1.08] sm:text-5xl lg:text-6xl ${titleColor}`}>
+      <h2 className={`text-balance font-heading text-3xl font-medium leading-[1.08] sm:text-5xl lg:text-6xl ${titleColor}`}>
         {title}
       </h2>
       {text ? (

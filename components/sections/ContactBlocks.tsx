@@ -1,127 +1,285 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, Send } from "lucide-react";
-import {
-  cardReveal,
-  MotionSection,
-  staggerContainer
-} from "@/components/ui/MotionPrimitives";
+import { ArrowUpRight, CheckCircle2, Mail, Send } from "lucide-react";
+import Link from "next/link";
+import { useRef, useState, type FormEvent } from "react";
+import { trackGoal } from "@/lib/analytics";
 
-const contacts = [
-  {
-    label: "Telegram",
-    value: "@akimkovalenko",
-    href: "https://t.me/akimkovalenko",
-    icon: Send
-  },
-  {
-    label: "Email",
-    value: "hello@akimkovalenko.ru",
-    href: "mailto:hello@akimkovalenko.ru",
-    icon: Mail
-  }
+type SubmitState = "idle" | "submitting" | "success" | "error";
+
+const taskTypes = [
+  "Презентация под ключ",
+  "Редизайн презентации",
+  "Коммерческое предложение",
+  "Лендинг",
+  "B2B SaaS или интерфейс",
+  "Автоматизация",
+  "Другое"
 ];
 
-const briefOptions = [
-  "Сайт",
-  "Презентация",
-  "AI-система",
-  "Бизнес-процесс",
-  "Мероприятие / production"
-];
-
-const requestTopics = [
-  "Что есть сейчас",
-  "Какой результат нужен",
-  "Для кого собираем",
-  "Есть ли срок или запуск",
-  "Какие материалы уже готовы"
-];
+const telegramBase = "https://t.me/loot_digger";
 
 export function ContactBlocks() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const attachment = formData.get("attachment");
+
+    if (attachment instanceof File && attachment.size > 10 * 1024 * 1024) {
+      setSubmitState("error");
+      setMessage("Файл больше 10 МБ. Добавьте ссылку на материалы или выберите файл меньше.");
+      return;
+    }
+
+    setSubmitState("submitting");
+    setMessage("");
+
+    const endpoint =
+      process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ??
+      "https://formsubmit.co/ajax/hello@akimkovalenko.ru";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData
+      });
+
+      if (!response.ok) throw new Error("Form submission failed");
+
+      const data = (await response.json()) as { success?: boolean | string };
+      if (data.success === false || data.success === "false") {
+        throw new Error("Form submission rejected");
+      }
+
+      setSubmitState("success");
+      setMessage("Задача отправлена. Я отвечу по указанному контакту.");
+      form.reset();
+      trackGoal("contact_form_submit");
+    } catch {
+      setSubmitState("error");
+      setMessage(
+        "Не получилось отправить форму. Напишите в Telegram или на email — ссылки находятся рядом."
+      );
+    }
+  }
+
+  function openTelegramDraft() {
+    const form = formRef.current;
+    if (!form) return;
+
+    const data = new FormData(form);
+    const task = String(data.get("taskType") ?? "");
+    const description = String(data.get("description") ?? "");
+    const deadline = String(data.get("deadline") ?? "");
+    const materials = String(data.get("materialsUrl") ?? "");
+    const text = [
+      "Здравствуйте! Хочу обсудить проект.",
+      `Тип задачи: ${task}`,
+      `Задача: ${description}`,
+      `Дедлайн: ${deadline}`,
+      `Материалы: ${materials}`
+    ].join("\n");
+
+    trackGoal("telegram_click", { source: "contact_form" });
+    window.open(`${telegramBase}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+  }
+
+  const fieldClass =
+    "focus-ring min-h-12 w-full rounded-md border border-white/15 bg-white/[0.035] px-4 text-frost placeholder:text-muted/60 transition hover:border-white/25 focus:border-electric-cyan";
+
   return (
-    <MotionSection className="bg-paper py-16 text-ink-950 sm:py-24">
-      <div className="section-shell grid gap-14 lg:grid-cols-[1.15fr_0.85fr]">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-800/55">
-            Direct contact
-          </p>
-          <motion.div variants={staggerContainer} className="mt-6 border-t border-ink-950/20">
-            {contacts.map((contact) => {
-              const Icon = contact.icon;
+    <section className="pb-20 pt-14 sm:pb-28 sm:pt-20">
+      <div className="section-shell grid gap-14 lg:grid-cols-[1.25fr_0.75fr]">
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          className="rounded-md border border-white/15 p-5 sm:p-8"
+        >
+          <input type="hidden" name="_subject" value="Новая заявка с сайта AKIM CORE" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" />
 
-              return (
-                <motion.a
-                  key={contact.label}
-                  variants={cardReveal}
-                  href={contact.href}
-                  className="group grid gap-5 border-b border-ink-950/20 py-7 transition-colors hover:bg-white/35 sm:grid-cols-[44px_120px_1fr_auto] sm:items-center sm:px-3"
-                >
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                  <span className="text-sm text-ink-800/60">{contact.label}</span>
-                  <span className="break-all text-lg font-medium text-ink-950 sm:text-xl">
-                    {contact.value}
-                  </span>
-                  <ArrowUpRight
-                    className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </motion.a>
-              );
-            })}
-          </motion.div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="grid gap-2 text-sm font-medium text-frost">
+              Имя <span className="text-electric-cyan">*</span>
+              <input
+                type="text"
+                name="name"
+                required
+                autoComplete="name"
+                className={fieldClass}
+              />
+            </label>
+            <label className="grid gap-2 text-sm font-medium text-frost">
+              Telegram или email <span className="text-electric-cyan">*</span>
+              <input
+                type="text"
+                name="contact"
+                required
+                autoComplete="email"
+                className={fieldClass}
+              />
+            </label>
+          </div>
 
-          <a
-            href="https://t.me/akimkovalenko"
-            className="focus-ring group mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-ink-950 px-6 py-3 text-sm font-semibold text-frost transition hover:-translate-y-0.5 hover:bg-ink-800"
-          >
-            Написать в Telegram
-            <ArrowUpRight
-              className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              aria-hidden="true"
+          <label className="mt-5 grid gap-2 text-sm font-medium text-frost">
+            Тип задачи <span className="text-electric-cyan">*</span>
+            <select name="taskType" required defaultValue="" className={fieldClass}>
+              <option value="" disabled className="bg-ink-900">
+                Выберите формат
+              </option>
+              {taskTypes.map((type) => (
+                <option key={type} value={type} className="bg-ink-900">
+                  {type}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="mt-5 grid gap-2 text-sm font-medium text-frost">
+            Краткое описание <span className="text-electric-cyan">*</span>
+            <textarea
+              name="description"
+              required
+              rows={5}
+              placeholder="Что нужно создать, для кого и какой результат ожидаете"
+              className={`${fieldClass} min-h-36 py-3`}
             />
-          </a>
-        </div>
+          </label>
 
-        <div className="border-t border-ink-950/20 pt-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-800/55">
-            Mini brief
-          </p>
-          <h2 className="mt-5 text-3xl font-medium leading-tight text-ink-950">
-            Достаточно нескольких строк
-          </h2>
-          <p className="mt-4 max-w-lg text-base leading-8 text-ink-800/70">
-            Не нужно готовить идеальное ТЗ. Напишите свободно, а структуру соберём в
-            разговоре.
-          </p>
+          <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <label className="grid gap-2 text-sm font-medium text-frost">
+              Дедлайн
+              <input
+                type="text"
+                name="deadline"
+                placeholder="Например, 20 августа"
+                className={fieldClass}
+              />
+            </label>
+            <label className="grid gap-2 text-sm font-medium text-frost">
+              Ссылка на материалы
+              <input
+                type="url"
+                name="materialsUrl"
+                inputMode="url"
+                placeholder="https://"
+                className={fieldClass}
+              />
+            </label>
+          </div>
 
-          <div className="mt-7 flex flex-wrap gap-2">
-            {briefOptions.map((option) => (
-              <span
-                key={option}
-                className="rounded-full border border-ink-950/20 px-3 py-1.5 text-xs text-ink-800/70"
-              >
-                {option}
+          <label className="mt-5 grid gap-2 text-sm font-medium text-frost">
+            Прикрепить файл
+            <input
+              type="file"
+              name="attachment"
+              accept=".pdf,.ppt,.pptx,.key,.doc,.docx,.xls,.xlsx,.zip,.png,.jpg,.jpeg"
+              className="focus-ring min-h-14 w-full rounded-md border border-dashed border-white/20 bg-white/[0.025] p-2 text-sm text-muted"
+            />
+            <span className="text-xs font-normal leading-5 text-muted">
+              PDF, PowerPoint, документы, таблицы, ZIP или изображения — до 10 МБ.
+            </span>
+          </label>
+
+          <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-muted">
+            <input
+              type="checkbox"
+              name="privacyConsent"
+              required
+              className="focus-ring mt-1 size-4 shrink-0 accent-electric-blue"
+            />
+            <span>
+              Я согласен с{" "}
+              <Link href="/privacy" className="text-frost underline decoration-white/30">
+                политикой конфиденциальности
+              </Link>
+              .
+            </span>
+          </label>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <button
+              type="submit"
+              disabled={submitState === "submitting"}
+              className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md bg-frost px-6 text-sm font-semibold text-ink-950 transition hover:bg-electric-cyan disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {submitState === "submitting" ? "Отправляю…" : "Отправить задачу"}
+            </button>
+            <button
+              type="button"
+              onClick={openTelegramDraft}
+              className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/20 px-6 text-sm font-semibold text-frost transition hover:border-frost"
+            >
+              <Send className="h-4 w-4" aria-hidden="true" />
+              Подготовить текст в Telegram
+            </button>
+          </div>
+
+          {message ? (
+            <div
+              aria-live="polite"
+              role={submitState === "error" ? "alert" : "status"}
+              className={`mt-6 flex gap-3 rounded-md border p-4 text-sm leading-6 ${
+                submitState === "success"
+                  ? "border-emerald-300/30 bg-emerald-300/10 text-emerald-100"
+                  : "border-red-300/30 bg-red-300/10 text-red-100"
+              }`}
+            >
+              {submitState === "success" ? (
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+              ) : null}
+              {message}
+            </div>
+          ) : null}
+        </form>
+
+        <aside className="h-fit border-t border-white/15 lg:sticky lg:top-28">
+          <p className="py-5 text-xs font-semibold uppercase text-muted">
+            Прямой контакт
+          </p>
+          <a
+            href={telegramBase}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackGoal("telegram_click", { source: "contact_page" })}
+            className="group grid grid-cols-[36px_1fr_auto] items-center border-t border-white/15 py-6"
+          >
+            <Send className="h-4 w-4 text-electric-cyan" aria-hidden="true" />
+            <span>
+              <span className="block text-xs text-muted">Telegram</span>
+              <span className="mt-1 block font-heading text-lg font-medium text-frost">
+                @loot_digger
               </span>
-            ))}
-          </div>
-
-          <div className="mt-8 border-t border-ink-950/20">
-            {requestTopics.map((topic, index) => (
-              <div
-                key={topic}
-                className="grid grid-cols-[36px_1fr] border-b border-ink-950/20 py-4 text-sm"
-              >
-                <span className="text-ink-800/45">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span>{topic}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+            </span>
+            <ArrowUpRight className="h-4 w-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+          </a>
+          <a
+            href="mailto:hello@akimkovalenko.ru"
+            className="group grid grid-cols-[36px_1fr_auto] items-center border-y border-white/15 py-6"
+          >
+            <Mail className="h-4 w-4 text-electric-cyan" aria-hidden="true" />
+            <span>
+              <span className="block text-xs text-muted">Email</span>
+              <span className="mt-1 block break-all font-heading text-base font-medium text-frost">
+                hello@akimkovalenko.ru
+              </span>
+            </span>
+            <ArrowUpRight className="h-4 w-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+          </a>
+          <p className="mt-6 text-sm leading-7 text-muted">
+            Обычно для старта достаточно краткого описания задачи, примера материалов
+            и желаемого срока.
+          </p>
+        </aside>
       </div>
-    </MotionSection>
+    </section>
   );
 }

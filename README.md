@@ -1,6 +1,6 @@
-# Akim Kovalenko Personal Brand Website
+# AKIM CORE
 
-Многостраничный personal brand website на Next.js App Router, TypeScript, Tailwind CSS и Framer Motion.
+Портфолио Акима Коваленко — дизайнера презентаций и digital-продуктов. Проект собран на Next.js App Router, TypeScript, Tailwind CSS и Framer Motion.
 
 ## Локальный запуск
 
@@ -9,29 +9,36 @@ npm install
 npm run dev
 ```
 
-Сайт откроется на адресе, который покажет Next.js в терминале.
-
-## Production build
-
-```bash
-npm run build
-npm run start
-```
-
 ## Проверка качества
 
 ```bash
 npm run lint
+npm run typecheck
+npm run build
 ```
 
-## Деплой на Vercel
+## Контент кейсов
 
-1. Создайте репозиторий на GitHub и загрузите проект.
-2. В Vercel выберите `Add New Project`.
-3. Импортируйте GitHub-репозиторий.
-4. Framework Preset: `Next.js`.
-5. Build Command: `npm run build`.
-6. Install Command: `npm install`.
-7. Deploy.
+Все кейсы описаны в `data/portfolio.ts`. Страницы `/portfolio/[id]`, карточки, галереи, sitemap и structured data формируются из одной структуры данных.
 
-Проект не использует backend, auth, Supabase или базу данных, поэтому дополнительных переменных окружения для базового деплоя не требуется.
+Растровые материалы клиентских и презентационных кейсов находятся в `public/portfolio/<slug>/`. Концептуальные продуктовые экраны генерируются лёгкими image routes в `app/case-assets/[slug]/[frame]/route.tsx`.
+
+Собственная база данных, Prisma, Supabase и API загрузки файлов для портфолио не используются.
+
+## Переменные окружения
+
+Скопируйте значения из `.env.example` в локальный `.env.local` и настройте их в Vercel:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://example.com
+NEXT_PUBLIC_YANDEX_METRIKA_ID=
+NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=https://formsubmit.co/ajax/hello@example.com
+```
+
+`NEXT_PUBLIC_YANDEX_METRIKA_ID` включает счётчик и цели. Без ID аналитический скрипт не загружается.
+
+Форма использует FormSubmit без собственного backend. При первом обращении сервис может отправить на рабочий email письмо для подтверждения адреса.
+
+## Фотография
+
+Чтобы показать портрет в блоке «Обо мне», добавьте реальную фотографию в `public/images/akim-kovalenko.jpg`. Пока файла нет, интерфейс автоматически показывает композицию из работ.

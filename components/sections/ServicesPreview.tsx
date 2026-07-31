@@ -1,56 +1,52 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Bot, CalendarClock, FileStack, GitBranch, Globe2 } from "lucide-react";
-import { services } from "@/data/services";
-import {
-  cardReveal,
-  MotionSection,
-  staggerContainer
-} from "@/components/ui/MotionPrimitives";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-
-const icons = [Bot, Globe2, GitBranch, CalendarClock, FileStack];
+import { services } from "@/data/services";
 
 export function ServicesPreview() {
   return (
-    <MotionSection className="bg-paper py-20 text-ink-950 sm:py-28">
+    <section className="bg-ink-900 py-20 sm:py-28">
       <div className="section-shell">
-        <div className="flex flex-col gap-6 lg:max-w-4xl">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
-            eyebrow="Capabilities"
-            index="02"
-            tone="light"
-            title="От стратегии до собранного результата"
-            text="Подключаюсь там, где нужно разобраться в задаче, найти сильную структуру и довести её до конкретного цифрового или физического артефакта."
+            eyebrow="Услуги"
+            title="Презентации — в центре. Digital-продукты — когда задаче нужен другой формат"
+            text="Подключаюсь к структуре, текстам и визуальной системе. Формат выбираем по бизнес-задаче, а не по привычке."
           />
+          <Link
+            href="/services"
+            className="focus-ring w-fit rounded-sm border-b border-white/30 pb-1 text-sm font-semibold text-frost transition hover:border-frost"
+          >
+            Все услуги
+          </Link>
         </div>
 
-        <motion.div variants={staggerContainer} className="mt-14 border-t border-ink-950/20">
-          {services.map((service, index) => {
-            const Icon = icons[index];
-
-            return (
-              <motion.article
-                key={service.title}
-                variants={cardReveal}
-                className="group grid gap-5 border-b border-ink-950/20 py-7 transition-colors hover:bg-white/35 sm:grid-cols-[56px_0.8fr_1.2fr] sm:items-center sm:px-3"
+        <div className="mt-14 border-t border-white/15">
+          {services.map((service, index) => (
+            <article
+              key={service.slug}
+              className="grid gap-5 border-b border-white/15 py-7 sm:grid-cols-[52px_0.8fr_1.2fr_auto] sm:items-center"
+            >
+              <span className="text-xs text-muted">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="font-heading text-xl font-medium text-frost">
+                {service.title}
+              </h3>
+              <p className="max-w-2xl text-sm leading-7 text-muted">
+                {service.description}
+              </p>
+              <Link
+                href={`/services#${service.slug}`}
+                aria-label={`Подробнее: ${service.title}`}
+                className="focus-ring grid size-11 place-items-center rounded-full border border-white/15 text-frost transition hover:border-frost hover:bg-white/[0.04]"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-md border border-ink-950/20 text-ink-950">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                </div>
-                <div className="flex items-baseline gap-4">
-                  <span className="text-xs font-medium text-ink-800/45">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-xl font-medium text-ink-950">{service.title}</h3>
-                </div>
-                <p className="text-sm leading-7 text-ink-800/70">{service.description}</p>
-              </motion.article>
-            );
-          })}
-        </motion.div>
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </article>
+          ))}
+        </div>
       </div>
-    </MotionSection>
+    </section>
   );
 }

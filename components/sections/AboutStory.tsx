@@ -1,64 +1,55 @@
-"use client";
+import { Check } from "lucide-react";
 
-import { motion } from "framer-motion";
-import { roles } from "@/data/roles";
-import {
-  cardReveal,
-  MotionSection,
-  staggerContainer
-} from "@/components/ui/MotionPrimitives";
-
-const storyBlocks = [
-  {
-    title: "Кто я",
-    text: "Работаю там, где идея ещё не до конца оформлена, а результат уже нужен быстро. Моя роль — собрать смысл, логику, артефакт и движение к запуску."
-  },
-  {
-    title: "Чем полезен",
-    text: "Превращаю набор мыслей, таблиц, задач и вводных в понятную структуру: сайт, презентацию, процесс, AI-сценарий или production-план."
-  },
-  {
-    title: "Как я думаю",
-    text: "Сначала нахожу цель и ограничения. Затем собираю карту решения: кто участвует, что должно получиться и как быстрее довести результат до рабочего состояния."
-  },
-  {
-    title: "Какой опыт соединяю",
-    text: "Digital, AI, бизнес-анализ, проектное управление, презентационная упаковка, финансовые модели, coordination и event production."
-  }
+const experience = [
+  "Презентации и коммерческие предложения",
+  "Финансовые модели и продуктовая логика",
+  "Лендинги и персональные сайты",
+  "B2B-интерфейсы и внутренние инструменты",
+  "AI-сценарии и автоматизации",
+  "Маркетплейсы, мероприятия и координация проектов"
 ];
 
 export function AboutStory() {
   return (
-    <MotionSection className="pb-20 pt-12 sm:pb-28 sm:pt-16">
-      <div className="section-shell grid gap-16 lg:grid-cols-[1.15fr_0.85fr]">
-        <motion.div variants={staggerContainer} className="border-t border-white/15">
-          {storyBlocks.map((block, index) => (
-            <motion.article
-              key={block.title}
-              variants={cardReveal}
-              className="grid gap-4 border-b border-white/15 py-8 sm:grid-cols-[56px_180px_1fr]"
-            >
-              <span className="text-xs text-muted">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h2 className="text-xl font-medium text-frost">{block.title}</h2>
-              <p className="text-base leading-8 text-muted">{block.text}</p>
-            </motion.article>
-          ))}
-        </motion.div>
+    <section className="pb-20 pt-14 sm:pb-28 sm:pt-20">
+      <div className="section-shell grid gap-14 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="border-t border-white/15">
+          <article className="border-b border-white/15 py-8">
+            <h2 className="font-heading text-2xl font-medium text-frost">Как я работаю</h2>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-muted">
+              Начинаю не со стилистики, а с вопроса: что аудитория должна понять,
+              почувствовать и сделать после просмотра. Затем собираю структуру,
+              уточняю тексты, показываю визуальное направление и только после
+              согласования разворачиваю его на весь проект.
+            </p>
+          </article>
+          <article className="border-b border-white/15 py-8">
+            <h2 className="font-heading text-2xl font-medium text-frost">
+              Где помогает широкий опыт
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-muted">
+              Опыт в аналитике, digital и production помогает быстрее разбираться в
+              содержании. Я могу читать таблицы, восстанавливать логику процесса и
+              задавать вопросы по продукту — это особенно важно в презентациях со
+              сложными исходными материалами.
+            </p>
+          </article>
+        </div>
 
-        <aside className="h-fit border-t border-white/15 lg:sticky lg:top-28">
-          <p className="py-5 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-            What I cover
+        <aside className="h-fit rounded-md border border-white/15 p-6 sm:p-7 lg:sticky lg:top-28">
+          <p className="text-xs font-semibold uppercase text-muted">
+            Опыт и контекст
           </p>
-          {roles.map((role) => (
-            <div key={role.title} className="border-t border-white/15 py-5">
-              <h3 className="font-medium text-frost">{role.title}</h3>
-              <p className="mt-2 text-sm leading-7 text-muted">{role.description}</p>
-            </div>
-          ))}
+          <ul className="mt-6 grid gap-4">
+            {experience.map((item) => (
+              <li key={item} className="flex gap-3 text-sm leading-7 text-frost/85">
+                <Check className="mt-1.5 h-4 w-4 shrink-0 text-electric-cyan" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
         </aside>
       </div>
-    </MotionSection>
+    </section>
   );
 }

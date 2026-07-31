@@ -1,30 +1,35 @@
-import Link from "next/link";
-import { MotionSection } from "@/components/ui/MotionPrimitives";
+import { ArrowUpRight } from "lucide-react";
+import { TrackedLink } from "@/components/ui/TrackedLink";
 
 export function CtaSection() {
   return (
-    <MotionSection className="bg-paper py-20 text-ink-950 sm:py-28">
+    <section className="bg-ink-950 py-20 sm:py-28">
       <div className="section-shell">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-800/60">
-          Start a project
-        </p>
-        <div className="mt-6 grid gap-10 border-t border-ink-950/20 pt-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-          <h2 className="text-balance max-w-5xl text-4xl font-medium leading-[1.04] text-ink-950 sm:text-6xl lg:text-7xl">
-            Есть сложная идея? Сделаем её понятной и работающей.
-          </h2>
-          <div className="lg:justify-self-end">
-            <p className="max-w-md text-base leading-8 text-ink-800/70">
-              Можно прийти с хаосом, наброском, таблицей или одной формулировкой цели.
+        <div className="grid gap-10 border-y border-white/15 py-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div>
+            <p className="text-xs font-semibold uppercase text-muted">
+              Новый проект
             </p>
-            <Link
+            <h2 className="text-balance mt-5 max-w-4xl font-heading text-4xl font-medium leading-[1.04] text-frost sm:text-6xl">
+              Покажите материалы — я помогу найти структуру и сильную подачу
+            </h2>
+          </div>
+          <div className="lg:justify-self-end">
+            <p className="max-w-md text-base leading-8 text-muted">
+              Можно начать с таблиц, черновика, переписки или одной формулировки задачи.
+            </p>
+            <TrackedLink
               href="/contact"
-              className="focus-ring mt-7 inline-flex min-h-12 items-center justify-center rounded-md bg-ink-950 px-6 py-3 text-sm font-semibold text-frost transition hover:-translate-y-0.5 hover:bg-ink-800"
+              goal="hero_cta_click"
+              goalParams={{ action: "footer_cta" }}
+              className="focus-ring group mt-7 inline-flex min-h-12 items-center gap-2 rounded-md bg-frost px-6 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-electric-cyan"
             >
-              Обсудить задачу
-            </Link>
+              Обсудить проект
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+            </TrackedLink>
           </div>
         </div>
       </div>
-    </MotionSection>
+    </section>
   );
 }

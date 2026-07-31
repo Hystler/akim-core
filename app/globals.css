@@ -27,7 +27,7 @@ body {
 }
 
 .section-shell {
-  @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
 }
 
 .section-divider {
@@ -52,6 +52,31 @@ body {
 
 a {
   text-underline-offset: 4px;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #f1f2ee;
+  padding: 10px 14px;
+  color: #050607;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: reduce) {

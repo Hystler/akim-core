@@ -3,154 +3,209 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type TouchEvent } from "react";
+import type { PortfolioGalleryItem } from "@/data/portfolio";
+
+const blurDataUrl =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAoLDAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
 type PortfolioGalleryProps = {
-  images: string[];
+  items: PortfolioGalleryItem[];
   title: string;
 };
 
-export function PortfolioGallery({ images, title }: PortfolioGalleryProps) {
+export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const shouldReduceMotion = useReducedMotion();
-  const activeImage = activeIndex === null ? null : images[activeIndex];
+  const touchStartX = useRef<number | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const openedFromIndex = useRef<number | null>(null);
+  const isLightboxOpen = activeIndex !== null;
+  const activeItem = activeIndex === null ? null : items[activeIndex];
 
   useEffect(() => {
-    if (activeIndex === null) return;
+    if (!isLightboxOpen) return;
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setActiveIndex(null);
-      }
+      if (event.key === "Escape") setActiveIndex(null);
       if (event.key === "ArrowLeft") {
-        setActiveIndex((current) => {
-          if (current === null) return current;
-          return current === 0 ? images.length - 1 : current - 1;
-        });
+        setActiveIndex((current) =>
+          current === null ? current : current === 0 ? items.length - 1 : current - 1
+        );
       }
       if (event.key === "ArrowRight") {
-        setActiveIndex((current) => {
-          if (current === null) return current;
-          return current === images.length - 1 ? 0 : current + 1;
-        });
+        setActiveIndex((current) =>
+          current === null ? current : current === items.length - 1 ? 0 : current + 1
+        );
+      }
+      if (event.key === "Tab") {
+        const focusable = dialogRef.current?.querySelectorAll<HTMLButtonElement>("button");
+        if (!focusable?.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     }
 
     const previousOverflow = document.body.style.overflow;
+    const galleryTriggers = triggerRefs.current;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
+    closeButtonRef.current?.focus();
 
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
+      const triggerIndex = openedFromIndex.current;
+      if (triggerIndex !== null) galleryTriggers[triggerIndex]?.focus();
     };
-  }, [activeIndex, images.length]);
+  }, [isLightboxOpen, items.length]);
 
   function showPrevious() {
     setActiveIndex((current) => {
       if (current === null) return current;
-      return current === 0 ? images.length - 1 : current - 1;
+      return current === 0 ? items.length - 1 : current - 1;
     });
   }
 
   function showNext() {
     setActiveIndex((current) => {
       if (current === null) return current;
-      return current === images.length - 1 ? 0 : current + 1;
+      return current === items.length - 1 ? 0 : current + 1;
     });
+  }
+
+  function handleTouchEnd(event: TouchEvent<HTMLDivElement>) {
+    if (touchStartX.current === null) return;
+    const delta = event.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(delta) < 48) return;
+    if (delta > 0) showPrevious();
+    else showNext();
   }
 
   return (
     <>
-      <div className="grid gap-5 md:grid-cols-2">
-        {images.map((image, index) => (
-          <button
-            key={image}
-            type="button"
-            onClick={() => setActiveIndex(index)}
-            className="focus-ring group relative aspect-[16/10] overflow-hidden rounded-md border border-white/10 bg-ink-900 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/30"
-          >
-            <Image
-              src={image}
-              alt={`${title}, изображение ${index + 1}`}
-              fill
-              sizes="(min-width: 1440px) 660px, (min-width: 768px) 50vw, 100vw"
-              className="object-cover transition duration-500 group-hover:scale-[1.012] group-hover:opacity-90"
-            />
-            <span className="absolute bottom-3 left-3 text-xs font-medium text-white drop-shadow">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          </button>
+      <div className="grid gap-7 md:grid-cols-2">
+        {items.map((item, index) => (
+          <figure key={item.src}>
+            <button
+              ref={(element) => {
+                triggerRefs.current[index] = element;
+              }}
+              type="button"
+              onClick={() => {
+                openedFromIndex.current = index;
+                setActiveIndex(index);
+              }}
+              className="focus-ring group relative aspect-[16/9] w-full cursor-pointer overflow-hidden rounded-md border border-white/10 bg-ink-900 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/30"
+              aria-label={`Открыть на весь экран: ${item.caption}`}
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                loading="lazy"
+                sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
+                placeholder="blur"
+                blurDataURL={blurDataUrl}
+                className="object-cover transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
+              />
+              <span className="absolute bottom-3 right-3 grid size-10 place-items-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur">
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </span>
+            </button>
+            <figcaption className="mt-3 text-sm leading-6 text-muted">
+              {item.caption}
+            </figcaption>
+          </figure>
         ))}
       </div>
 
       <AnimatePresence>
-        {activeImage ? (
+        {activeItem ? (
           <motion.div
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-label={`${title}: просмотр изображения`}
+            aria-label={`${title}: полноэкранный просмотр`}
             initial={shouldReduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onMouseDown={(event) => {
-              if (event.target === event.currentTarget) {
-                setActiveIndex(null);
-              }
+            transition={{ duration: 0.18 }}
+            onClick={(event) => {
+              if (event.target === event.currentTarget) setActiveIndex(null);
             }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/[0.94] p-4 sm:p-8"
+            onTouchStart={(event) => {
+              touchStartX.current = event.touches[0].clientX;
+            }}
+            onTouchEnd={handleTouchEnd}
+            className="fixed inset-0 z-[100] flex touch-pan-y items-center justify-center bg-black/[0.94] p-3 sm:p-8"
           >
             <button
+              ref={closeButtonRef}
               type="button"
               onClick={() => setActiveIndex(null)}
-              className="focus-ring absolute right-4 top-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-frost transition hover:border-white/50 hover:bg-white/10 sm:right-6 sm:top-6"
-              aria-label="Закрыть"
+              className="focus-ring absolute right-4 top-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/25 bg-black/50 text-frost transition hover:border-white/60 hover:bg-white/10"
+              aria-label="Закрыть галерею"
             >
               <X size={20} aria-hidden="true" />
             </button>
 
-            {images.length > 1 ? (
+            {items.length > 1 ? (
               <>
                 <button
                   type="button"
                   onClick={showPrevious}
-                  className="focus-ring absolute bottom-4 left-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-frost transition hover:border-white/50 hover:bg-white/10 sm:bottom-auto sm:left-6 sm:top-1/2 sm:-translate-y-1/2"
-                  aria-label="Предыдущее изображение"
+                  className="focus-ring absolute bottom-4 left-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-white/25 bg-black/50 text-frost transition hover:border-white/60 hover:bg-white/10 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
+                  aria-label="Предыдущий материал"
                 >
                   <ChevronLeft size={22} aria-hidden="true" />
                 </button>
                 <button
                   type="button"
                   onClick={showNext}
-                  className="focus-ring absolute bottom-4 right-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/40 text-frost transition hover:border-white/50 hover:bg-white/10 sm:bottom-auto sm:right-6 sm:top-1/2 sm:-translate-y-1/2"
-                  aria-label="Следующее изображение"
+                  className="focus-ring absolute bottom-4 right-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-white/25 bg-black/50 text-frost transition hover:border-white/60 hover:bg-white/10 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
+                  aria-label="Следующий материал"
                 >
                   <ChevronRight size={22} aria-hidden="true" />
                 </button>
               </>
             ) : null}
 
-            <motion.div
-              key={activeImage}
-              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.985 }}
+            <motion.figure
+              key={activeItem.src}
+              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.99 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-              className="pointer-events-none relative h-[76vh] w-full max-w-6xl"
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="pointer-events-none flex h-[80vh] w-full max-w-6xl flex-col items-center justify-center"
             >
-              <Image
-                src={activeImage}
-                alt={`${title}, изображение ${(activeIndex ?? 0) + 1}`}
-                fill
-                sizes="100vw"
-                className="object-contain"
-                priority
-              />
-            </motion.div>
+              <div className="relative w-full flex-1">
+                <Image
+                  src={activeItem.src}
+                  alt={activeItem.alt}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <figcaption className="mt-4 max-w-3xl text-center text-sm text-frost/70">
+                {activeItem.caption}
+              </figcaption>
+            </motion.figure>
 
-            <p className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 text-xs text-frost/65">
+            <p className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 text-xs text-frost/55 sm:bottom-6">
               {String((activeIndex ?? 0) + 1).padStart(2, "0")} /{" "}
-              {String(images.length).padStart(2, "0")}
+              {String(items.length).padStart(2, "0")}
             </p>
           </motion.div>
         ) : null}

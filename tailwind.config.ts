@@ -19,13 +19,14 @@ const config: Config = {
         muted: "#9A9EA2",
         steel: "#B7BDC2",
         electric: {
-          blue: "#89A4E5",
-          violet: "#A7A1BA",
-          cyan: "#B3C4E8"
+          blue: "#8EB8FF",
+          violet: "#AAA4BC",
+          cyan: "#7DD3FC"
         }
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"]
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["var(--font-manrope)", "var(--font-inter)", "ui-sans-serif", "sans-serif"]
       },
       boxShadow: {
         glow: "0 24px 80px rgba(0, 0, 0, 0.28)",

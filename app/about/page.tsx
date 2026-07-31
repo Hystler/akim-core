@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
+import { AboutPreview } from "@/components/sections/AboutPreview";
 import { AboutStory } from "@/components/sections/AboutStory";
-import { PageIntro } from "@/components/sections/PageIntro";
+import { CtaSection } from "@/components/sections/CtaSection";
 
 export const metadata: Metadata = {
   title: "Обо мне",
-  description: "Личная страница Акима Коваленко: чем полезен, как думает и какие задачи закрывает."
+  description:
+    "Аким Коваленко — дизайнер презентаций и digital-продуктов. Соединяю дизайн, бизнес-логику и технологии.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "Об Акиме Коваленко",
+    description:
+      "Дизайнер презентаций и digital-продуктов, который соединяет структуру, бизнес-логику и технологии.",
+    url: "/about"
+  }
 };
 
 export default function AboutPage() {
   return (
     <>
-      <PageIntro
-        eyebrow="About"
-        title="Idea. Structure. Launch."
-        text="Соединяю digital, AI, бизнес-анализ, project management и production, чтобы превращать неопределённость в понятный рабочий результат."
-      />
+      <AboutPreview asPage />
       <AboutStory />
+      <CtaSection />
     </>
   );
 }
