@@ -196,7 +196,7 @@ export async function GET(
             borderBottom: "1px solid rgba(255,255,255,0.16)",
             paddingBottom: "22px",
             fontSize: "14px",
-            letterSpacing: "2px"
+            letterSpacing: "0"
           }}
         >
           <span style={{ fontWeight: 700 }}>{config.brand}</span>
