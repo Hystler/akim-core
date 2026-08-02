@@ -20,8 +20,8 @@ export function CtaSection() {
             </p>
             <TrackedLink
               href="/contact"
-              goal="hero_cta_click"
-              goalParams={{ action: "footer_cta" }}
+              goal="contact_cta_click"
+              goalParams={{ source: "footer_cta" }}
               className="focus-ring group mt-7 inline-flex min-h-12 items-center gap-2 rounded-md bg-frost px-6 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-electric-cyan"
             >
               Обсудить проект

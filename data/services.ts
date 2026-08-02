@@ -5,8 +5,8 @@ export type Service = {
   includes: string[];
   clientReceives: string;
   timing: string;
-  caseHref: string;
-  caseLabel: string;
+  caseHref?: string;
+  caseLabel?: string;
 };
 
 export type PresentationPackage = {
@@ -91,8 +91,8 @@ export const services: Service[] = [
     clientReceives:
       "Понятный сценарий продукта, прототип ключевых экранов и основу для разработки или проверки гипотезы.",
     timing: "От 2 до 6 недель — зависит от глубины прототипа и количества сценариев.",
-    caseHref: "/portfolio/contract-architect",
-    caseLabel: "Contract Architect"
+    caseHref: undefined,
+    caseLabel: undefined
   }
 ];
 

@@ -3,5 +3,6 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export const siteName = "AKIM CORE";
+export const siteEmail = "Akim11062000@gmail.com";
 export const siteDescription =
   "Презентации, коммерческие предложения, лендинги и B2B digital-продукты для бизнеса. Структура, тексты и дизайн под ключ.";

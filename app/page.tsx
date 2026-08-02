@@ -8,11 +8,11 @@ import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { portfolioItems } from "@/data/portfolio";
+import { publishedPortfolioItems } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site-config";
 
 export default function HomePage() {
-  const previewItems = portfolioItems.filter((item) => item.featured).slice(0, 6);
+  const previewItems = publishedPortfolioItems.filter((item) => item.featured);
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -53,7 +53,7 @@ export default function HomePage() {
       <ProcessSection />
       <BenefitsSection />
       <AboutPreview />
-      <FaqSection />
+      <FaqSection limit={4} />
       <CtaSection />
     </>
   );

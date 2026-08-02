@@ -6,11 +6,11 @@ import { PortfolioCard } from "@/components/sections/PortfolioCard";
 import {
   portfolioFilters,
   type PortfolioFilter as PortfolioFilterType,
-  type PortfolioItem
+  type PublishedPortfolioItem
 } from "@/data/portfolio";
 
 type PortfolioFilterProps = {
-  items: PortfolioItem[];
+  items: PublishedPortfolioItem[];
 };
 
 export function PortfolioFilter({ items }: PortfolioFilterProps) {
@@ -22,13 +22,22 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
     if (activeCategory === "all") return items;
     return items.filter((item) => item.category === activeCategory);
   }, [activeCategory, items]);
+  const availableFilters = useMemo(
+    () =>
+      portfolioFilters.filter(
+        (filter) =>
+          filter.value === "all" ||
+          items.some((item) => item.category === filter.value)
+      ),
+    [items]
+  );
 
   return (
     <section className="pb-20 sm:pb-28">
       <div className="section-shell">
         <div className="-mx-5 overflow-x-auto border-y border-white/10 px-5 sm:mx-0 sm:px-0">
           <div className="flex min-w-max items-center gap-7" role="group" aria-label="Фильтры кейсов">
-            {portfolioFilters.map((filter) => {
+            {availableFilters.map((filter) => {
               const isActive = activeCategory === filter.value;
 
               return (

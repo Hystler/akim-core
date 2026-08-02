@@ -1,9 +1,12 @@
 export type AnalyticsGoal =
-  | "hero_cta_click"
+  | "hero_cases_click"
+  | "hero_contact_click"
   | "case_open"
   | "telegram_click"
   | "contact_form_submit"
-  | "external_project_click"
+  | "external_project_open"
+  | "service_contact_click"
+  | "contact_cta_click"
   | "services_view"
   | "presentation_download";
 

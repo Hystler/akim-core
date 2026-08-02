@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/sections/PageIntro";
 import { PortfolioFilter } from "@/components/sections/PortfolioFilter";
-import { portfolioItems } from "@/data/portfolio";
+import { publishedPortfolioItems } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Кейсы",
@@ -24,7 +24,7 @@ export default function PortfolioPage() {
         title="Работы, где структура помогает понять идею, а дизайн — поверить в неё"
         text="Презентации — основное направление. Лендинги, digital-продукты и автоматизации показывают широту задач, в которых тот же подход работает на бизнес-результат."
       />
-      <PortfolioFilter items={portfolioItems} />
+      <PortfolioFilter items={publishedPortfolioItems} />
     </>
   );
 }

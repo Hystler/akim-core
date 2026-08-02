@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Страница не найдена",
+  alternates: { canonical: null },
+  robots: { index: false, follow: false }
+};
 
 export default function NotFound() {
   return (

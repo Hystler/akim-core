@@ -54,21 +54,23 @@ export function ServicesDetails() {
                         Срок
                       </p>
                       <p className="mt-3 text-sm leading-7 text-frost/85">{service.timing}</p>
-                      <Link
-                        href={service.caseHref}
-                        className="focus-ring group mt-6 inline-flex items-center gap-2 rounded-sm text-sm font-semibold text-electric-cyan transition hover:text-frost"
-                      >
-                        Кейс: {service.caseLabel}
-                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
-                      </Link>
+                      {service.caseHref && service.caseLabel ? (
+                        <Link
+                          href={service.caseHref}
+                          className="focus-ring group mt-6 inline-flex items-center gap-2 rounded-sm text-sm font-semibold text-electric-cyan transition hover:text-frost"
+                        >
+                          Кейс: {service.caseLabel}
+                          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                        </Link>
+                      ) : null}
                     </div>
                   </div>
                 </div>
 
                 <TrackedLink
                   href="/contact"
-                  goal="hero_cta_click"
-                  goalParams={{ action: "service", service: service.slug }}
+                  goal="service_contact_click"
+                  goalParams={{ service: service.slug }}
                   className="focus-ring mt-9 inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-5 text-sm font-semibold text-frost transition hover:border-frost hover:bg-white/[0.04]"
                 >
                   Обсудить задачу
@@ -82,7 +84,7 @@ export function ServicesDetails() {
       <section className="bg-paper py-20 text-ink-950 sm:py-28">
         <div className="section-shell">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase text-ink-800/55">
+            <p className="text-xs font-semibold uppercase text-ink-800/70">
               Пакеты презентаций
             </p>
             <h2 className="text-balance mt-5 font-heading text-3xl font-medium leading-[1.08] sm:text-5xl">

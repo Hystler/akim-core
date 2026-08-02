@@ -8,10 +8,10 @@ import {
   staggerContainer
 } from "@/components/ui/MotionPrimitives";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import type { PortfolioItem } from "@/data/portfolio";
+import type { PublishedPortfolioItem } from "@/data/portfolio";
 
 type PortfolioPreviewProps = {
-  items: PortfolioItem[];
+  items: PublishedPortfolioItem[];
 };
 
 export function PortfolioPreview({ items }: PortfolioPreviewProps) {
@@ -22,7 +22,7 @@ export function PortfolioPreview({ items }: PortfolioPreviewProps) {
           <SectionHeading
             eyebrow="Избранные кейсы"
             title="Работы, в которых содержание и визуальная подача решают одну задачу"
-            text="Презентации остаются главным направлением. Лендинги и продуктовые интерфейсы показывают, как тот же подход работает в других digital-форматах."
+            text="Сначала — две презентационные серии. Затем — опубликованный лендинг, где тот же подход к структуре работает в web-формате."
           />
           <Link
             href="/portfolio"

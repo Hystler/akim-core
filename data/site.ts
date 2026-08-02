@@ -5,6 +5,9 @@ export const directions = [
   "B2B SaaS и автоматизации"
 ];
 
+// Set a public path such as "/images/akim-kovalenko.jpg" when a real portrait is ready.
+export const authorPhotoPath: string | null = null;
+
 export const trustPoints = [
   "Презентации под ключ",
   "Работа с черновиками и сложными материалами",

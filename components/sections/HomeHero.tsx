@@ -22,15 +22,9 @@ const heroVisuals = [
     priority: false
   },
   {
-    src: "/case-assets/jk-finance/cover",
-    className:
-      "bottom-[7%] right-[3%] z-30 w-[42%] rotate-1 lg:bottom-[6%] lg:w-[38%]",
-    priority: false
-  },
-  {
     src: "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-cover.png",
     className:
-      "bottom-[5%] left-[38%] z-10 hidden w-[30%] -rotate-2 md:block lg:left-[43%]",
+      "bottom-[5%] right-[3%] z-30 hidden w-[38%] rotate-1 md:block lg:w-[34%]",
     priority: false
   }
 ];
@@ -102,8 +96,7 @@ export function HomeHero() {
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <TrackedLink
               href="/portfolio"
-              goal="hero_cta_click"
-              goalParams={{ action: "cases" }}
+              goal="hero_cases_click"
               className="focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-frost bg-frost px-6 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-transparent hover:text-frost"
             >
               Смотреть кейсы
@@ -114,8 +107,7 @@ export function HomeHero() {
             </TrackedLink>
             <TrackedLink
               href="/contact"
-              goal="hero_cta_click"
-              goalParams={{ action: "contact" }}
+              goal="hero_contact_click"
               className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md border border-white/25 bg-ink-950/40 px-6 text-sm font-semibold text-frost backdrop-blur transition hover:-translate-y-0.5 hover:border-white/50"
             >
               Обсудить проект

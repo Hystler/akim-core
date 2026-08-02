@@ -18,7 +18,7 @@ export function SectionHeading({
   const centered = align === "center";
   const titleColor = tone === "light" ? "text-ink-950" : "text-frost";
   const mutedColor = tone === "light" ? "text-ink-800/65" : "text-muted";
-  const indexColor = tone === "light" ? "text-ink-800/55" : "text-steel";
+  const indexColor = tone === "light" ? "text-ink-800/70" : "text-steel";
 
   return (
     <div className={centered ? "mx-auto max-w-4xl text-center" : "max-w-4xl"}>

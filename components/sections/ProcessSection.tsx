@@ -6,7 +6,7 @@ export function ProcessSection() {
       <div className="section-shell">
         <div className="grid gap-8 lg:grid-cols-[0.45fr_1.55fr]">
           <div>
-            <p className="text-xs font-semibold uppercase text-ink-800/55">
+            <p className="text-xs font-semibold uppercase text-ink-800/70">
               Процесс
             </p>
             <h2 className="text-balance mt-5 max-w-sm font-heading text-3xl font-medium leading-[1.08] sm:text-5xl">
@@ -20,7 +20,7 @@ export function ProcessSection() {
                 key={step.number}
                 className="grid gap-4 border-b border-ink-950/20 py-7 sm:grid-cols-[56px_0.65fr_1.35fr] sm:items-start"
               >
-                <span className="text-xs font-medium text-ink-800/45">{step.number}</span>
+                <span className="text-xs font-medium text-ink-800/70">{step.number}</span>
                 <h3 className="font-heading text-xl font-medium">{step.title}</h3>
                 <p className="text-base leading-7 text-ink-800/70">{step.text}</p>
               </article>

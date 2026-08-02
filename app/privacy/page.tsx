@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { siteEmail } from "@/lib/site-config";
 import { PageIntro } from "@/components/sections/PageIntro";
 
 export const metadata: Metadata = {
@@ -37,7 +38,7 @@ const sections = [
   },
   {
     title: "Как задать вопрос или удалить обращение",
-    text: "Напишите на hello@akimkovalenko.ru с адреса, указанного при обращении, и опишите запрос."
+    text: `Напишите на ${siteEmail} с адреса, указанного при обращении, и опишите запрос.`
   }
 ];
 

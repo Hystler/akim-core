@@ -1,18 +1,19 @@
 import { faqItems } from "@/data/site";
 
-export function FaqSection() {
+export function FaqSection({ limit }: { limit?: number }) {
+  const items = typeof limit === "number" ? faqItems.slice(0, limit) : faqItems;
   return (
     <section className="bg-paper py-20 text-ink-950 sm:py-28">
       <div className="section-shell grid gap-12 lg:grid-cols-[0.55fr_1.45fr]">
         <div>
-          <p className="text-xs font-semibold uppercase text-ink-800/55">
+          <p className="text-xs font-semibold uppercase text-ink-800/70">
             Вопросы
           </p>
           <h2 className="mt-5 font-heading text-3xl font-medium sm:text-5xl">FAQ</h2>
         </div>
 
         <div className="border-t border-ink-950/20">
-          {faqItems.map((item) => (
+          {items.map((item) => (
             <details key={item.question} className="group border-b border-ink-950/20">
               <summary className="focus-ring flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 rounded-sm py-5 font-heading text-lg font-medium marker:hidden">
                 {item.question}

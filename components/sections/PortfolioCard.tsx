@@ -3,14 +3,14 @@ import Image from "next/image";
 import { TrackedLink } from "@/components/ui/TrackedLink";
 import {
   portfolioStatusLabels,
-  type PortfolioItem
+  type PublishedPortfolioItem
 } from "@/data/portfolio";
 
 const blurDataUrl =
   "data:image/gif;base64,R0lGODlhAQABAIAAAAoLDAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
 type PortfolioCardProps = {
-  item: PortfolioItem;
+  item: PublishedPortfolioItem;
   priority?: boolean;
 };
 
@@ -37,9 +37,16 @@ export function PortfolioCard({ item, priority = false }: PortfolioCardProps) {
           className="object-cover transition duration-300 group-hover:scale-[1.012] group-hover:opacity-90"
         />
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/75 to-transparent p-4 pt-16">
-          <span className="text-[11px] font-semibold text-white/75">
-            {portfolioStatusLabels[item.status]}
-          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[11px] font-semibold text-white/75">
+              {portfolioStatusLabels[item.status]}
+            </span>
+            {item.coverLabel ? (
+              <span className="rounded-sm border border-white/25 bg-black/55 px-2 py-1 text-[10px] font-semibold uppercase text-white">
+                {item.coverLabel}
+              </span>
+            ) : null}
+          </div>
           <ArrowUpRight
             className="h-5 w-5 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             aria-hidden="true"
@@ -83,7 +90,7 @@ export function PortfolioCard({ item, priority = false }: PortfolioCardProps) {
               href={item.externalUrl}
               target="_blank"
               rel="noreferrer"
-              goal="external_project_click"
+              goal="external_project_open"
               goalParams={{ case: item.slug, source: "card" }}
               className="focus-ring inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-frost px-5 text-sm font-semibold text-ink-950 transition hover:bg-electric-cyan sm:w-fit"
             >

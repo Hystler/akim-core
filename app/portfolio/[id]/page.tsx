@@ -10,7 +10,7 @@ import {
   getNextPortfolioItem,
   getPortfolioItem,
   portfolioCategoryLabels,
-  portfolioItems,
+  publishedPortfolioItems,
   portfolioStatusLabels
 } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site-config";
@@ -30,7 +30,7 @@ function getImageCountLabel(count: number) {
 }
 
 export function generateStaticParams() {
-  return portfolioItems.map((item) => ({ id: item.slug }));
+  return publishedPortfolioItems.map((item) => ({ id: item.slug }));
 }
 
 export async function generateMetadata({
@@ -118,7 +118,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             </div>
 
             <div className="mt-7 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-              <h1 className="text-balance font-heading text-5xl font-medium leading-[1.02] text-frost sm:text-7xl lg:text-8xl">
+              <h1 className="text-balance font-heading text-5xl font-medium leading-[1.02] text-frost sm:text-7xl xl:text-8xl">
                 {item.title}
               </h1>
               <p className="text-pretty max-w-xl text-base leading-8 text-muted lg:justify-self-end">
@@ -145,7 +145,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                 href={item.externalUrl}
                 target="_blank"
                 rel="noreferrer"
-                goal="external_project_click"
+                goal="external_project_open"
                 goalParams={{ case: item.slug }}
                 className="focus-ring group mt-7 inline-flex min-h-12 items-center gap-2 rounded-md bg-frost px-5 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-electric-cyan"
               >
@@ -180,7 +180,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
         <div className="section-shell">
           <div className="grid gap-10 lg:grid-cols-[0.45fr_1.55fr]">
             <div>
-              <p className="text-xs font-semibold uppercase text-ink-800/55">Задача</p>
+              <p className="text-xs font-semibold uppercase text-ink-800/70">Задача</p>
               <h2 className="text-balance mt-5 max-w-sm font-heading text-3xl font-medium leading-[1.08] sm:text-5xl">
                 Что нужно было создать
               </h2>
@@ -252,7 +252,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
       <section className="bg-paper py-20 text-ink-950 sm:py-28">
         <div className="section-shell">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase text-ink-800/55">
+            <p className="text-xs font-semibold uppercase text-ink-800/70">
               Визуальная система
             </p>
             <h2 className="text-balance mt-5 font-heading text-3xl font-medium leading-[1.08] sm:text-5xl">
@@ -272,7 +272,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                   index === 0 ? "md:pl-0" : "md:border-l"
                 }`}
               >
-                <dt className="text-xs font-semibold text-ink-800/55">{label}</dt>
+                <dt className="text-xs font-semibold text-ink-800/70">{label}</dt>
                 <dd className="mt-4 text-sm leading-7 text-ink-800/75">{value}</dd>
               </div>
             ))}
@@ -307,7 +307,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
       <section className="bg-paper py-20 text-ink-950 sm:py-28">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.55fr_1.45fr]">
           <div>
-            <p className="text-xs font-semibold uppercase text-ink-800/55">Результат</p>
+            <p className="text-xs font-semibold uppercase text-ink-800/70">Результат</p>
             <h2 className="mt-5 font-heading text-3xl font-medium sm:text-5xl">
               Что получилось
             </h2>

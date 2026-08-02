@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TrackedLink } from "@/components/ui/TrackedLink";
+import { siteEmail } from "@/lib/site-config";
 
 const footerLinks = [
   { href: "/portfolio", label: "Кейсы" },
@@ -31,10 +32,10 @@ export function Footer() {
               @loot_digger
             </TrackedLink>
             <a
-              href="mailto:hello@akimkovalenko.ru"
+              href={`mailto:${siteEmail}`}
               className="mt-5 block w-fit text-sm text-muted transition hover:text-frost"
             >
-              hello@akimkovalenko.ru
+              {siteEmail}
             </a>
           </div>
 

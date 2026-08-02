@@ -3,13 +3,15 @@ import { join } from "node:path";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { authorPhotoPath } from "@/data/site";
 
-const portraitPath = "/images/akim-kovalenko.jpg";
 const blurDataUrl =
   "data:image/gif;base64,R0lGODlhAQABAIAAAAoLDAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
 export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
-  const hasPortrait = existsSync(join(process.cwd(), "public", portraitPath));
+  const hasPortrait = Boolean(
+    authorPhotoPath && existsSync(join(process.cwd(), "public", authorPhotoPath))
+  );
   const Heading = asPage ? "h1" : "h2";
 
   return (
@@ -45,10 +47,10 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
           ) : null}
         </div>
 
-        {hasPortrait ? (
+        {hasPortrait && authorPhotoPath ? (
           <div className="relative aspect-[4/5] overflow-hidden rounded-md border border-white/10 bg-ink-950">
             <Image
-              src={portraitPath}
+              src={authorPhotoPath}
               alt="Аким Коваленко, дизайнер презентаций и digital-продуктов"
               fill
               sizes="(min-width: 1024px) 42vw, 100vw"

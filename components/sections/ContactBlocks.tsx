@@ -4,6 +4,7 @@ import { ArrowUpRight, CheckCircle2, Mail, Send } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, type FormEvent } from "react";
 import { trackGoal } from "@/lib/analytics";
+import { siteEmail } from "@/lib/site-config";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
@@ -18,14 +19,34 @@ const taskTypes = [
 ];
 
 const telegramBase = "https://t.me/loot_digger";
+const contactFormEndpoint =
+  process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ??
+  `https://formsubmit.co/ajax/${siteEmail}`;
+const allowedFileExtensions = new Set([
+  "pdf",
+  "ppt",
+  "pptx",
+  "key",
+  "doc",
+  "docx",
+  "xls",
+  "xlsx",
+  "zip",
+  "png",
+  "jpg",
+  "jpeg"
+]);
 
 export function ContactBlocks() {
   const formRef = useRef<HTMLFormElement>(null);
+  const isSubmittingRef = useRef(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [message, setMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isSubmittingRef.current) return;
+
     const form = event.currentTarget;
     const formData = new FormData(form);
     const attachment = formData.get("attachment");
@@ -36,15 +57,21 @@ export function ContactBlocks() {
       return;
     }
 
+    if (attachment instanceof File && attachment.size > 0) {
+      const extension = attachment.name.split(".").pop()?.toLowerCase() ?? "";
+      if (!allowedFileExtensions.has(extension)) {
+        setSubmitState("error");
+        setMessage("Формат файла не поддерживается. Используйте документ, таблицу, ZIP или изображение из списка ниже.");
+        return;
+      }
+    }
+
+    isSubmittingRef.current = true;
     setSubmitState("submitting");
     setMessage("");
 
-    const endpoint =
-      process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ??
-      "https://formsubmit.co/ajax/hello@akimkovalenko.ru";
-
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(contactFormEndpoint, {
         method: "POST",
         headers: { Accept: "application/json" },
         body: formData
@@ -66,6 +93,8 @@ export function ContactBlocks() {
       setMessage(
         "Не получилось отправить форму. Напишите в Telegram или на email — ссылки находятся рядом."
       );
+    } finally {
+      isSubmittingRef.current = false;
     }
   }
 
@@ -99,7 +128,10 @@ export function ContactBlocks() {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
+          method="post"
+          action={contactFormEndpoint}
           encType="multipart/form-data"
+          aria-busy={submitState === "submitting"}
           className="rounded-md border border-white/15 p-5 sm:p-8"
         >
           <input type="hidden" name="_subject" value="Новая заявка с сайта AKIM CORE" />
@@ -262,14 +294,14 @@ export function ContactBlocks() {
             <ArrowUpRight className="h-4 w-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
           </a>
           <a
-            href="mailto:hello@akimkovalenko.ru"
+            href={`mailto:${siteEmail}`}
             className="group grid grid-cols-[36px_1fr_auto] items-center border-y border-white/15 py-6"
           >
             <Mail className="h-4 w-4 text-electric-cyan" aria-hidden="true" />
             <span>
               <span className="block text-xs text-muted">Email</span>
               <span className="mt-1 block break-all font-heading text-base font-medium text-frost">
-                hello@akimkovalenko.ru
+                {siteEmail}
               </span>
             </span>
             <ArrowUpRight className="h-4 w-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
