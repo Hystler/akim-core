@@ -52,7 +52,7 @@ export function Header() {
         style={{ scaleX: progress }}
       />
       <nav
-        className="section-shell flex h-[72px] items-center justify-between gap-4"
+        className="section-shell flex h-16 items-center justify-between gap-4 md:h-[72px]"
         aria-label="Основная навигация"
       >
         <Link
@@ -110,7 +110,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="max-h-[calc(100svh-72px)] overflow-y-auto border-t border-white/10 bg-ink-950 px-5 py-5 lg:hidden"
+            className="max-h-[calc(100svh-64px)] overflow-y-auto border-t border-white/10 bg-ink-950 px-5 py-5 md:max-h-[calc(100svh-72px)] lg:hidden"
           >
             <div className="mx-auto grid max-w-7xl">
               {navItems.map((item) => (
