@@ -17,7 +17,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-ink-950 py-12 sm:py-16">
       <div className="section-shell">
-        <div className="grid gap-10 border-b border-white/10 pb-12 md:grid-cols-[1.4fr_0.6fr] md:items-end">
+        <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.4fr_0.6fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase text-muted">
               Обсудить проект
@@ -39,7 +39,7 @@ export function Footer() {
             </a>
           </div>
 
-          <nav className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm md:justify-self-end">
+          <nav className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm lg:justify-self-end">
             {footerLinks.map((item) => (
               <Link
                 key={item.href}

@@ -23,8 +23,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "54px 58px",
-          color: "#F1F2EE",
-          background: "linear-gradient(135deg, #050607 0%, #101417 100%)",
+          color: "#F4EBDD",
+          background: "linear-gradient(135deg, #04100D 0%, #14251D 100%)",
           fontFamily: "Arial, sans-serif"
         }}
       >
@@ -39,7 +39,7 @@ export default function OpenGraphImage() {
           }}
         >
           <span style={{ fontWeight: 700 }}>AKIM CORE</span>
-          <span style={{ color: "#7DD3FC" }}>PRESENTATION & DIGITAL DESIGN</span>
+          <span style={{ color: "#D8B875" }}>PRESENTATION & DIGITAL DESIGN</span>
         </div>
 
         <div style={{ display: "flex", flex: 1, alignItems: "center", paddingTop: "38px" }}>
@@ -53,7 +53,7 @@ export default function OpenGraphImage() {
                 maxWidth: "570px",
                 fontSize: "25px",
                 lineHeight: 1.35,
-                color: "rgba(241,242,238,0.7)"
+                color: "rgba(244,235,221,0.72)"
               }}
             >
               Дизайнер презентаций и digital-продуктов
@@ -63,7 +63,7 @@ export default function OpenGraphImage() {
                 marginTop: "34px",
                 width: "92px",
                 height: "3px",
-                background: "#7DD3FC"
+                background: "#D8B875"
               }}
             />
           </div>

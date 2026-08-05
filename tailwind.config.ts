@@ -10,18 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         ink: {
-          950: "#050607",
-          900: "#0B0D0E",
-          800: "#15181A"
+          950: "#04100D",
+          900: "#0A1813",
+          800: "#14251D"
         },
-        frost: "#F1F2EE",
-        paper: "#E7E7E1",
-        muted: "#9A9EA2",
-        steel: "#B7BDC2",
+        frost: "#F4EBDD",
+        paper: "#E7DDCA",
+        muted: "#9B9D8C",
+        steel: "#B7B39F",
         electric: {
-          blue: "#8EB8FF",
-          violet: "#AAA4BC",
-          cyan: "#7DD3FC"
+          blue: "#CDB57C",
+          violet: "#A8A891",
+          cyan: "#D8B875"
         }
       },
       fontFamily: {

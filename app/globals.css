@@ -12,18 +12,18 @@
 
 html {
   scroll-behavior: smooth;
-  background: #050607;
+  background: #04100d;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background: #050607;
+  background: #04100d;
 }
 
 ::selection {
-  background: #b3c4e8;
-  color: #050607;
+  background: #d8b875;
+  color: #04100d;
 }
 
 .section-shell {
@@ -72,9 +72,9 @@ input[type="file"]::file-selector-button {
   margin-right: 16px;
   border: 0;
   border-radius: 6px;
-  background: #f1f2ee;
+  background: #f4ebdd;
   padding: 10px 14px;
-  color: #050607;
+  color: #04100d;
   font-weight: 600;
   cursor: pointer;
 }
