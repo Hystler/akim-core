@@ -19,7 +19,7 @@ export function FloatingTelegram() {
       rel="noreferrer"
       goal="telegram_click"
       aria-label="Написать Акиму в Telegram"
-      className={`focus-ring fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 bg-frost text-sm font-semibold text-ink-950 shadow-glow md:hidden ${
+      className={`focus-ring fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex min-h-12 items-center justify-center rounded-full border border-ink-950 bg-frost text-sm font-semibold text-ink-950 md:hidden ${
         isContactPage ? "size-12" : "gap-2 px-4"
       }`}
     >

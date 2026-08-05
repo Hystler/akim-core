@@ -46,7 +46,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-950/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/15 bg-ink-950">
       <motion.div
         className="absolute inset-x-0 bottom-[-1px] h-px origin-left bg-electric-cyan"
         style={{ scaleX: progress }}

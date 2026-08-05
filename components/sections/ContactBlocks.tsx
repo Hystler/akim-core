@@ -120,7 +120,7 @@ export function ContactBlocks() {
   }
 
   const fieldClass =
-    "focus-ring min-h-12 w-full rounded-md border border-white/15 bg-white/[0.035] px-4 text-frost placeholder:text-muted/60 transition hover:border-white/25 focus:border-electric-cyan";
+    "focus-ring min-h-12 w-full rounded-md border border-white/20 bg-ink-900 px-4 text-frost placeholder:text-muted/60 transition hover:border-white/30 focus:border-electric-cyan";
 
   return (
     <section className="pb-20 pt-14 sm:pb-28 sm:pt-20">
@@ -214,7 +214,7 @@ export function ContactBlocks() {
               type="file"
               name="attachment"
               accept=".pdf,.ppt,.pptx,.key,.doc,.docx,.xls,.xlsx,.zip,.png,.jpg,.jpeg"
-              className="focus-ring min-h-14 w-full rounded-md border border-dashed border-white/20 bg-white/[0.025] p-2 text-sm text-muted"
+              className="focus-ring min-h-14 w-full rounded-md border border-dashed border-white/25 bg-ink-900 p-2 text-sm text-muted"
             />
             <span className="text-xs font-normal leading-5 text-muted">
               PDF, PowerPoint, документы, таблицы, ZIP или изображения — до 10 МБ.

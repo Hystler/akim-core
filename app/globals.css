@@ -39,7 +39,7 @@ body {
 }
 
 .glass-panel {
-  @apply border border-white/10 bg-white/[0.035] shadow-glow backdrop-blur-xl;
+  @apply border border-white/15 bg-ink-900;
 }
 
 .text-balance {

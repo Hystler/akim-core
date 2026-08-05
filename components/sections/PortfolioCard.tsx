@@ -36,13 +36,13 @@ export function PortfolioCard({ item, priority = false }: PortfolioCardProps) {
           blurDataURL={blurDataUrl}
           className="object-cover transition duration-300 group-hover:scale-[1.012] group-hover:opacity-90"
         />
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/75 to-transparent p-4 pt-16">
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between border-t border-white/20 bg-ink-950 p-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-[11px] font-semibold text-white/75">
               {portfolioStatusLabels[item.status]}
             </span>
             {item.coverLabel ? (
-              <span className="rounded-sm border border-white/25 bg-black/55 px-2 py-1 text-[10px] font-semibold uppercase text-white">
+              <span className="rounded-sm border border-white/25 bg-ink-900 px-2 py-1 text-[10px] font-semibold uppercase text-white">
                 {item.coverLabel}
               </span>
             ) : null}

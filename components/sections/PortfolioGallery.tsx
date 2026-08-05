@@ -119,7 +119,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 blurDataURL={blurDataUrl}
                 className="object-cover transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
               />
-              <span className="absolute bottom-3 right-3 grid size-10 place-items-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur">
+              <span className="absolute bottom-3 right-3 grid size-10 place-items-center rounded-full border border-white/25 bg-ink-950 text-white">
                 <ChevronRight className="h-4 w-4" aria-hidden="true" />
               </span>
             </button>
@@ -154,7 +154,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
               ref={closeButtonRef}
               type="button"
               onClick={() => setActiveIndex(null)}
-              className="focus-ring absolute right-4 top-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/25 bg-black/50 text-frost transition hover:border-white/60 hover:bg-white/10"
+              className="focus-ring absolute right-4 top-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/30 bg-ink-950 text-frost transition hover:border-white/60"
               aria-label="Закрыть галерею"
             >
               <X size={20} aria-hidden="true" />
@@ -165,7 +165,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 <button
                   type="button"
                   onClick={showPrevious}
-                  className="focus-ring absolute bottom-4 left-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-white/25 bg-black/50 text-frost transition hover:border-white/60 hover:bg-white/10 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
+                  className="focus-ring absolute bottom-4 left-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-white/30 bg-ink-950 text-frost transition hover:border-white/60 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
                   aria-label="Предыдущий материал"
                 >
                   <ChevronLeft size={22} aria-hidden="true" />
@@ -173,7 +173,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 <button
                   type="button"
                   onClick={showNext}
-                  className="focus-ring absolute bottom-4 right-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-white/25 bg-black/50 text-frost transition hover:border-white/60 hover:bg-white/10 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
+                  className="focus-ring absolute bottom-4 right-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-white/30 bg-ink-950 text-frost transition hover:border-white/60 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
                   aria-label="Следующий материал"
                 >
                   <ChevronRight size={22} aria-hidden="true" />
