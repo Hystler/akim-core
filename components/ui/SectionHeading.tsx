@@ -16,9 +16,9 @@ export function SectionHeading({
   tone = "dark"
 }: SectionHeadingProps) {
   const centered = align === "center";
-  const titleColor = tone === "light" ? "text-ink-950" : "text-frost";
-  const mutedColor = tone === "light" ? "text-ink-800/65" : "text-muted";
-  const indexColor = tone === "light" ? "text-ink-800/70" : "text-steel";
+  const titleColor = "text-main";
+  const mutedColor = tone === "light" ? "text-main/70" : "text-main/70";
+  const indexColor = "text-burgundy";
 
   return (
     <div className={centered ? "mx-auto max-w-4xl text-center" : "max-w-4xl"}>
@@ -28,11 +28,11 @@ export function SectionHeading({
         }`}
       >
         {index ? <span className={`text-xs font-medium ${indexColor}`}>{index}</span> : null}
-        <p className={`text-xs font-semibold uppercase ${mutedColor}`}>
+        <p className="text-xs font-bold uppercase text-burgundy">
           {eyebrow}
         </p>
       </div>
-      <h2 className={`text-balance font-heading text-3xl font-medium leading-[1.08] sm:text-5xl lg:text-6xl ${titleColor}`}>
+      <h2 className={`text-balance font-heading text-3xl font-bold leading-[1.03] sm:text-5xl lg:text-6xl ${titleColor}`}>
         {title}
       </h2>
       {text ? (

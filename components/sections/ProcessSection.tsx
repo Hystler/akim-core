@@ -1,35 +1,58 @@
+import { ArrowDownRight } from "lucide-react";
 import { processSteps } from "@/data/site";
+
+const stepNotes = [
+  "Начинаем с цели.",
+  "Выстраиваем ход.",
+  "Находим нужный тон.",
+  "Передаём готовое."
+];
 
 export function ProcessSection() {
   return (
-    <section id="process" className="scroll-mt-24 bg-paper py-20 text-ink-950 sm:py-28">
+    <section id="process" className="scroll-mt-24 overflow-hidden bg-main py-20 text-paper sm:py-28">
       <div className="section-shell">
-        <div className="grid gap-8 lg:grid-cols-[0.45fr_1.55fr]">
+        <div className="grid gap-7 lg:grid-cols-[0.45fr_1.55fr] lg:items-end">
+          <p className="text-xs font-bold uppercase text-paper/55">Процесс</p>
           <div>
-            <p className="text-xs font-semibold uppercase text-ink-800/70">
-              Процесс
-            </p>
-            <h2 className="text-balance mt-5 max-w-sm font-heading text-3xl font-medium leading-[1.08] sm:text-5xl">
+            <h2 className="text-balance max-w-4xl font-heading text-4xl font-bold leading-[1.02] sm:text-6xl">
               Четыре шага.
             </h2>
+            <p className="mt-2 font-serif text-3xl font-medium italic text-terracotta sm:text-5xl">
+              Без лишних кругов.
+            </p>
           </div>
+        </div>
 
-          <div className="border-t border-ink-950/20">
-            {processSteps.map((step) => (
+        <div className="scrollbar-hide -mx-5 mt-12 overflow-x-auto px-5 pb-10 sm:-mx-8 sm:px-8 lg:-mx-10 lg:mt-16 lg:px-10">
+          <div className="flex w-max snap-x snap-mandatory gap-5 sm:gap-6">
+            {processSteps.map((step, index) => (
               <article
                 key={step.number}
-                className="grid gap-4 border-b border-ink-950/20 py-7 sm:grid-cols-[56px_0.65fr_1.35fr] sm:items-start"
+                className={`min-h-[390px] min-w-[85vw] snap-center border border-paper/15 bg-paper p-7 text-main shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl sm:p-9 md:min-w-[40vw] lg:min-w-[32rem] ${
+                  index % 2 === 0 ? "rotate-[0.35deg]" : "-rotate-[0.35deg]"
+                }`}
               >
-                <span className="text-xs font-medium text-ink-800/70">{step.number}</span>
-                <h3 className="font-heading text-xl font-medium">{step.title}</h3>
-                <p className="text-base leading-7 text-ink-800/70">{step.text}</p>
+                <div className="flex items-start justify-between border-b border-main/20 pb-5">
+                  <span className="text-xs font-bold text-burgundy">{step.number}</span>
+                  <ArrowDownRight className="h-5 w-5 text-main/45" aria-hidden="true" />
+                </div>
+                <h3 className="mt-12 font-heading text-3xl font-bold leading-tight sm:text-4xl">
+                  {step.title}
+                </h3>
+                <p className="mt-5 max-w-md text-base font-medium leading-7 text-main/70">
+                  {step.text}
+                </p>
+                <p className="mt-12 font-serif text-2xl font-medium italic text-burgundy sm:text-3xl">
+                  {stepNotes[index]}
+                </p>
               </article>
             ))}
           </div>
         </div>
 
-        <p className="mt-10 max-w-3xl border-l-2 border-electric-blue pl-5 text-base leading-8 text-ink-800/75">
-          Техническое задание не обязательно. Достаточно материалов и цели.
+        <p className="max-w-3xl border-l-2 border-burgundy pl-5 text-base font-medium leading-8 text-paper/70">
+          Техническое задание не&nbsp;обязательно. Достаточно материалов и&nbsp;цели.
         </p>
       </div>
     </section>

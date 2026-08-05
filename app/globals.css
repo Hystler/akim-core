@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * {
@@ -12,26 +12,38 @@
 
 html {
   scroll-behavior: smooth;
-  background: #04100d;
+  background: #dcd3cb;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background: #04100d;
+  background-color: #dcd3cb;
+  background-image:
+    linear-gradient(rgba(220, 211, 203, 0.955), rgba(220, 211, 203, 0.955)),
+    url("/images/matte-paper-texture.webp");
+  background-size: auto, 560px 560px;
 }
 
 .bg-paper {
-  background-color: #e7ddca;
+  background-color: #eae5de;
   background-image:
-    linear-gradient(rgba(231, 221, 202, 0.94), rgba(231, 221, 202, 0.94)),
+    linear-gradient(rgba(234, 229, 222, 0.94), rgba(234, 229, 222, 0.94)),
+    url("/images/matte-paper-texture.webp");
+  background-size: auto, 520px 520px;
+}
+
+.bg-base-texture {
+  background-color: #dcd3cb;
+  background-image:
+    linear-gradient(rgba(220, 211, 203, 0.95), rgba(220, 211, 203, 0.95)),
     url("/images/matte-paper-texture.webp");
   background-size: auto, 520px 520px;
 }
 
 ::selection {
-  background: #d8b875;
-  color: #04100d;
+  background: #6b1a2c;
+  color: #eae5de;
 }
 
 .section-shell {
@@ -39,15 +51,30 @@ body {
 }
 
 .section-divider {
-  @apply border-t border-white/10;
+  @apply border-t border-main/15;
 }
 
 .focus-ring {
-  @apply outline-none focus-visible:ring-2 focus-visible:ring-electric-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-burgundy focus-visible:ring-offset-2 focus-visible:ring-offset-base;
 }
 
 .glass-panel {
-  @apply border border-white/15 bg-ink-900;
+  @apply border border-main/15 bg-paper shadow-tactile;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.paper-edge {
+  box-shadow:
+    0 1px 0 rgba(42, 33, 32, 0.2),
+    0 18px 48px rgba(42, 33, 32, 0.14);
 }
 
 .text-balance {
@@ -79,10 +106,10 @@ textarea {
 input[type="file"]::file-selector-button {
   margin-right: 16px;
   border: 0;
-  border-radius: 6px;
-  background: #f4ebdd;
+  border-radius: 0;
+  background: #6b1a2c;
   padding: 10px 14px;
-  color: #04100d;
+  color: #eae5de;
   font-weight: 600;
   cursor: pointer;
 }

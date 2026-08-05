@@ -9,24 +9,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        white: "#EAE5DE",
+        black: "#2A2120",
+        base: "#DCD3CB",
+        surface: "#EAE5DE",
+        main: "#2A2120",
+        burgundy: "#6B1A2C",
+        terracotta: "#B7A99B",
         ink: {
-          950: "#04100D",
-          900: "#0A1813",
-          800: "#14251D"
+          950: "#DCD3CB",
+          900: "#D3C8BF",
+          800: "#2A2120"
         },
-        frost: "#F4EBDD",
-        paper: "#E7DDCA",
-        muted: "#9B9D8C",
-        steel: "#B7B39F",
+        frost: "#2A2120",
+        paper: "#EAE5DE",
+        muted: "#625650",
+        steel: "#8C7D76",
         electric: {
-          blue: "#CDB57C",
-          violet: "#A8A891",
-          cyan: "#D8B875"
+          blue: "#6B1A2C",
+          violet: "#B7A99B",
+          cyan: "#6B1A2C"
         }
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
-        heading: ["var(--font-manrope)", "var(--font-inter)", "ui-sans-serif", "sans-serif"]
+        sans: ["var(--font-manrope)", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["var(--font-manrope)", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"]
+      },
+      boxShadow: {
+        tactile:
+          "0 24px 60px rgba(42, 33, 32, 0.16), 0 4px 12px rgba(42, 33, 32, 0.1)",
+        "tactile-lg":
+          "0 36px 90px rgba(42, 33, 32, 0.22), 0 10px 24px rgba(42, 33, 32, 0.12)",
+        press: "0 10px 24px rgba(42, 33, 32, 0.14)"
       }
     }
   },

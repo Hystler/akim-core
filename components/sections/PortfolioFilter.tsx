@@ -33,9 +33,9 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
   );
 
   return (
-    <section className="pb-20 sm:pb-28">
+    <section className="bg-base-texture pb-20 sm:pb-28">
       <div className="section-shell">
-        <div className="-mx-5 overflow-x-auto border-y border-white/10 px-5 sm:mx-0 sm:px-0">
+        <div className="scrollbar-hide -mx-5 overflow-x-auto border-y border-main/20 px-5 sm:mx-0 sm:px-0">
           <div className="flex min-w-max items-center gap-7" role="group" aria-label="Фильтры кейсов">
             {availableFilters.map((filter) => {
               const isActive = activeCategory === filter.value;
@@ -46,10 +46,10 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => setActiveCategory(filter.value)}
-                  className={`focus-ring relative min-h-14 rounded-sm text-sm transition-colors ${
+                  className={`focus-ring relative min-h-14 text-sm font-bold transition-colors ${
                     isActive
-                      ? "text-frost after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-frost"
-                      : "text-muted hover:text-frost"
+                      ? "text-burgundy after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:bg-burgundy"
+                      : "text-main/70 hover:text-main"
                   }`}
                 >
                   {filter.label}
@@ -63,7 +63,7 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
           Показано кейсов: {filteredItems.length}
         </p>
 
-        <motion.div layout className="mt-12 grid gap-x-7 gap-y-14 md:grid-cols-2">
+        <motion.div layout className="mt-14 flex flex-wrap items-start px-1 md:px-0">
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, index) => (
               <motion.div
@@ -76,6 +76,10 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
                   duration: shouldReduceMotion ? 0 : 0.22,
                   ease: [0.16, 1, 0.3, 1]
                 }}
+                className={`relative w-full origin-center first:mt-0 [&:not(:first-child)]:-mt-5 md:w-[52%] md:[&:not(:first-child)]:mt-10 md:odd:rotate-[0.65deg] md:even:-ml-[4%] md:even:mt-24 md:even:-rotate-[0.75deg] ${
+                  index % 4 === 2 ? "md:translate-y-3" : ""
+                }`}
+                style={{ zIndex: index + 1 }}
               >
                 <PortfolioCard item={item} priority={index < 2} />
               </motion.div>

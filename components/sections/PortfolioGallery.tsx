@@ -94,7 +94,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
 
   return (
     <>
-      <div className="grid gap-7 md:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-2 md:gap-10">
         {items.map((item, index) => (
           <figure key={item.src}>
             <button
@@ -106,7 +106,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 openedFromIndex.current = index;
                 setActiveIndex(index);
               }}
-              className={`focus-ring group relative w-full cursor-pointer overflow-hidden rounded-md border border-white/10 bg-ink-900 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/30 ${
+              className={`focus-ring group relative w-full cursor-pointer overflow-hidden border border-main/15 bg-paper p-2 text-left shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl sm:p-3 ${
                 item.aspectRatio === "portrait"
                   ? "aspect-[4/5]"
                   : item.aspectRatio === "standard"
@@ -123,13 +123,13 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
                 placeholder="blur"
                 blurDataURL={blurDataUrl}
-                className="object-contain transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
+                className="object-contain p-2 transition duration-300 group-hover:scale-[1.01] sm:p-3"
               />
-              <span className="absolute bottom-3 right-3 grid size-10 place-items-center rounded-full border border-white/25 bg-ink-950 text-white">
+              <span className="absolute bottom-4 right-4 grid size-10 place-items-center rounded-full border border-main/25 bg-paper text-burgundy shadow-press">
                 <ChevronRight className="h-4 w-4" aria-hidden="true" />
               </span>
             </button>
-            <figcaption className="mt-3 text-sm leading-6 text-muted">
+            <figcaption className="mt-4 text-sm font-medium leading-6 text-main/70">
               {item.caption}
             </figcaption>
           </figure>
@@ -154,13 +154,13 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
               touchStartX.current = event.touches[0].clientX;
             }}
             onTouchEnd={handleTouchEnd}
-            className="fixed inset-0 z-[100] flex touch-pan-y items-center justify-center bg-black/[0.94] p-3 sm:p-8"
+            className="fixed inset-0 z-[100] flex touch-pan-y items-center justify-center bg-main/[0.96] p-3 sm:p-8"
           >
             <button
               ref={closeButtonRef}
               type="button"
               onClick={() => setActiveIndex(null)}
-              className="focus-ring absolute right-4 top-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-white/30 bg-ink-950 text-frost transition hover:border-white/60"
+              className="focus-ring absolute right-4 top-4 z-10 inline-flex size-11 items-center justify-center rounded-full border border-paper/30 bg-main text-paper transition hover:border-paper/70"
               aria-label="Закрыть галерею"
             >
               <X size={20} aria-hidden="true" />
@@ -171,7 +171,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 <button
                   type="button"
                   onClick={showPrevious}
-                  className="focus-ring absolute bottom-4 left-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-white/30 bg-ink-950 text-frost transition hover:border-white/60 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
+                  className="focus-ring absolute bottom-4 left-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-paper/30 bg-main text-paper transition hover:border-paper/70 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
                   aria-label="Предыдущий материал"
                 >
                   <ChevronLeft size={22} aria-hidden="true" />
@@ -179,7 +179,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 <button
                   type="button"
                   onClick={showNext}
-                  className="focus-ring absolute bottom-4 right-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-white/30 bg-ink-950 text-frost transition hover:border-white/60 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
+                  className="focus-ring absolute bottom-4 right-4 z-10 inline-flex size-12 items-center justify-center rounded-full border border-paper/30 bg-main text-paper transition hover:border-paper/70 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
                   aria-label="Следующий материал"
                 >
                   <ChevronRight size={22} aria-hidden="true" />
@@ -204,12 +204,12 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                   priority
                 />
               </div>
-              <figcaption className="mt-4 max-w-3xl text-center text-sm text-frost/70">
+              <figcaption className="mt-4 max-w-3xl text-center text-sm text-paper/70">
                 {activeItem.caption}
               </figcaption>
             </motion.figure>
 
-            <p className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 text-xs text-frost/55 sm:bottom-6">
+            <p className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 text-xs text-paper/55 sm:bottom-6">
               {String((activeIndex ?? 0) + 1).padStart(2, "0")} /{" "}
               {String(items.length).padStart(2, "0")}
             </p>

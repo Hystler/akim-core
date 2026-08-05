@@ -1,22 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import { YandexMetrika } from "@/components/analytics/YandexMetrika";
-import { FloatingTelegram } from "@/components/layout/FloatingTelegram";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { siteDescription, siteUrl } from "@/lib/site-config";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  display: "swap",
-  variable: "--font-inter"
-});
-
 const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
   display: "swap",
   variable: "--font-manrope"
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600"],
+  style: ["italic"],
+  display: "swap",
+  variable: "--font-playfair"
 });
 
 export const metadata: Metadata = {
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#04100D"
+  themeColor: "#DCD3CB"
 };
 
 export default function RootLayout({
@@ -82,18 +83,17 @@ export default function RootLayout({
   return (
     <html lang="ru" className="scroll-smooth" data-scroll-behavior="smooth">
       <body
-        className={`${inter.variable} ${manrope.variable} bg-ink-950 font-sans text-frost antialiased`}
+        className={`${manrope.variable} ${playfair.variable} bg-base font-sans text-main antialiased`}
       >
         <a
           href="#content"
-          className="focus-ring fixed left-4 top-3 z-[200] -translate-y-20 rounded-md bg-frost px-4 py-3 text-sm font-semibold text-ink-950 transition focus:translate-y-0"
+          className="focus-ring fixed left-4 top-3 z-[200] -translate-y-20 bg-burgundy px-4 py-3 text-sm font-semibold text-paper transition focus:translate-y-0"
         >
           Перейти к содержанию
         </a>
         <Header />
         <main id="content">{children}</main>
         <Footer />
-        <FloatingTelegram />
         <YandexMetrika />
       </body>
     </html>

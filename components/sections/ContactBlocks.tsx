@@ -120,10 +120,10 @@ export function ContactBlocks() {
   }
 
   const fieldClass =
-    "focus-ring min-h-12 w-full rounded-md border border-white/20 bg-ink-900 px-4 text-frost placeholder:text-muted/60 transition hover:border-white/30 focus:border-electric-cyan";
+    "min-h-12 w-full rounded-none border-0 border-b border-main/35 bg-transparent px-0 text-main outline-none placeholder:text-main/40 transition-colors hover:border-main/60 focus:border-burgundy focus:ring-0 focus-visible:border-burgundy";
 
   return (
-    <section className="pb-20 pt-14 sm:pb-28 sm:pt-20">
+    <section className="bg-base-texture pb-20 pt-14 sm:pb-28 sm:pt-20">
       <div className="section-shell grid gap-14 lg:grid-cols-[1.25fr_0.75fr]">
         <form
           ref={formRef}
@@ -132,15 +132,15 @@ export function ContactBlocks() {
           action={contactFormEndpoint}
           encType="multipart/form-data"
           aria-busy={submitState === "submitting"}
-          className="rounded-md border border-white/15 p-5 sm:p-8"
+          className="border border-main/15 bg-paper p-6 shadow-tactile sm:p-10"
         >
           <input type="hidden" name="_subject" value="Новая заявка с сайта AKIM CORE" />
           <input type="hidden" name="_template" value="table" />
           <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" />
 
           <div className="grid gap-5 sm:grid-cols-2">
-            <label className="grid gap-2 text-sm font-medium text-frost">
-              Имя <span className="text-electric-cyan">*</span>
+            <label className="grid gap-2 text-sm font-bold text-main">
+              Имя <span className="text-burgundy">*</span>
               <input
                 type="text"
                 name="name"
@@ -149,8 +149,8 @@ export function ContactBlocks() {
                 className={fieldClass}
               />
             </label>
-            <label className="grid gap-2 text-sm font-medium text-frost">
-              Telegram или email <span className="text-electric-cyan">*</span>
+            <label className="grid gap-2 text-sm font-bold text-main">
+              Telegram или email <span className="text-burgundy">*</span>
               <input
                 type="text"
                 name="contact"
@@ -161,33 +161,33 @@ export function ContactBlocks() {
             </label>
           </div>
 
-          <label className="mt-5 grid gap-2 text-sm font-medium text-frost">
-            Тип задачи <span className="text-electric-cyan">*</span>
+          <label className="mt-7 grid gap-2 text-sm font-bold text-main">
+            Тип задачи <span className="text-burgundy">*</span>
             <select name="taskType" required defaultValue="" className={fieldClass}>
-              <option value="" disabled className="bg-ink-900">
+              <option value="" disabled className="bg-paper">
                 Выберите формат
               </option>
               {taskTypes.map((type) => (
-                <option key={type} value={type} className="bg-ink-900">
+                <option key={type} value={type} className="bg-paper">
                   {type}
                 </option>
               ))}
             </select>
           </label>
 
-          <label className="mt-5 grid gap-2 text-sm font-medium text-frost">
-            Краткое описание <span className="text-electric-cyan">*</span>
+          <label className="mt-7 grid gap-2 text-sm font-bold text-main">
+            Краткое описание <span className="text-burgundy">*</span>
             <textarea
               name="description"
               required
               rows={5}
               placeholder="Что нужно создать, для кого и какой результат ожидаете"
-              className={`${fieldClass} min-h-36 py-3`}
+              className={`${fieldClass} min-h-36 resize-y py-3`}
             />
           </label>
 
-          <div className="mt-5 grid gap-5 sm:grid-cols-2">
-            <label className="grid gap-2 text-sm font-medium text-frost">
+          <div className="mt-7 grid gap-7 sm:grid-cols-2">
+            <label className="grid gap-2 text-sm font-bold text-main">
               Дедлайн
               <input
                 type="text"
@@ -196,7 +196,7 @@ export function ContactBlocks() {
                 className={fieldClass}
               />
             </label>
-            <label className="grid gap-2 text-sm font-medium text-frost">
+            <label className="grid gap-2 text-sm font-bold text-main">
               Ссылка на материалы
               <input
                 type="url"
@@ -208,29 +208,29 @@ export function ContactBlocks() {
             </label>
           </div>
 
-          <label className="mt-5 grid gap-2 text-sm font-medium text-frost">
+          <label className="mt-7 grid gap-2 text-sm font-bold text-main">
             Прикрепить файл
             <input
               type="file"
               name="attachment"
               accept=".pdf,.ppt,.pptx,.key,.doc,.docx,.xls,.xlsx,.zip,.png,.jpg,.jpeg"
-              className="focus-ring min-h-14 w-full rounded-md border border-dashed border-white/25 bg-ink-900 p-2 text-sm text-muted"
+              className="focus-ring min-h-14 w-full rounded-none border-0 border-b border-main/35 bg-transparent py-2 text-sm text-main/70"
             />
-            <span className="text-xs font-normal leading-5 text-muted">
+            <span className="text-xs font-normal leading-5 text-main/70">
               PDF, PowerPoint, документы, таблицы, ZIP или изображения — до 10 МБ.
             </span>
           </label>
 
-          <label className="mt-6 flex items-start gap-3 text-sm leading-6 text-muted">
+          <label className="mt-7 flex items-start gap-3 text-sm leading-6 text-main/70">
             <input
               type="checkbox"
               name="privacyConsent"
               required
-              className="focus-ring mt-1 size-4 shrink-0 accent-electric-blue"
+              className="focus-ring mt-1 size-4 shrink-0 accent-burgundy"
             />
             <span>
               Я согласен с{" "}
-              <Link href="/privacy" className="text-frost underline decoration-white/30">
+              <Link href="/privacy" className="font-medium text-main underline decoration-main/30">
                 политикой конфиденциальности
               </Link>
               .
@@ -241,14 +241,14 @@ export function ContactBlocks() {
             <button
               type="submit"
               disabled={submitState === "submitting"}
-              className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md bg-frost px-6 text-sm font-semibold text-ink-950 transition hover:bg-electric-cyan disabled:cursor-not-allowed disabled:opacity-50"
+              className="focus-ring inline-flex min-h-12 items-center justify-center border border-burgundy bg-burgundy px-6 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-50"
             >
               {submitState === "submitting" ? "Отправляю…" : "Отправить задачу"}
             </button>
             <button
               type="button"
               onClick={openTelegramDraft}
-              className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/20 px-6 text-sm font-semibold text-frost transition hover:border-frost"
+              className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 border border-main/35 px-6 text-sm font-bold text-main transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-burgundy hover:shadow-press"
             >
               <Send className="h-4 w-4" aria-hidden="true" />
               Подготовить текст в Telegram
@@ -259,7 +259,7 @@ export function ContactBlocks() {
             <div
               aria-live="polite"
               role={submitState === "error" ? "alert" : "status"}
-              className={`mt-6 flex gap-3 rounded-md border p-4 text-sm leading-6 ${
+              className={`mt-6 flex gap-3 border p-4 text-sm leading-6 ${
                 submitState === "success"
                   ? "border-emerald-300/30 bg-emerald-300/10 text-emerald-100"
                   : "border-red-300/30 bg-red-300/10 text-red-100"
@@ -273,8 +273,8 @@ export function ContactBlocks() {
           ) : null}
         </form>
 
-        <aside className="h-fit border-t border-white/15 lg:sticky lg:top-28">
-          <p className="py-5 text-xs font-semibold uppercase text-muted">
+        <aside className="h-fit border border-main/15 bg-paper p-6 shadow-tactile lg:sticky lg:top-28 sm:p-8">
+          <p className="border-b border-main/15 pb-5 text-xs font-bold uppercase text-burgundy">
             Прямой контакт
           </p>
           <a
@@ -282,31 +282,31 @@ export function ContactBlocks() {
             target="_blank"
             rel="noreferrer"
             onClick={() => trackGoal("telegram_click", { source: "contact_page" })}
-            className="group grid grid-cols-[36px_1fr_auto] items-center border-t border-white/15 py-6"
+            className="group grid grid-cols-[36px_1fr_auto] items-center border-b border-main/15 py-6"
           >
-            <Send className="h-4 w-4 text-electric-cyan" aria-hidden="true" />
+            <Send className="h-4 w-4 text-burgundy" aria-hidden="true" />
             <span>
-              <span className="block text-xs text-muted">Telegram</span>
-              <span className="mt-1 block font-heading text-lg font-medium text-frost">
+              <span className="block text-xs text-main/70">Telegram</span>
+              <span className="mt-1 block font-heading text-lg font-bold text-main">
                 @loot_digger
               </span>
             </span>
-            <ArrowUpRight className="h-4 w-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+            <ArrowUpRight className="h-4 w-4 text-main/70 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
           </a>
           <a
             href={`mailto:${siteEmail}`}
-            className="group grid grid-cols-[36px_1fr_auto] items-center border-y border-white/15 py-6"
+            className="group grid grid-cols-[36px_1fr_auto] items-center border-b border-main/15 py-6"
           >
-            <Mail className="h-4 w-4 text-electric-cyan" aria-hidden="true" />
+            <Mail className="h-4 w-4 text-burgundy" aria-hidden="true" />
             <span>
-              <span className="block text-xs text-muted">Email</span>
-              <span className="mt-1 block break-all font-heading text-base font-medium text-frost">
+              <span className="block text-xs text-main/70">Email</span>
+              <span className="mt-1 block break-all font-heading text-base font-bold text-main">
                 {siteEmail}
               </span>
             </span>
-            <ArrowUpRight className="h-4 w-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+            <ArrowUpRight className="h-4 w-4 text-main/70 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
           </a>
-          <p className="mt-6 text-sm leading-7 text-muted">
+          <p className="mt-6 text-sm font-medium leading-7 text-main/70">
             Обычно для старта достаточно краткого описания задачи, примера материалов
             и желаемого срока.
           </p>

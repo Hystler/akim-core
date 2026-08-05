@@ -15,7 +15,7 @@ export function PaletteDots({
         <span
           key={color}
           className={`block size-4 rounded-full border ${
-            darkBorder ? "border-ink-950/20" : "border-white/20"
+            darkBorder ? "border-main/20" : "border-paper/20"
           }`}
           style={{ backgroundColor: color }}
           title={color}

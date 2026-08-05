@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CaseStorySlider } from "@/components/sections/CaseStorySlider";
 import { PortfolioGallery } from "@/components/sections/PortfolioGallery";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PaletteDots } from "@/components/ui/PaletteDots";
@@ -97,19 +98,19 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
     <article>
       <JsonLd data={schema} />
 
-      <header className="pb-16 pt-10 sm:pb-24 sm:pt-14">
+      <header className="bg-base-texture pb-16 pt-10 sm:pb-24 sm:pt-14">
         <div className="section-shell">
           <Link
             href="/portfolio"
-            className="focus-ring inline-flex items-center gap-2 rounded-sm text-sm text-muted transition hover:text-frost"
+            className="focus-ring inline-flex items-center gap-2 text-sm font-bold text-main/70 transition hover:text-burgundy"
           >
             <ArrowLeft size={16} aria-hidden="true" />
             Все кейсы
           </Link>
 
-          <div className="mt-9 border-t border-white/15 pt-6">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
-              <span className="font-semibold text-electric-cyan">
+          <div className="mt-9 border-t border-main/20 pt-6">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-main/70">
+              <span className="font-bold text-burgundy">
                 {item.focus}
               </span>
               <span aria-hidden="true">·</span>
@@ -121,11 +122,11 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             </div>
 
             <div className="mt-7 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-              <h1 className="max-w-5xl font-heading text-4xl font-medium leading-[1.02] text-frost sm:text-6xl xl:text-7xl">
+              <h1 className="max-w-5xl font-heading text-4xl font-bold leading-[1.02] text-main sm:text-6xl xl:text-7xl">
                 {item.title}
               </h1>
               <div className="max-w-xl lg:justify-self-end">
-                <p className="text-pretty text-lg leading-8 text-muted">
+                <p className="text-pretty text-lg font-medium leading-8 text-main/70">
                   {item.description}
                 </p>
                 <div className="mt-5">
@@ -134,15 +135,15 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
               </div>
             </div>
 
-            <dl className="mt-10 grid gap-x-8 gap-y-6 border-y border-white/15 py-6 sm:grid-cols-3">
+            <dl className="mt-10 grid gap-x-8 gap-y-6 border-y border-main/20 py-6 sm:grid-cols-3">
               {[
                 ["Для", item.client],
                 ["Роль", item.role],
                 ["Объём", item.scope]
               ].map(([label, value]) => (
                 <div key={label}>
-                  <dt className="text-xs text-muted">{label}</dt>
-                  <dd className="mt-2 text-sm leading-6 text-frost">{value}</dd>
+                  <dt className="text-xs font-bold uppercase text-burgundy">{label}</dt>
+                  <dd className="mt-2 text-sm font-medium leading-6 text-main/70">{value}</dd>
                 </div>
               ))}
             </dl>
@@ -154,7 +155,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                 rel="noreferrer"
                 goal="external_project_open"
                 goalParams={{ case: item.slug }}
-                className="focus-ring group mt-7 inline-flex min-h-12 items-center gap-2 rounded-md bg-frost px-5 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-electric-cyan"
+                className="focus-ring group mt-7 inline-flex min-h-12 items-center gap-2 border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl"
               >
                 Открыть сайт
                 <ExternalLink
@@ -166,7 +167,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             ) : null}
           </div>
 
-          <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-md border border-white/10 bg-ink-900 sm:mt-14">
+          <div className="relative mt-10 aspect-[16/9] overflow-hidden border border-main/15 bg-paper p-2 shadow-tactile sm:mt-14 sm:p-3">
             <Image
               src={item.coverImage}
               alt={item.coverAlt}
@@ -174,165 +175,43 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
               sizes="(min-width: 1280px) 1280px, 100vw"
               placeholder="blur"
               blurDataURL={blurDataUrl}
-              className="object-cover"
+              className="object-cover p-2 sm:p-3"
               priority
             />
           </div>
         </div>
       </header>
 
-      <section className="bg-paper py-20 text-ink-950 sm:py-28">
+      <CaseStorySlider item={item} />
+
+      <section className="bg-base-texture py-20 sm:py-28">
         <div className="section-shell">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-4">
-              <p className="text-xs font-semibold uppercase text-ink-800/70">
-                01 / Суть
-              </p>
-              <h2 className="mt-5 font-heading text-4xl font-medium leading-none sm:text-6xl">
-                Задача.
-              </h2>
-            </div>
-            <div className="border-t border-ink-950/20 lg:col-span-8 lg:col-start-5">
-              <p className="max-w-4xl py-7 text-pretty text-xl leading-9 text-ink-950 sm:text-2xl sm:leading-10">
-                {item.task}
-              </p>
-              <div className="grid border-t border-ink-950/20 sm:grid-cols-2">
-                <div className="border-b border-ink-950/20 py-6 sm:border-b-0 sm:border-r sm:pr-8">
-                  <h3 className="text-sm font-semibold">Для кого</h3>
-                  <p className="mt-3 text-sm leading-7 text-ink-800/70">{item.audience}</p>
-                </div>
-                <div className="py-6 sm:pl-8">
-                  <h3 className="text-sm font-semibold">На старте</h3>
-                  <p className="mt-3 text-sm leading-7 text-ink-800/70">
-                    {item.sourceMaterials}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-ink-950 py-20 sm:py-28">
-        <div className="section-shell">
-          <div className="mb-10">
-            <p className="text-xs font-semibold uppercase text-electric-cyan">
-              02 / Поворот
-            </p>
-            <h2 className="mt-5 font-heading text-4xl font-medium text-frost sm:text-6xl">
-              Было. Стало.
-            </h2>
-          </div>
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-            <div className="border-t border-white/15 pt-6">
-              <h3 className="font-heading text-2xl font-medium text-frost">Было.</h3>
-              <p className="mt-5 text-base leading-8 text-muted">{item.problem}</p>
-            </div>
-            <div className="border-t border-electric-cyan/55 pt-6">
-              <h3 className="font-heading text-2xl font-medium text-frost">Стало.</h3>
-              <p className="mt-5 text-base leading-8 text-muted">{item.solution}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-ink-900 py-20 sm:py-28">
-        <div className="section-shell grid gap-12 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-4">
-            <p className="text-xs font-semibold uppercase text-muted">03 / Работа</p>
-            <h2 className="mt-5 font-heading text-4xl font-medium leading-none text-frost sm:text-6xl">
-              Что вошло.
-            </h2>
-          </div>
-          <ul className="border-t border-white/15 lg:col-span-8">
-            {item.deliverables.map((deliverable, index) => (
-              <li
-                key={deliverable}
-                className="grid grid-cols-[36px_1fr] gap-3 border-b border-white/15 py-5 text-base text-frost"
-              >
-                <span className="text-xs text-muted">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                {deliverable}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="bg-paper py-20 text-ink-950 sm:py-28">
-        <div className="section-shell">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase text-ink-800/70">
-              04 / Образ
-            </p>
-            <h2 className="mt-5 font-heading text-4xl font-medium leading-none sm:text-6xl">
-              Цвет. Шрифт. Ритм.
-            </h2>
-          </div>
-
-          <div className="mt-10 flex items-center gap-5 border-t border-ink-950/20 pt-5">
-            <span className="text-xs font-semibold text-ink-800/70">Палитра</span>
-            <PaletteDots colors={item.visualSystem.palette} darkBorder />
-          </div>
-
-          <dl className="mt-8 grid border-t border-ink-950/20 md:grid-cols-3">
-            {[
-              ["Цвет", item.visualSystem.colors],
-              ["Шрифт", item.visualSystem.typography],
-              ["Сетка", item.visualSystem.grid]
-            ].map(([label, value], index) => (
-              <div
-                key={label}
-                className={`border-b border-ink-950/20 py-6 md:px-7 ${
-                  index === 0 ? "md:pl-0" : "md:border-l"
-                }`}
-              >
-                <dt className="text-xs font-semibold text-ink-800/70">{label}</dt>
-                <dd className="mt-4 text-sm leading-7 text-ink-800/75">{value}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
-            {item.visualSystem.principles.map((principle) => (
-              <li key={principle} className="flex gap-3 border-t border-ink-950/20 pt-4 text-sm leading-7">
-                <Check className="mt-1.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                {principle}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="bg-ink-950 py-20 sm:py-28">
-        <div className="section-shell">
-          <div className="mb-10 flex flex-col gap-5 border-b border-white/15 pb-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-10 flex flex-col gap-5 border-b border-main/20 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase text-muted">05 / Крупно</p>
-              <h2 className="mt-4 font-heading text-3xl font-medium text-frost sm:text-5xl">
+              <p className="text-xs font-bold uppercase text-burgundy">06 / Крупно</p>
+              <h2 className="mt-4 font-heading text-3xl font-bold text-main sm:text-5xl">
                 {item.category === "presentation" ? "Слайды." : "Экраны."}
               </h2>
             </div>
-            <p className="text-sm text-muted">{getImageCountLabel(item.gallery.length)}</p>
+            <p className="text-sm font-medium text-main/70">{getImageCountLabel(item.gallery.length)}</p>
           </div>
           <PortfolioGallery items={item.gallery} title={item.title} />
         </div>
       </section>
 
-      <section className="bg-paper py-20 text-ink-950 sm:py-28">
+      <section className="bg-paper py-20 text-main sm:py-28">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.55fr_1.45fr]">
           <div>
-            <p className="text-xs font-semibold uppercase text-ink-800/70">06 / Итог</p>
-            <h2 className="mt-5 font-heading text-3xl font-medium sm:text-5xl">
+            <p className="text-xs font-bold uppercase text-burgundy">07 / Итог</p>
+            <h2 className="mt-5 font-heading text-3xl font-bold sm:text-5xl">
               Готово.
             </h2>
           </div>
-          <ul className="border-t border-ink-950/20">
+          <ul className="border-t border-main/20">
             {item.result.map((result) => (
               <li
                 key={result}
-                className="flex gap-4 border-b border-ink-950/20 py-6 text-base leading-7"
+                className="flex gap-4 border-b border-main/20 py-6 text-base font-medium leading-7"
               >
                 <Check className="mt-1 h-5 w-5 shrink-0" aria-hidden="true" />
                 {result}
@@ -343,21 +222,21 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
       </section>
 
       {nextItem ? (
-        <section className="bg-ink-900 py-20 sm:py-28">
+        <section className="bg-base-texture py-20 sm:py-28">
           <div className="section-shell">
-            <p className="text-xs font-semibold uppercase text-muted">Дальше</p>
+            <p className="text-xs font-bold uppercase text-burgundy">Дальше</p>
             <TrackedLink
               href={`/portfolio/${nextItem.slug}`}
               goal="case_open"
               goalParams={{ case: nextItem.slug, source: "next_case" }}
-              className="focus-ring group mt-5 grid gap-8 rounded-md border border-white/15 p-5 transition hover:border-white/40 sm:p-7 lg:grid-cols-[1fr_0.85fr] lg:items-center"
+              className="focus-ring group mt-5 grid gap-8 border border-main/15 bg-paper p-5 shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl sm:p-7 lg:grid-cols-[1fr_0.85fr] lg:items-center"
             >
               <div>
-                <span className="text-sm text-muted">{nextItem.projectType}</span>
-                <h2 className="text-balance mt-3 font-heading text-4xl font-medium text-frost sm:text-6xl">
+                <span className="text-sm font-medium text-main/70">{nextItem.projectType}</span>
+                <h2 className="text-balance mt-3 font-heading text-4xl font-bold text-main sm:text-6xl">
                   {nextItem.title}
                 </h2>
-                <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-electric-cyan">
+                <span className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-burgundy">
                   Открыть
                   <ArrowRight
                     className="h-4 w-4 transition-transform group-hover:translate-x-1"
@@ -365,7 +244,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                   />
                 </span>
               </div>
-              <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-white/10">
+              <div className="relative aspect-[16/9] overflow-hidden border border-main/15 bg-base">
                 <Image
                   src={nextItem.coverImage}
                   alt={nextItem.coverAlt}
@@ -381,14 +260,14 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/portfolio"
-                className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/20 px-5 text-sm font-semibold text-frost transition hover:border-frost"
+                className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 border border-main/35 px-5 text-sm font-bold text-main transition hover:border-burgundy hover:text-burgundy"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 Все работы
               </Link>
               <Link
                 href="/contact"
-                className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md bg-frost px-5 text-sm font-semibold text-ink-950 transition hover:bg-electric-cyan"
+                className="focus-ring inline-flex min-h-12 items-center justify-center border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper transition hover:-translate-y-1 hover:shadow-press"
               >
                 Похожий проект
               </Link>

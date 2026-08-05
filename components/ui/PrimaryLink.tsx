@@ -11,8 +11,8 @@ type PrimaryLinkProps = {
 export function PrimaryLink({ href, children, variant = "primary" }: PrimaryLinkProps) {
   const isPrimary = variant === "primary";
   const className = isPrimary
-    ? "focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-frost bg-frost px-6 py-3 text-sm font-semibold text-ink-950 transition duration-300 hover:-translate-y-0.5 hover:bg-transparent hover:text-frost"
-    : "focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/20 px-6 py-3 text-sm font-semibold text-frost transition duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/[0.04]";
+    ? "focus-ring group inline-flex min-h-12 items-center justify-center gap-2 border border-burgundy bg-burgundy px-6 py-3 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl"
+    : "focus-ring group inline-flex min-h-12 items-center justify-center gap-2 border border-main/35 bg-transparent px-6 py-3 text-sm font-bold text-main transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:bg-paper hover:shadow-2xl";
 
   return (
     <Link href={href} className={className}>

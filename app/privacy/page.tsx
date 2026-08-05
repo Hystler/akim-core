@@ -50,24 +50,24 @@ export default function PrivacyPage() {
         title="Политика конфиденциальности"
         text="Коротко и без юридического тумана: какие данные получает сайт и зачем они нужны."
       />
-      <section className="pb-20 pt-14 sm:pb-28 sm:pt-20">
+      <section className="bg-base-texture pb-20 pt-14 sm:pb-28 sm:pt-20">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.45fr_1.55fr]">
           <div>
-            <p className="text-sm text-muted">Редакция от 31 июля 2026 года</p>
+            <p className="text-sm font-medium text-main/70">Редакция от 31 июля 2026 года</p>
             <Link
               href="/contact"
-              className="focus-ring mt-5 inline-block rounded-sm border-b border-white/30 pb-1 text-sm font-semibold text-frost"
+              className="focus-ring mt-5 inline-block border-b border-main/35 pb-1 text-sm font-bold text-main hover:border-burgundy hover:text-burgundy"
             >
               Связаться
             </Link>
           </div>
-          <div className="border-t border-white/15">
+          <div className="border-t border-main/20">
             {sections.map((section) => (
-              <section key={section.title} className="border-b border-white/15 py-7">
-                <h2 className="font-heading text-xl font-medium text-frost">
+              <section key={section.title} className="border-b border-main/20 py-7">
+                <h2 className="font-heading text-xl font-bold text-main">
                   {section.title}
                 </h2>
-                <p className="mt-4 max-w-3xl text-base leading-8 text-muted">
+                <p className="mt-4 max-w-3xl text-base font-medium leading-8 text-main/70">
                   {section.text}
                 </p>
               </section>
