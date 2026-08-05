@@ -106,7 +106,13 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 openedFromIndex.current = index;
                 setActiveIndex(index);
               }}
-              className="focus-ring group relative aspect-[16/9] w-full cursor-pointer overflow-hidden rounded-md border border-white/10 bg-ink-900 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/30"
+              className={`focus-ring group relative w-full cursor-pointer overflow-hidden rounded-md border border-white/10 bg-ink-900 text-left transition duration-300 hover:-translate-y-0.5 hover:border-white/30 ${
+                item.aspectRatio === "portrait"
+                  ? "aspect-[4/5]"
+                  : item.aspectRatio === "standard"
+                    ? "aspect-[3/2]"
+                    : "aspect-[16/9]"
+              }`}
               aria-label={`Открыть на весь экран: ${item.caption}`}
             >
               <Image
@@ -117,7 +123,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
                 placeholder="blur"
                 blurDataURL={blurDataUrl}
-                className="object-cover transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
+                className="object-contain transition duration-300 group-hover:scale-[1.01] group-hover:opacity-90"
               />
               <span className="absolute bottom-3 right-3 grid size-10 place-items-center rounded-full border border-white/25 bg-ink-950 text-white">
                 <ChevronRight className="h-4 w-4" aria-hidden="true" />
