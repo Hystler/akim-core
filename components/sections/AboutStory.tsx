@@ -1,12 +1,12 @@
 import { Check } from "lucide-react";
 
 const experience = [
-  "Презентации и коммерческие предложения",
-  "Финансовые модели и продуктовая логика",
-  "Лендинги и персональные сайты",
-  "B2B-интерфейсы и внутренние инструменты",
-  "AI-сценарии и автоматизации",
-  "Маркетплейсы, мероприятия и координация проектов"
+  "Презентации",
+  "Финансовые модели",
+  "Сайты",
+  "Рабочие интерфейсы",
+  "Автоматизации",
+  "События"
 ];
 
 export function AboutStory() {
@@ -17,28 +17,24 @@ export function AboutStory() {
           <article className="border-b border-white/15 py-8">
             <h2 className="font-heading text-2xl font-medium text-frost">Как я работаю</h2>
             <p className="mt-5 max-w-3xl text-base leading-8 text-muted">
-              Начинаю не со стилистики, а с вопроса: что аудитория должна понять,
-              почувствовать и сделать после просмотра. Затем собираю структуру,
-              уточняю тексты, показываю визуальное направление и только после
-              согласования разворачиваю его на весь проект.
+              Сначала выясняю, что зритель должен понять. Затем собираю структуру,
+              показываю стиль и оформляю весь файл.
             </p>
           </article>
           <article className="border-b border-white/15 py-8">
             <h2 className="font-heading text-2xl font-medium text-frost">
-              Где помогает широкий опыт
+              Что помогает
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-8 text-muted">
-              Опыт в аналитике, digital и production помогает быстрее разбираться в
-              содержании. Я могу читать таблицы, восстанавливать логику процесса и
-              задавать вопросы по продукту — это особенно важно в презентациях со
-              сложными исходными материалами.
+              Я читаю таблицы, разбираю процессы и задаю вопросы по теме. Поэтому
+              могу работать не только с формой, но и с содержанием.
             </p>
           </article>
         </div>
 
         <aside className="h-fit rounded-md border border-white/15 p-6 sm:p-7 lg:sticky lg:top-28">
           <p className="text-xs font-semibold uppercase text-muted">
-            Опыт и контекст
+            Темы
           </p>
           <ul className="mt-6 grid gap-4">
             {experience.map((item) => (

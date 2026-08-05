@@ -1,6 +1,7 @@
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { TrackedLink } from "@/components/ui/TrackedLink";
+import { PaletteDots } from "@/components/ui/PaletteDots";
 import {
   portfolioStatusLabels,
   type PublishedPortfolioItem
@@ -56,7 +57,7 @@ export function PortfolioCard({ item, priority = false }: PortfolioCardProps) {
 
       <div className="flex flex-1 flex-col pt-5">
         <div className="flex items-center justify-between gap-4 text-xs text-muted">
-          <span>{item.projectType}</span>
+          <span className="font-semibold text-electric-cyan">{item.focus}</span>
           <span>{item.year}</span>
         </div>
         <h3 className="mt-3 font-heading text-2xl font-medium leading-tight text-frost sm:text-3xl">
@@ -66,13 +67,9 @@ export function PortfolioCard({ item, priority = false }: PortfolioCardProps) {
           {item.description}
         </p>
 
-        <div className="mt-5 border-t border-white/10 pt-4">
-          <p className="text-[11px] font-semibold uppercase text-muted">
-            Что сделано
-          </p>
-          <p className="mt-2 text-sm leading-7 text-frost/80">
-            {item.deliverables.slice(0, 3).join(" · ")}
-          </p>
+        <div className="mt-5 flex items-center justify-between gap-4 border-t border-white/10 pt-4">
+          <span className="text-xs text-muted">{item.projectType}</span>
+          <PaletteDots colors={item.visualSystem.palette} />
         </div>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -82,7 +79,7 @@ export function PortfolioCard({ item, priority = false }: PortfolioCardProps) {
             goalParams={{ case: item.slug, source: "button" }}
             className="focus-ring inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-white/20 text-sm font-semibold text-frost transition hover:border-frost hover:bg-white/[0.04] sm:w-fit sm:px-5"
           >
-            Смотреть кейс
+            Открыть
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </TrackedLink>
           {item.externalUrl ? (
@@ -94,7 +91,7 @@ export function PortfolioCard({ item, priority = false }: PortfolioCardProps) {
               goalParams={{ case: item.slug, source: "card" }}
               className="focus-ring inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-frost px-5 text-sm font-semibold text-ink-950 transition hover:bg-electric-cyan sm:w-fit"
             >
-              Открыть сайт
+              Сайт
               <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </TrackedLink>
           ) : null}

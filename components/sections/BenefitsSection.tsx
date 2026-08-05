@@ -10,7 +10,7 @@ export function BenefitsSection() {
               Почему со мной удобно
             </p>
             <h2 className="text-balance mt-5 max-w-lg font-heading text-3xl font-medium leading-[1.08] text-frost sm:text-5xl">
-              Содержание и дизайн собираются в одном процессе
+              Вникаю. Сокращаю. Собираю.
             </h2>
           </div>
 

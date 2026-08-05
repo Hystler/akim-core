@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { PaletteDots } from "@/components/ui/PaletteDots";
 import { authorPhotoPath } from "@/data/site";
 
 const blurDataUrl =
@@ -22,18 +23,16 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
             Обо мне
           </p>
           <Heading className={`text-balance mt-5 font-heading font-medium leading-[1.08] text-frost ${asPage ? "text-4xl sm:text-6xl" : "text-3xl sm:text-5xl"}`}>
-            Соединяю дизайн, бизнес-логику и технологии
+            Сначала смысл.
           </Heading>
           <div className="mt-7 max-w-2xl space-y-5 text-base leading-8 text-muted">
             <p>
-              Я занимаюсь презентациями, digital-продуктами и автоматизациями. Мой
-              основной навык — быстро находить структуру в сложных материалах и
-              превращать её в понятный визуальный продукт.
+              Я дизайнер презентаций. Нахожу главную мысль, собираю структуру и
+              оформляю слайды.
             </p>
             <p>
-              Работал с маркетплейсами, финансовыми моделями, мероприятиями, сайтами и
-              внутренними бизнес-инструментами. Поэтому могу погружаться в содержание,
-              а не только оформлять внешний слой.
+              Работаю с событиями, брендами, цифрами и продуктами. Быстро вхожу в
+              тему и убираю лишнее.
             </p>
           </div>
           {!asPage ? (
@@ -41,7 +40,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
               href="/about"
               className="focus-ring group mt-8 inline-flex items-center gap-2 rounded-sm border-b border-white/30 pb-1 text-sm font-semibold text-frost transition hover:border-frost"
             >
-              Подробнее обо мне
+              Обо мне
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           ) : null}
@@ -51,7 +50,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
           <div className="relative aspect-[4/5] overflow-hidden rounded-md border border-white/10 bg-ink-950">
             <Image
               src={authorPhotoPath}
-              alt="Аким Коваленко, дизайнер презентаций и digital-продуктов"
+              alt="Аким Коваленко, дизайнер презентаций"
               fill
               sizes="(min-width: 1024px) 42vw, 100vw"
               placeholder="blur"
@@ -60,24 +59,28 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
             />
           </div>
         ) : (
-          <div className="grid aspect-[4/3] grid-cols-2 gap-3">
-            <div className="relative overflow-hidden rounded-md border border-white/10">
+          <div className="grid gap-4">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-sm border border-white/10 bg-ink-950">
               <Image
                 src="/portfolio/chess-jazz/chess-jazz-cover.png"
                 alt="Фрагмент работы Chess & Jazz"
                 fill
-                sizes="(min-width: 1024px) 22vw, 50vw"
-                className="object-cover"
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-contain"
               />
             </div>
-            <div className="relative mt-10 overflow-hidden rounded-md border border-white/10">
+            <div className="relative ml-auto aspect-[16/9] w-[88%] overflow-hidden rounded-sm border border-white/10 bg-[#EDE3D4]">
               <Image
                 src="/portfolio/velvet-whisper/velvet-whisper-cover.png"
                 alt="Фрагмент работы Velvet Whisper"
                 fill
-                sizes="(min-width: 1024px) 22vw, 50vw"
-                className="object-cover"
+                sizes="(min-width: 1024px) 38vw, 88vw"
+                className="object-contain"
               />
+            </div>
+            <div className="flex items-center justify-between border-t border-white/10 pt-4">
+              <span className="text-xs text-muted">Атмосфера / образ</span>
+              <PaletteDots colors={["#04100D", "#D8B875", "#F1E8D9", "#B89F8B"]} />
             </div>
           </div>
         )}

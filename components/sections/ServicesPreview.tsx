@@ -10,8 +10,8 @@ export function ServicesPreview() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Услуги"
-            title="Презентации — в центре. Digital-продукты — когда задаче нужен другой формат"
-            text="Подключаюсь к структуре, текстам и визуальной системе. Формат выбираем по бизнес-задаче, а не по привычке."
+            title="Четыре формата."
+            text="Презентации, редизайн, сайты и инструменты."
           />
           <Link
             href="/services"

@@ -8,13 +8,12 @@ import { ServicesDetails } from "@/components/sections/ServicesDetails";
 
 export const metadata: Metadata = {
   title: "Услуги",
-  description:
-    "Презентации под ключ, редизайн слайдов, лендинги, B2B SaaS и автоматизации для бизнеса.",
+  description: "Презентации под ключ, редизайн, сайты и рабочие инструменты.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Услуги — AKIM CORE",
     description:
-      "Структура, тексты и дизайн презентаций под ключ, а также лендинги и продуктовые интерфейсы.",
+      "Презентации под ключ, редизайн, сайты и рабочие инструменты.",
     url: "/services"
   }
 };
@@ -25,8 +24,8 @@ export default function ServicesPage() {
       <GoalOnMount goal="services_view" />
       <PageIntro
         eyebrow="Услуги"
-        title="Собираю презентации под ключ — от сырых материалов до готового файла"
-        text="Основной формат работы — презентации. Для задач, которым нужен сайт, интерфейс или автоматизация, подключаю продуктовый подход и разработку."
+        title="От черновика до готового файла."
+        text="Презентации в центре. Остальное по задаче."
       />
       <ServicesDetails />
       <ProcessSection />

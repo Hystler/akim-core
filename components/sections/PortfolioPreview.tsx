@@ -20,9 +20,9 @@ export function PortfolioPreview({ items }: PortfolioPreviewProps) {
       <div className="section-shell">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
-            eyebrow="Избранные кейсы"
-            title="Работы, в которых содержание и визуальная подача решают одну задачу"
-            text="Шесть презентационных кейсов: события, спорт, городской продукт, fashion и инвесторская аналитика. Digital-продукты и лендинг доступны в полном каталоге."
+            eyebrow="Работы"
+            title="Разные темы. Один принцип: ничего лишнего."
+            text="Атмосфера, цифры, образ, сила и точность."
           />
           <Link
             href="/portfolio"
@@ -48,7 +48,7 @@ export function PortfolioPreview({ items }: PortfolioPreviewProps) {
             href="/portfolio"
             className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-6 text-sm font-semibold text-frost transition hover:border-frost hover:bg-white/[0.04]"
           >
-            Смотреть все кейсы
+            Все работы
           </Link>
         </div>
       </div>

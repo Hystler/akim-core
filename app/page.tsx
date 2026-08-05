@@ -21,7 +21,7 @@ export default function HomePage() {
         "@id": `${siteUrl}/#person`,
         name: "Аким Коваленко",
         url: siteUrl,
-        jobTitle: "Дизайнер презентаций и digital-продуктов",
+        jobTitle: "Дизайнер презентаций",
         sameAs: ["https://t.me/loot_digger"]
       },
       {
@@ -29,14 +29,13 @@ export default function HomePage() {
         "@id": `${siteUrl}/#service`,
         name: "AKIM CORE",
         url: siteUrl,
-        description:
-          "Презентации, коммерческие предложения, лендинги и B2B digital-продукты для бизнеса.",
+        description: "Презентации для бизнеса. Структура, текст и дизайн под ключ.",
         founder: { "@id": `${siteUrl}/#person` },
         serviceType: [
           "Дизайн презентаций",
           "Коммерческие предложения",
-          "Лендинги",
-          "B2B SaaS и автоматизации"
+          "Сайты",
+          "Рабочие инструменты"
         ],
         areaServed: "Удалённо"
       }

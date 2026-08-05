@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortfolioGallery } from "@/components/sections/PortfolioGallery";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PaletteDots } from "@/components/ui/PaletteDots";
 import { TrackedLink } from "@/components/ui/TrackedLink";
 import {
   getNextPortfolioItem,
@@ -109,27 +110,33 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
           <div className="mt-9 border-t border-white/15 pt-6">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
               <span className="font-semibold text-electric-cyan">
-                {portfolioCategoryLabels[item.category]}
+                {item.focus}
               </span>
+              <span aria-hidden="true">·</span>
+              <span>{item.projectType}</span>
               <span aria-hidden="true">·</span>
               <span>{portfolioStatusLabels[item.status]}</span>
               <span aria-hidden="true">·</span>
               <span>{item.year}</span>
             </div>
 
-            <div className="mt-7 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-              <h1 className="text-balance font-heading text-5xl font-medium leading-[1.02] text-frost sm:text-7xl xl:text-8xl">
+            <div className="mt-7 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+              <h1 className="max-w-5xl font-heading text-4xl font-medium leading-[1.02] text-frost sm:text-6xl xl:text-7xl">
                 {item.title}
               </h1>
-              <p className="text-pretty max-w-xl text-base leading-8 text-muted lg:justify-self-end">
-                {item.description}
-              </p>
+              <div className="max-w-xl lg:justify-self-end">
+                <p className="text-pretty text-lg leading-8 text-muted">
+                  {item.description}
+                </p>
+                <div className="mt-5">
+                  <PaletteDots colors={item.visualSystem.palette} />
+                </div>
+              </div>
             </div>
 
-            <dl className="mt-10 grid gap-x-8 gap-y-6 border-y border-white/15 py-6 sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="mt-10 grid gap-x-8 gap-y-6 border-y border-white/15 py-6 sm:grid-cols-3">
               {[
-                ["Проект", item.client],
-                ["Год", item.year],
+                ["Для", item.client],
                 ["Роль", item.role],
                 ["Объём", item.scope]
               ].map(([label, value]) => (
@@ -149,9 +156,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                 goalParams={{ case: item.slug }}
                 className="focus-ring group mt-7 inline-flex min-h-12 items-center gap-2 rounded-md bg-frost px-5 text-sm font-semibold text-ink-950 transition hover:-translate-y-0.5 hover:bg-electric-cyan"
               >
-                {item.slug === "tatyana-vesennyaya"
-                  ? "Открыть лендинг"
-                  : "Открыть готовый продукт"}
+                Открыть сайт
                 <ExternalLink
                   size={16}
                   className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -178,15 +183,17 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
 
       <section className="bg-paper py-20 text-ink-950 sm:py-28">
         <div className="section-shell">
-          <div className="grid gap-10 lg:grid-cols-[0.45fr_1.55fr]">
-            <div>
-              <p className="text-xs font-semibold uppercase text-ink-800/70">Задача</p>
-              <h2 className="text-balance mt-5 max-w-sm font-heading text-3xl font-medium leading-[1.08] sm:text-5xl">
-                Что нужно было создать
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-4">
+              <p className="text-xs font-semibold uppercase text-ink-800/70">
+                01 / Суть
+              </p>
+              <h2 className="mt-5 font-heading text-4xl font-medium leading-none sm:text-6xl">
+                Задача.
               </h2>
             </div>
-            <div className="border-t border-ink-950/20">
-              <p className="py-7 text-pretty text-xl leading-9 text-ink-950 sm:text-2xl sm:leading-10">
+            <div className="border-t border-ink-950/20 lg:col-span-8 lg:col-start-5">
+              <p className="max-w-4xl py-7 text-pretty text-xl leading-9 text-ink-950 sm:text-2xl sm:leading-10">
                 {item.task}
               </p>
               <div className="grid border-t border-ink-950/20 sm:grid-cols-2">
@@ -195,7 +202,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                   <p className="mt-3 text-sm leading-7 text-ink-800/70">{item.audience}</p>
                 </div>
                 <div className="py-6 sm:pl-8">
-                  <h3 className="text-sm font-semibold">Исходные материалы</h3>
+                  <h3 className="text-sm font-semibold">На старте</h3>
                   <p className="mt-3 text-sm leading-7 text-ink-800/70">
                     {item.sourceMaterials}
                   </p>
@@ -207,33 +214,37 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
       </section>
 
       <section className="bg-ink-950 py-20 sm:py-28">
-        <div className="section-shell grid gap-12 lg:grid-cols-2 lg:gap-20">
-          <div className="border-t border-white/15 pt-6">
-            <p className="text-xs font-semibold uppercase text-muted">Проблема</p>
-            <h2 className="mt-5 font-heading text-3xl font-medium text-frost">
-              Что мешало ясной подаче
+        <div className="section-shell">
+          <div className="mb-10">
+            <p className="text-xs font-semibold uppercase text-electric-cyan">
+              02 / Поворот
+            </p>
+            <h2 className="mt-5 font-heading text-4xl font-medium text-frost sm:text-6xl">
+              Было. Стало.
             </h2>
-            <p className="mt-6 text-base leading-8 text-muted">{item.problem}</p>
           </div>
-          <div className="border-t border-electric-cyan/55 pt-6">
-            <p className="text-xs font-semibold uppercase text-electric-cyan">Решение</p>
-            <h2 className="mt-5 font-heading text-3xl font-medium text-frost">
-              Как была построена логика
-            </h2>
-            <p className="mt-6 text-base leading-8 text-muted">{item.solution}</p>
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
+            <div className="border-t border-white/15 pt-6">
+              <h3 className="font-heading text-2xl font-medium text-frost">Было.</h3>
+              <p className="mt-5 text-base leading-8 text-muted">{item.problem}</p>
+            </div>
+            <div className="border-t border-electric-cyan/55 pt-6">
+              <h3 className="font-heading text-2xl font-medium text-frost">Стало.</h3>
+              <p className="mt-5 text-base leading-8 text-muted">{item.solution}</p>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="bg-ink-900 py-20 sm:py-28">
-        <div className="section-shell grid gap-12 lg:grid-cols-[0.65fr_1.35fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase text-muted">Что было сделано</p>
-            <h2 className="text-balance mt-5 font-heading text-3xl font-medium leading-[1.08] text-frost sm:text-5xl">
-              Только фактический объём работы
+        <div className="section-shell grid gap-12 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <p className="text-xs font-semibold uppercase text-muted">03 / Работа</p>
+            <h2 className="mt-5 font-heading text-4xl font-medium leading-none text-frost sm:text-6xl">
+              Что вошло.
             </h2>
           </div>
-          <ul className="border-t border-white/15">
+          <ul className="border-t border-white/15 lg:col-span-8">
             {item.deliverables.map((deliverable, index) => (
               <li
                 key={deliverable}
@@ -253,17 +264,22 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
         <div className="section-shell">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase text-ink-800/70">
-              Визуальная система
+              04 / Образ
             </p>
-            <h2 className="text-balance mt-5 font-heading text-3xl font-medium leading-[1.08] sm:text-5xl">
-              Система, которая удерживает проект целиком
+            <h2 className="mt-5 font-heading text-4xl font-medium leading-none sm:text-6xl">
+              Цвет. Шрифт. Ритм.
             </h2>
           </div>
 
-          <dl className="mt-12 grid border-t border-ink-950/20 md:grid-cols-3">
+          <div className="mt-10 flex items-center gap-5 border-t border-ink-950/20 pt-5">
+            <span className="text-xs font-semibold text-ink-800/70">Палитра</span>
+            <PaletteDots colors={item.visualSystem.palette} darkBorder />
+          </div>
+
+          <dl className="mt-8 grid border-t border-ink-950/20 md:grid-cols-3">
             {[
-              ["Цвета", item.visualSystem.colors],
-              ["Типографика", item.visualSystem.typography],
+              ["Цвет", item.visualSystem.colors],
+              ["Шрифт", item.visualSystem.typography],
               ["Сетка", item.visualSystem.grid]
             ].map(([label, value], index) => (
               <div
@@ -293,9 +309,9 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
         <div className="section-shell">
           <div className="mb-10 flex flex-col gap-5 border-b border-white/15 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase text-muted">Галерея</p>
+              <p className="text-xs font-semibold uppercase text-muted">05 / Крупно</p>
               <h2 className="mt-4 font-heading text-3xl font-medium text-frost sm:text-5xl">
-                Проект крупным планом
+                {item.category === "presentation" ? "Слайды." : "Экраны."}
               </h2>
             </div>
             <p className="text-sm text-muted">{getImageCountLabel(item.gallery.length)}</p>
@@ -307,9 +323,9 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
       <section className="bg-paper py-20 text-ink-950 sm:py-28">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.55fr_1.45fr]">
           <div>
-            <p className="text-xs font-semibold uppercase text-ink-800/70">Результат</p>
+            <p className="text-xs font-semibold uppercase text-ink-800/70">06 / Итог</p>
             <h2 className="mt-5 font-heading text-3xl font-medium sm:text-5xl">
-              Что получилось
+              Готово.
             </h2>
           </div>
           <ul className="border-t border-ink-950/20">
@@ -329,7 +345,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
       {nextItem ? (
         <section className="bg-ink-900 py-20 sm:py-28">
           <div className="section-shell">
-            <p className="text-xs font-semibold uppercase text-muted">Следующий кейс</p>
+            <p className="text-xs font-semibold uppercase text-muted">Дальше</p>
             <TrackedLink
               href={`/portfolio/${nextItem.slug}`}
               goal="case_open"
@@ -342,7 +358,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                   {nextItem.title}
                 </h2>
                 <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-electric-cyan">
-                  Смотреть кейс
+                  Открыть
                   <ArrowRight
                     className="h-4 w-4 transition-transform group-hover:translate-x-1"
                     aria-hidden="true"
@@ -368,13 +384,13 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                 className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/20 px-5 text-sm font-semibold text-frost transition hover:border-frost"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                Назад ко всем работам
+                Все работы
               </Link>
               <Link
                 href="/contact"
                 className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md bg-frost px-5 text-sm font-semibold text-ink-950 transition hover:bg-electric-cyan"
               >
-                Обсудить похожий проект
+                Похожий проект
               </Link>
             </div>
           </div>

@@ -22,7 +22,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Аким Коваленко — дизайнер презентаций и digital-продуктов",
+    default: "Аким Коваленко — дизайнер презентаций",
     template: "%s | AKIM CORE"
   },
   description: siteDescription,
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     "презентация под ключ",
     "редизайн презентации",
     "коммерческое предложение",
-    "дизайн лендинга",
-    "B2B интерфейс"
+    "дизайн сайта",
+    "рабочий интерфейс"
   ],
   authors: [{ name: "Аким Коваленко", url: siteUrl }],
   creator: "Аким Коваленко",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     apple: "/icon.svg"
   },
   openGraph: {
-    title: "Аким Коваленко — дизайнер презентаций и digital-продуктов",
+    title: "Аким Коваленко — дизайнер презентаций",
     description: siteDescription,
     type: "website",
     locale: "ru_RU",
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "AKIM CORE — дизайн презентаций и digital-продуктов"
+        alt: "AKIM CORE — дизайн презентаций"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Аким Коваленко — дизайнер презентаций и digital-продуктов",
+    title: "Аким Коваленко — дизайнер презентаций",
     description: siteDescription,
     images: ["/opengraph-image"]
   }

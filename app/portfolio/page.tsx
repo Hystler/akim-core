@@ -5,13 +5,11 @@ import { publishedPortfolioItems } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Кейсы",
-  description:
-    "Кейсы Акима Коваленко: презентации, лендинги, digital-продукты и автоматизации для бизнеса.",
+  description: "Презентации, сайты и рабочие инструменты Акима Коваленко.",
   alternates: { canonical: "/portfolio" },
   openGraph: {
     title: "Кейсы Акима Коваленко",
-    description:
-      "Презентации, лендинги, digital-продукты и автоматизации с понятной логикой и сильной визуальной подачей.",
+    description: "Презентации, сайты и рабочие инструменты.",
     url: "/portfolio"
   }
 };
@@ -21,8 +19,8 @@ export default function PortfolioPage() {
     <>
       <PageIntro
         eyebrow="Кейсы"
-        title="Работы, где структура помогает понять идею, а дизайн — поверить в неё"
-        text="Презентации — основное направление. Лендинги, digital-продукты и автоматизации показывают широту задач, в которых тот же подход работает на бизнес-результат."
+        title="Работы с характером."
+        text="Атмосфера, цифры, образ, сила и точность."
       />
       <PortfolioFilter items={publishedPortfolioItems} />
     </>

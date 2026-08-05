@@ -11,12 +11,12 @@ export function CtaSection() {
               Новый проект
             </p>
             <h2 className="text-balance mt-5 max-w-4xl font-heading text-4xl font-medium leading-[1.04] text-frost sm:text-6xl">
-              Покажите материалы — я помогу найти структуру и сильную подачу
+              Покажите черновик.
             </h2>
           </div>
           <div className="lg:justify-self-end">
             <p className="max-w-md text-base leading-8 text-muted">
-              Можно начать с таблиц, черновика, переписки или одной формулировки задачи.
+              Соберу из него ясную историю.
             </p>
             <TrackedLink
               href="/contact"

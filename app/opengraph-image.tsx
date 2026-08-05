@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { siteUrl } from "@/lib/site-config";
 
 export const runtime = "edge";
-export const alt = "Аким Коваленко — дизайнер презентаций и digital-продуктов";
+export const alt = "Аким Коваленко — дизайнер презентаций";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -39,7 +39,7 @@ export default function OpenGraphImage() {
           }}
         >
           <span style={{ fontWeight: 700 }}>AKIM CORE</span>
-          <span style={{ color: "#D8B875" }}>PRESENTATION & DIGITAL DESIGN</span>
+          <span style={{ color: "#D8B875" }}>PRESENTATION DESIGN</span>
         </div>
 
         <div style={{ display: "flex", flex: 1, alignItems: "center", paddingTop: "38px" }}>
@@ -56,7 +56,7 @@ export default function OpenGraphImage() {
                 color: "rgba(244,235,221,0.72)"
               }}
             >
-              Дизайнер презентаций и digital-продуктов
+              Дизайнер презентаций
             </div>
             <div
               style={{

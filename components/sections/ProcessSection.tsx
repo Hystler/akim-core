@@ -10,7 +10,7 @@ export function ProcessSection() {
               Процесс
             </p>
             <h2 className="text-balance mt-5 max-w-sm font-heading text-3xl font-medium leading-[1.08] sm:text-5xl">
-              Понятный путь от материалов до готового результата
+              Четыре шага.
             </h2>
           </div>
 
@@ -29,8 +29,7 @@ export function ProcessSection() {
         </div>
 
         <p className="mt-10 max-w-3xl border-l-2 border-electric-blue pl-5 text-base leading-8 text-ink-800/75">
-          Можно прийти без готового технического задания. Достаточно материалов и
-          понимания, какой результат нужен.
+          Техническое задание не обязательно. Достаточно материалов и цели.
         </p>
       </div>
     </section>

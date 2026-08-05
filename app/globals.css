@@ -21,6 +21,14 @@ body {
   background: #04100d;
 }
 
+.bg-paper {
+  background-color: #e7ddca;
+  background-image:
+    linear-gradient(rgba(231, 221, 202, 0.94), rgba(231, 221, 202, 0.94)),
+    url("/images/matte-paper-texture.webp");
+  background-size: auto, 520px 520px;
+}
+
 ::selection {
   background: #d8b875;
   color: #04100d;

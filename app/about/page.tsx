@@ -5,13 +5,11 @@ import { CtaSection } from "@/components/sections/CtaSection";
 
 export const metadata: Metadata = {
   title: "Обо мне",
-  description:
-    "Аким Коваленко — дизайнер презентаций и digital-продуктов. Соединяю дизайн, бизнес-логику и технологии.",
+  description: "Аким Коваленко — дизайнер презентаций. Структура, текст и слайды.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "Об Акиме Коваленко",
-    description:
-      "Дизайнер презентаций и digital-продуктов, который соединяет структуру, бизнес-логику и технологии.",
+    description: "Дизайнер презентаций. Структура, текст и слайды.",
     url: "/about"
   }
 };
