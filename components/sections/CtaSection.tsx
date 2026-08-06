@@ -5,7 +5,7 @@ export function CtaSection() {
   return (
     <section className="bg-base-texture py-20 sm:py-28">
       <div className="section-shell">
-        <div className="grid gap-10 border border-main/15 bg-paper p-7 shadow-tactile sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:p-14">
+        <div className="paper-surface grid gap-10 rounded-[14px] border border-main/15 p-7 shadow-tactile sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:p-14">
           <div>
             <p className="text-xs font-bold uppercase text-burgundy">
               Новый проект

@@ -94,9 +94,12 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
 
   return (
     <>
-      <div className="grid gap-8 md:grid-cols-2 md:gap-10">
-        {items.map((item, index) => (
-          <figure key={item.src}>
+      <div className="grid min-w-0 gap-8 md:grid-cols-2 md:gap-10">
+        {items.map((item, index) => {
+          const isFeatured = index === 0 && item.aspectRatio !== "portrait";
+
+          return (
+          <figure key={item.src} className={isFeatured ? "md:col-span-2" : ""}>
             <button
               ref={(element) => {
                 triggerRefs.current[index] = element;
@@ -106,7 +109,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 openedFromIndex.current = index;
                 setActiveIndex(index);
               }}
-              className={`focus-ring group relative w-full cursor-pointer overflow-hidden border border-main/15 bg-paper p-2 text-left shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl sm:p-3 ${
+              className={`paper-surface focus-ring group relative w-full cursor-pointer overflow-hidden rounded-[10px] border border-main/15 p-2 text-left shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-tactile-lg sm:p-3 ${
                 item.aspectRatio === "portrait"
                   ? "aspect-[4/5]"
                   : item.aspectRatio === "standard"
@@ -120,7 +123,11 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
                 alt={item.alt}
                 fill
                 loading="lazy"
-                sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
+                sizes={
+                  isFeatured
+                    ? "(min-width: 1280px) 1200px, 100vw"
+                    : "(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
+                }
                 placeholder="blur"
                 blurDataURL={blurDataUrl}
                 className="object-contain p-2 transition duration-300 group-hover:scale-[1.01] sm:p-3"
@@ -133,7 +140,8 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
               {item.caption}
             </figcaption>
           </figure>
-        ))}
+          );
+        })}
       </div>
 
       <AnimatePresence>

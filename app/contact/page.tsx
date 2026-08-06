@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ContactBlocks } from "@/components/sections/ContactBlocks";
-import { PageIntro } from "@/components/sections/PageIntro";
 
 export const metadata: Metadata = {
   title: "Контакты",
@@ -14,14 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return (
-    <>
-      <PageIntro
-        eyebrow="Контакты"
-        title="Покажите задачу."
-        text="Материалы, срок, формат. Остальное разберём."
-      />
-      <ContactBlocks />
-    </>
-  );
+  return <ContactBlocks asPage />;
 }

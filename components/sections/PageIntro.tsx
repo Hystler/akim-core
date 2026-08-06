@@ -15,7 +15,7 @@ export function PageIntro({ eyebrow, title, text }: PageIntroProps) {
             {eyebrow}
           </p>
           <div>
-            <h1 className="text-balance max-w-6xl font-heading text-4xl font-bold leading-[1.02] text-main sm:text-6xl lg:text-7xl">
+            <h1 className="text-balance max-w-6xl break-words font-heading text-4xl font-bold leading-[1.02] text-main sm:text-6xl lg:text-7xl">
               {title}
             </h1>
             <p className="text-pretty mt-7 max-w-3xl text-base leading-8 text-main/70 sm:text-lg">

@@ -16,6 +16,7 @@ import {
   portfolioStatusLabels
 } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site-config";
+import { getCaseSection, getCaseSectionPlan } from "@/lib/case-sections";
 const blurDataUrl =
   "data:image/gif;base64,R0lGODlhAQABAIAAAAoLDAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
@@ -72,6 +73,11 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
   if (!item) notFound();
 
   const nextItem = getNextPortfolioItem(item.slug);
+  const sectionPlan = getCaseSectionPlan(item);
+  const gallerySection = getCaseSection(sectionPlan, "gallery");
+  const resultSection = getCaseSection(sectionPlan, "result");
+  const externalActionLabel =
+    item.category === "landing" ? "Открыть сайт" : "Открыть продукт";
   const caseUrl = `${siteUrl}/portfolio/${item.slug}`;
   const absoluteCover = item.coverImage.startsWith("http")
     ? item.coverImage
@@ -108,7 +114,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             Все кейсы
           </Link>
 
-          <div className="mt-9 border-t border-main/20 pt-6">
+          <div className="mt-9 rounded-[16px] border border-main/15 bg-kraft-texture p-5 shadow-tactile sm:p-8 lg:p-10">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-main/70">
               <span className="font-bold text-burgundy">
                 {item.focus}
@@ -135,7 +141,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
               </div>
             </div>
 
-            <dl className="mt-10 grid gap-x-8 gap-y-6 border-y border-main/20 py-6 sm:grid-cols-3">
+            <dl className="mt-10 grid gap-x-8 gap-y-6 rounded-md border border-main/15 bg-paper/55 p-5 sm:grid-cols-3">
               {[
                 ["Для", item.client],
                 ["Роль", item.role],
@@ -155,9 +161,9 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                 rel="noreferrer"
                 goal="external_project_open"
                 goalParams={{ case: item.slug }}
-                className="focus-ring group mt-7 inline-flex min-h-12 items-center gap-2 border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl"
+                className="focus-ring group mt-7 inline-flex min-h-12 items-center gap-2 rounded-md border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-tactile"
               >
-                Открыть сайт
+                {externalActionLabel}
                 <ExternalLink
                   size={16}
                   className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -167,7 +173,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             ) : null}
           </div>
 
-          <div className="relative mt-10 aspect-[16/9] overflow-hidden border border-main/15 bg-paper p-2 shadow-tactile sm:mt-14 sm:p-3">
+          <div className="paper-surface relative mt-10 aspect-[16/9] overflow-hidden rounded-[14px] border border-main/15 p-2 shadow-tactile-lg sm:mt-14 sm:p-3">
             <Image
               src={item.coverImage}
               alt={item.coverAlt}
@@ -182,13 +188,15 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
         </div>
       </header>
 
-      <CaseStorySlider item={item} />
+      <CaseStorySlider item={item} sections={sectionPlan} />
 
       <section className="bg-base-texture py-20 sm:py-28">
         <div className="section-shell">
           <div className="mb-10 flex flex-col gap-5 border-b border-main/20 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase text-burgundy">06 / Крупно</p>
+              <p className="text-xs font-bold uppercase text-burgundy">
+                {gallerySection.number} / {gallerySection.label}
+              </p>
               <h2 className="mt-4 font-heading text-3xl font-bold text-main sm:text-5xl">
                 {item.category === "presentation" ? "Слайды." : "Экраны."}
               </h2>
@@ -202,7 +210,9 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
       <section className="bg-paper py-20 text-main sm:py-28">
         <div className="section-shell grid gap-10 lg:grid-cols-[0.55fr_1.45fr]">
           <div>
-            <p className="text-xs font-bold uppercase text-burgundy">07 / Итог</p>
+            <p className="text-xs font-bold uppercase text-burgundy">
+              {resultSection.number} / {resultSection.label}
+            </p>
             <h2 className="mt-5 font-heading text-3xl font-bold sm:text-5xl">
               Готово.
             </h2>
@@ -229,7 +239,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
               href={`/portfolio/${nextItem.slug}`}
               goal="case_open"
               goalParams={{ case: nextItem.slug, source: "next_case" }}
-              className="focus-ring group mt-5 grid gap-8 border border-main/15 bg-paper p-5 shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl sm:p-7 lg:grid-cols-[1fr_0.85fr] lg:items-center"
+              className="paper-surface focus-ring group mt-5 grid gap-8 rounded-[14px] border border-main/15 p-5 shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-tactile-lg sm:p-7 lg:grid-cols-[1fr_0.85fr] lg:items-center"
             >
               <div>
                 <span className="text-sm font-medium text-main/70">{nextItem.projectType}</span>
@@ -244,7 +254,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                   />
                 </span>
               </div>
-              <div className="relative aspect-[16/9] overflow-hidden border border-main/15 bg-base">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-main/15 bg-base">
                 <Image
                   src={nextItem.coverImage}
                   alt={nextItem.coverAlt}
@@ -260,14 +270,14 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/portfolio"
-                className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 border border-main/35 px-5 text-sm font-bold text-main transition hover:border-burgundy hover:text-burgundy"
+                className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-main/35 px-5 text-sm font-bold text-main transition hover:border-burgundy hover:text-burgundy"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 Все работы
               </Link>
               <Link
                 href="/contact"
-                className="focus-ring inline-flex min-h-12 items-center justify-center border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper transition hover:-translate-y-1 hover:shadow-press"
+                className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper transition hover:-translate-y-1 hover:shadow-press"
               >
                 Похожий проект
               </Link>

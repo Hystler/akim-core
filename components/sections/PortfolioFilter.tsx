@@ -33,10 +33,10 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
   );
 
   return (
-    <section className="bg-base-texture pb-20 sm:pb-28">
+    <section id="cases-grid" className="scroll-mt-24 bg-base-texture pb-20 sm:pb-28">
       <div className="section-shell">
-        <div className="scrollbar-hide -mx-5 overflow-x-auto border-y border-main/20 px-5 sm:mx-0 sm:px-0">
-          <div className="flex min-w-max items-center gap-7" role="group" aria-label="Фильтры кейсов">
+        <div className="border-y border-main/20 py-2">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-1" role="group" aria-label="Фильтры кейсов">
             {availableFilters.map((filter) => {
               const isActive = activeCategory === filter.value;
 
@@ -46,7 +46,7 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => setActiveCategory(filter.value)}
-                  className={`focus-ring relative min-h-14 text-sm font-bold transition-colors ${
+                    className={`focus-ring relative min-h-12 rounded-sm text-sm font-bold transition-colors ${
                     isActive
                       ? "text-burgundy after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:bg-burgundy"
                       : "text-main/70 hover:text-main"
@@ -63,7 +63,7 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
           Показано кейсов: {filteredItems.length}
         </p>
 
-        <motion.div layout className="mt-14 flex flex-wrap items-start px-1 md:px-0">
+        <motion.div layout className="mt-12 grid min-w-0 gap-7 md:grid-cols-2 md:gap-9">
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, index) => (
               <motion.div
@@ -76,12 +76,9 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
                   duration: shouldReduceMotion ? 0 : 0.22,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className={`relative w-full origin-center first:mt-0 [&:not(:first-child)]:-mt-5 md:w-[52%] md:[&:not(:first-child)]:mt-10 md:odd:rotate-[0.65deg] md:even:-ml-[4%] md:even:mt-24 md:even:-rotate-[0.75deg] ${
-                  index % 4 === 2 ? "md:translate-y-3" : ""
-                }`}
-                style={{ zIndex: index + 1 }}
+                className="min-w-0"
               >
-                <PortfolioCard item={item} priority={index < 2} />
+                <PortfolioCard item={item} priority={index < 2} layoutIndex={index} />
               </motion.div>
             ))}
           </AnimatePresence>

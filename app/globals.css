@@ -4,6 +4,15 @@
 
 :root {
   color-scheme: light;
+  --color-base: #dcd3cb;
+  --color-paper: #eae5de;
+  --color-main: #2a2120;
+  --color-burgundy: #6b1a2c;
+  --color-terracotta: #b7a99b;
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-paper: 0 22px 54px rgba(42, 33, 32, 0.15), 0 3px 10px rgba(42, 33, 32, 0.09);
 }
 
 * {
@@ -17,12 +26,23 @@ html {
 
 body {
   min-height: 100vh;
-  overflow-x: hidden;
   background-color: #dcd3cb;
   background-image:
     linear-gradient(rgba(220, 211, 203, 0.955), rgba(220, 211, 203, 0.955)),
     url("/images/matte-paper-texture.webp");
   background-size: auto, 560px 560px;
+}
+
+main,
+section,
+article,
+div {
+  min-width: 0;
+}
+
+img,
+svg {
+  max-width: 100%;
 }
 
 .bg-paper {
@@ -39,6 +59,96 @@ body {
     linear-gradient(rgba(220, 211, 203, 0.95), rgba(220, 211, 203, 0.95)),
     url("/images/matte-paper-texture.webp");
   background-size: auto, 520px 520px;
+}
+
+.paper-surface {
+  background-color: var(--color-paper);
+  background-image:
+    linear-gradient(rgba(234, 229, 222, 0.935), rgba(234, 229, 222, 0.935)),
+    url("/images/matte-paper-texture.webp");
+  background-size: auto, 520px 520px;
+}
+
+.bg-kraft-texture {
+  background-color: #cdbca7;
+  background-image:
+    linear-gradient(rgba(205, 188, 167, 0.92), rgba(205, 188, 167, 0.92)),
+    url("/images/matte-paper-texture.webp");
+  background-size: auto, 480px 480px;
+}
+
+.bg-linen-texture {
+  background-color: #c9bdb4;
+  background-image:
+    linear-gradient(rgba(201, 189, 180, 0.91), rgba(201, 189, 180, 0.91)),
+    repeating-linear-gradient(90deg, rgba(42, 33, 32, 0.025) 0 1px, transparent 1px 4px),
+    url("/images/matte-paper-texture.webp");
+  background-size: auto, auto, 560px 560px;
+}
+
+.editorial-stage::after,
+.editorial-composition::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background-image: url("/images/matte-paper-texture.webp");
+  background-size: 520px 520px;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+}
+
+.editorial-composition {
+  position: relative;
+  isolation: isolate;
+}
+
+.editorial-composition > * {
+  position: relative;
+  z-index: 1;
+}
+
+.notebook-scene {
+  background: #c8b7a5;
+}
+
+.notebook-page {
+  background-clip: padding-box;
+}
+
+.notebook-page::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  content: "";
+  background:
+    linear-gradient(105deg, transparent 0 46%, rgba(42, 33, 32, 0.035) 49%, transparent 52%),
+    linear-gradient(76deg, transparent 0 69%, rgba(42, 33, 32, 0.025) 72%, transparent 75%);
+  opacity: 0.55;
+}
+
+.notebook-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.notebook-rules {
+  background-image:
+    linear-gradient(rgba(234, 229, 222, 0.93), rgba(234, 229, 222, 0.93)),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      rgba(42, 33, 32, 0.075) 31px,
+      rgba(42, 33, 32, 0.075) 32px
+    ),
+    url("/images/matte-paper-texture.webp");
+  background-size: auto, auto, 520px 520px;
+}
+
+.notebook-binding {
+  filter: drop-shadow(0 5px 5px rgba(42, 33, 32, 0.28));
 }
 
 ::selection {
@@ -101,6 +211,14 @@ input,
 select,
 textarea {
   font-size: 16px;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-main);
+  box-shadow: 0 0 0 1000px transparent inset;
+  transition: background-color 9999s ease-out 0s;
 }
 
 input[type="file"]::file-selector-button {

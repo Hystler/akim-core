@@ -50,7 +50,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
         </div>
 
         {hasPortrait && authorPhotoPath ? (
-          <div className="relative aspect-[4/5] overflow-hidden border border-main/15 bg-base shadow-tactile">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[12px] border border-main/15 bg-base shadow-tactile">
             <Image
               src={authorPhotoPath}
               alt="Аким Коваленко, дизайнер презентаций"
@@ -63,7 +63,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
           </div>
         ) : (
           <div className="grid px-2 sm:px-6">
-            <div className="relative z-10 aspect-[16/9] overflow-hidden border border-main/15 bg-base p-3 shadow-tactile -rotate-[1deg]">
+            <div className="relative z-10 aspect-[16/9] overflow-hidden rounded-[10px] border border-main/15 bg-base p-3 shadow-tactile -rotate-[1deg]">
               <Image
                 src="/portfolio/chess-jazz/chess-jazz-cover.png"
                 alt="Фрагмент работы Chess & Jazz"
@@ -72,7 +72,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
                 className="object-contain p-3"
               />
             </div>
-            <div className="relative z-20 -mt-4 ml-auto aspect-[16/9] w-[88%] overflow-hidden border border-main/15 bg-paper p-3 shadow-tactile rotate-[1deg] sm:-mt-8">
+            <div className="relative z-20 -mt-4 ml-auto aspect-[16/9] w-[88%] overflow-hidden rounded-[10px] border border-main/15 bg-paper p-3 shadow-tactile rotate-[1deg] sm:-mt-8">
               <Image
                 src="/portfolio/velvet-whisper/velvet-whisper-cover.png"
                 alt="Фрагмент работы Velvet Whisper"

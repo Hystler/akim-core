@@ -1,12 +1,9 @@
 import { AboutPreview } from "@/components/sections/AboutPreview";
-import { BenefitsSection } from "@/components/sections/BenefitsSection";
-import { CtaSection } from "@/components/sections/CtaSection";
-import { FaqSection } from "@/components/sections/FaqSection";
+import { ContactBlocks } from "@/components/sections/ContactBlocks";
+import { EditorialApproach } from "@/components/sections/EditorialApproach";
 import { HomeHero } from "@/components/sections/HomeHero";
 import { PortfolioPreview } from "@/components/sections/PortfolioPreview";
 import { ProcessSection } from "@/components/sections/ProcessSection";
-import { ServicesPreview } from "@/components/sections/ServicesPreview";
-import { TrustStrip } from "@/components/sections/TrustStrip";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { publishedPortfolioItems } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site-config";
@@ -46,14 +43,11 @@ export default function HomePage() {
     <>
       <JsonLd data={schema} />
       <HomeHero />
-      <TrustStrip />
+      <EditorialApproach />
       <PortfolioPreview items={previewItems} />
-      <ServicesPreview />
       <ProcessSection />
-      <BenefitsSection />
       <AboutPreview />
-      <FaqSection limit={4} />
-      <CtaSection />
+      <ContactBlocks />
     </>
   );
 }

@@ -14,14 +14,14 @@ export function AboutStory() {
     <section className="bg-base-texture pb-20 pt-14 sm:pb-28 sm:pt-20">
       <div className="section-shell grid gap-14 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-5">
-          <article className="border border-main/15 bg-paper p-7 shadow-tactile sm:p-9 -rotate-[0.2deg]">
+          <article className="paper-surface rounded-[12px] border border-main/15 p-7 shadow-tactile sm:p-9">
             <h2 className="font-heading text-2xl font-bold text-main">Как я работаю</h2>
             <p className="mt-5 max-w-3xl text-base font-medium leading-8 text-main/70">
               Сначала выясняю, что зритель должен понять. Затем собираю структуру,
               показываю стиль и оформляю весь файл.
             </p>
           </article>
-          <article className="border border-main/15 bg-paper p-7 shadow-tactile sm:p-9 rotate-[0.2deg]">
+          <article className="paper-surface rounded-[12px] border border-main/15 p-7 shadow-tactile sm:p-9">
             <h2 className="font-heading text-2xl font-bold text-main">
               Что помогает
             </h2>
@@ -32,7 +32,7 @@ export function AboutStory() {
           </article>
         </div>
 
-        <aside className="h-fit border border-main/15 bg-paper p-6 shadow-tactile sm:p-7 lg:sticky lg:top-28">
+        <aside className="bg-kraft-texture h-fit rounded-[12px] border border-main/15 p-6 shadow-tactile sm:p-7 lg:sticky lg:top-28">
           <p className="text-xs font-bold uppercase text-burgundy">
             Темы
           </p>

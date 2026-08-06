@@ -13,9 +13,7 @@ export function ServicesDetails() {
               <article
                 key={service.slug}
                 id={service.slug}
-                className={`scroll-mt-28 border border-main/15 bg-paper p-7 shadow-tactile sm:p-10 ${
-                  index % 2 === 0 ? "rotate-[0.15deg]" : "-rotate-[0.15deg]"
-                }`}
+                className="paper-surface scroll-mt-28 rounded-[14px] border border-main/15 p-7 shadow-tactile sm:p-10"
               >
                 <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
                   <div>
@@ -98,7 +96,7 @@ export function ServicesDetails() {
             {presentationPackages.map((item) => (
               <article
                 key={item.title}
-                className="flex h-full flex-col border border-main/20 bg-base p-6 shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl sm:p-7"
+                  className="bg-kraft-texture flex h-full flex-col rounded-[10px] border border-main/20 p-6 shadow-tactile transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-tactile-lg sm:p-7"
               >
                 <h3 className="font-heading text-2xl font-bold">{item.title}</h3>
                 <p className="mt-4 text-sm font-medium leading-7 text-main/70">{item.audience}</p>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageIntro } from "@/components/sections/PageIntro";
+import { CaseArchiveIntro } from "@/components/sections/CaseArchiveIntro";
 import { PortfolioFilter } from "@/components/sections/PortfolioFilter";
 import { publishedPortfolioItems } from "@/data/portfolio";
 
@@ -17,11 +17,7 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <>
-      <PageIntro
-        eyebrow="Кейсы"
-        title="Работы с характером."
-        text="Атмосфера, цифры, образ, сила и точность."
-      />
+      <CaseArchiveIntro asPage />
       <PortfolioFilter items={publishedPortfolioItems} />
     </>
   );
