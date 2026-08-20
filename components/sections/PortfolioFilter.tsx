@@ -35,6 +35,7 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
   return (
     <section id="cases-grid" className="scroll-mt-24 bg-base-texture pb-20 sm:pb-28">
       <div className="section-shell">
+        <h2 className="sr-only">Список кейсов</h2>
         <div className="border-y border-main/20 py-2">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-1" role="group" aria-label="Фильтры кейсов">
             {availableFilters.map((filter) => {
@@ -46,7 +47,7 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => setActiveCategory(filter.value)}
-                    className={`focus-ring relative min-h-12 rounded-sm text-sm font-bold transition-colors ${
+                  className={`focus-ring relative min-h-12 rounded-sm text-sm font-bold transition-colors ${
                     isActive
                       ? "text-burgundy after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:bg-burgundy"
                       : "text-main/70 hover:text-main"

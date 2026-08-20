@@ -26,14 +26,14 @@ export function CaseArchiveIntro({ asPage = false }: CaseArchiveIntroProps) {
               [Projects]
             </p>
             <p className="mt-7 max-w-lg text-pretty text-base font-medium leading-8 text-main/70">
-              Презентации, сайты и&nbsp;рабочие продукты. В&nbsp;каждом кейсе — задача,
+              Презентации, сайты и&nbsp;рабочие сервисы. В&nbsp;каждом кейсе — задача,
               решение и&nbsp;реальные экраны.
             </p>
             <Link
               href={asPage ? "#cases-grid" : "/portfolio"}
               className="focus-ring group mt-8 inline-flex min-h-12 items-center gap-2 rounded-md border border-burgundy bg-burgundy px-6 text-sm font-bold text-paper shadow-press transition-all duration-300 hover:-translate-y-1 hover:shadow-tactile"
             >
-              {asPage ? "Смотреть проекты" : "Все кейсы"}
+              {asPage ? "Смотреть кейсы" : "Все кейсы"}
               {asPage ? (
                 <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
               ) : (
@@ -61,8 +61,8 @@ export function CaseArchiveIntro({ asPage = false }: CaseArchiveIntroProps) {
               <div className="absolute bottom-[3%] right-[3%] z-20 h-[58%] w-[52%] rotate-[1deg] rounded-md border border-main/15 bg-paper p-2 shadow-tactile">
                 <div className="relative h-full overflow-hidden rounded-sm border border-main/10 bg-main">
                   <Image
-                    src="/portfolio/astra-q1-2026/cover.webp"
-                    alt="Обложка кейса Группа Астра Q1 2026"
+                    src="/portfolio/northline/cover.webp"
+                    alt="Обложка кейса NORTHLINE"
                     fill
                     sizes="(min-width: 1024px) 390px, 70vw"
                     className="object-cover"

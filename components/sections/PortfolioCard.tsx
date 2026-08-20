@@ -45,7 +45,7 @@ export function PortfolioCard({
           blurDataURL={blurDataUrl}
           className="object-contain p-2 transition duration-300 ease-out group-hover:scale-[1.01] sm:p-3"
         />
-        <div className="absolute inset-x-2 bottom-2 flex items-end justify-between rounded-sm border border-main/15 bg-paper/95 px-3 py-2 shadow-press backdrop-blur-[2px] sm:inset-x-3 sm:bottom-3">
+        <div className="absolute inset-x-2 bottom-2 flex items-end justify-between rounded-sm border border-main/15 bg-paper/95 px-3 py-2 shadow-press sm:inset-x-3 sm:bottom-3">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-[10px] font-bold uppercase text-main/70">
               {portfolioStatusLabels[item.status]}
@@ -71,12 +71,12 @@ export function PortfolioCard({
         <h3 className="mt-3 font-heading text-2xl font-bold leading-tight text-main sm:text-[1.75rem]">
           {item.title}
         </h3>
-        <p className="mt-3 max-w-xl text-sm font-medium leading-6 text-muted sm:text-base sm:leading-7">
+        <p className="mt-3 max-w-xl text-sm font-medium leading-6 text-main/70 sm:text-base sm:leading-7">
           {item.description}
         </p>
 
         <div className="mt-5 flex items-center justify-between gap-4 border-t border-main/15 pt-4">
-          <span className="text-xs font-medium text-muted">{item.projectType}</span>
+          <span className="text-xs font-medium text-main/70">{item.projectType}</span>
           <PaletteDots colors={item.visualSystem.palette} darkBorder />
         </div>
 
@@ -87,7 +87,7 @@ export function PortfolioCard({
             goalParams={{ case: item.slug, source: "button" }}
             className="focus-ring inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md border border-main/35 px-4 text-sm font-bold text-main transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-burgundy hover:bg-burgundy hover:text-paper hover:shadow-press sm:w-fit"
           >
-            Открыть
+            Смотреть кейс
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </TrackedLink>
           {item.externalUrl ? (
@@ -99,7 +99,7 @@ export function PortfolioCard({
               goalParams={{ case: item.slug, source: "card" }}
               className="focus-ring inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-burgundy px-4 text-sm font-bold text-paper transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-press sm:w-fit"
             >
-              Сайт
+              Открыть сайт
               <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </TrackedLink>
           ) : null}

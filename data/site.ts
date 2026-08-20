@@ -5,15 +5,12 @@ export const directions = [
   "Инструменты"
 ];
 
-// Set a public path such as "/images/akim-kovalenko.jpg" when a real portrait is ready.
-export const authorPhotoPath: string | null = null;
-
-export const trustPoints = [
-  "Презентации под ключ",
-  "Работа с черновиками и сложными материалами",
-  "PowerPoint, PDF, Figma или Google Slides",
-  "Удалённая работа"
-];
+// Add real photographs to public and change only these paths when they are ready.
+export const authorPhotoPaths: Record<"portrait" | "working" | "materials", string | null> = {
+  portrait: null,
+  working: null,
+  materials: null
+};
 
 export const processSteps = [
   {
@@ -38,29 +35,6 @@ export const processSteps = [
   }
 ];
 
-export const benefits = [
-  {
-    title: "Вникаю",
-    text: "Понимаю, что зритель должен увидеть и сделать."
-  },
-  {
-    title: "Собираю",
-    text: "Начинаю с таблиц, заметок или черновика."
-  },
-  {
-    title: "Отвечаю за всё",
-    text: "Структура, текст, дизайн и готовый файл."
-  },
-  {
-    title: "Работаю быстрее",
-    text: "Ускоряю черновую работу. Финал проверяю сам."
-  },
-  {
-    title: "Показываю по шагам",
-    text: "Сначала смысл и образ. Затем весь файл."
-  }
-];
-
 export const faqItems = [
   {
     question: "Можно ли начать без готовой структуры?",
@@ -75,7 +49,7 @@ export const faqItems = [
   {
     question: "В каких форматах передаётся презентация?",
     answer:
-      "PowerPoint, PDF, Figma или Google Slides — формат согласуем до начала работы."
+      "Обычно передаю редактируемый файл и PDF. Конкретный формат согласуем до начала работы."
   },
   {
     question: "Можно ли редактировать презентацию самостоятельно?",

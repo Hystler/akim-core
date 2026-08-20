@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CaseStorySlider } from "@/components/sections/CaseStorySlider";
+import { CaseStory } from "@/components/sections/CaseStory";
 import { PortfolioGallery } from "@/components/sections/PortfolioGallery";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PaletteDots } from "@/components/ui/PaletteDots";
@@ -143,7 +143,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
 
             <dl className="mt-10 grid gap-x-8 gap-y-6 rounded-md border border-main/15 bg-paper/55 p-5 sm:grid-cols-3">
               {[
-                ["Для", item.client],
+                ["Проект", item.client],
                 ["Роль", item.role],
                 ["Объём", item.scope]
               ].map(([label, value]) => (
@@ -188,7 +188,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
         </div>
       </header>
 
-      <CaseStorySlider item={item} sections={sectionPlan} />
+      <CaseStory item={item} sections={sectionPlan} />
 
       <section className="bg-base-texture py-20 sm:py-28">
         <div className="section-shell">
@@ -279,7 +279,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                 href="/contact"
                 className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper transition hover:-translate-y-1 hover:shadow-press"
               >
-                Похожий проект
+                Обсудить похожую задачу
               </Link>
             </div>
           </div>

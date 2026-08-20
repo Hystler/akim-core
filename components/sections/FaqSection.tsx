@@ -9,7 +9,7 @@ export function FaqSection({ limit }: { limit?: number }) {
           <p className="text-xs font-bold uppercase text-burgundy">
             Вопросы
           </p>
-          <h2 className="mt-5 font-heading text-3xl font-bold sm:text-5xl">FAQ</h2>
+          <h2 className="mt-5 font-heading text-3xl font-bold sm:text-5xl">Частые вопросы.</h2>
           <p className="mt-2 font-serif text-2xl font-medium italic text-burgundy sm:text-3xl">
             Коротко и по делу.
           </p>

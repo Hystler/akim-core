@@ -9,26 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        white: "#EAE5DE",
-        black: "#2A2120",
         base: "#DCD3CB",
-        surface: "#EAE5DE",
         main: "#2A2120",
         burgundy: "#6B1A2C",
         terracotta: "#B7A99B",
-        ink: {
-          950: "#DCD3CB",
-          900: "#D3C8BF",
-          800: "#2A2120"
-        },
-        frost: "#2A2120",
         paper: "#EAE5DE",
-        muted: "#625650",
-        steel: "#8C7D76",
-        electric: {
-          blue: "#6B1A2C",
-          violet: "#B7A99B",
-          cyan: "#6B1A2C"
+        gold: {
+          DEFAULT: "#B79B64",
+          dark: "#786435",
+          light: "#D6BD76"
         }
       },
       fontFamily: {

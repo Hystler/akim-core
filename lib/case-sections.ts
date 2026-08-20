@@ -21,20 +21,20 @@ const sectionDefinitions: Array<{
   isVisible: (item: PublishedPortfolioItem) => boolean;
 }> = [
   { id: "task", label: "Задача", isVisible: (item) => Boolean(item.task) },
-  { id: "problem", label: "Было", isVisible: (item) => Boolean(item.problem) },
+  { id: "problem", label: "До работы", isVisible: (item) => Boolean(item.problem) },
   { id: "solution", label: "Решение", isVisible: (item) => Boolean(item.solution) },
   {
     id: "deliverables",
-    label: "Работа",
+    label: "Что сделал",
     isVisible: (item) => item.deliverables.length > 0
   },
   {
     id: "visual-system",
-    label: "Система",
+    label: "Визуальный язык",
     isVisible: (item) => Boolean(item.visualSystem.colors)
   },
-  { id: "gallery", label: "Крупно", isVisible: (item) => item.gallery.length > 0 },
-  { id: "result", label: "Итог", isVisible: (item) => item.result.length > 0 }
+  { id: "gallery", label: "Галерея", isVisible: (item) => item.gallery.length > 0 },
+  { id: "result", label: "Результат", isVisible: (item) => item.result.length > 0 }
 ];
 
 export function getCaseSectionPlan(item: PublishedPortfolioItem): CaseSectionPlanItem[] {

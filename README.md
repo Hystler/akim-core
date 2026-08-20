@@ -1,6 +1,6 @@
 # AKIM CORE
 
-Портфолио Акима Коваленко — дизайнера презентаций и digital-продуктов. Проект собран на Next.js App Router, TypeScript, Tailwind CSS и Framer Motion.
+Портфолио Акима Коваленко — дизайнера презентаций и рабочих сервисов. Проект собран на Next.js App Router, TypeScript, Tailwind CSS и Framer Motion.
 
 ## Локальный запуск
 

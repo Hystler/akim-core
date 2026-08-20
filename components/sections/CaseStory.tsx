@@ -4,7 +4,7 @@ import { PaletteDots } from "@/components/ui/PaletteDots";
 import type { PublishedPortfolioItem } from "@/data/portfolio";
 import type { CaseSectionPlanItem } from "@/lib/case-sections";
 
-type CaseStorySliderProps = {
+type CaseStoryProps = {
   item: PublishedPortfolioItem;
   sections: CaseSectionPlanItem[];
 };
@@ -14,7 +14,7 @@ const blurDataUrl =
 
 const storyIds = new Set(["task", "problem", "solution", "deliverables", "visual-system"]);
 
-export function CaseStorySlider({ item, sections }: CaseStorySliderProps) {
+export function CaseStory({ item, sections }: CaseStoryProps) {
   const storySections = sections.filter((section) => storyIds.has(section.id));
 
   return (
@@ -27,7 +27,7 @@ export function CaseStorySlider({ item, sections }: CaseStorySliderProps) {
               От задачи к решению.
             </h2>
             <p className="mt-2 font-serif text-3xl font-medium italic text-terracotta sm:text-5xl">
-              Коротко. На примерах.
+              Коротко и на примерах.
             </p>
           </div>
         </div>
@@ -172,15 +172,16 @@ function StoryVisual({
   sectionId: CaseSectionPlanItem["id"];
 }) {
   const imageIndex = {
-    task: 0,
-    problem: 1,
-    solution: 2,
-    deliverables: 3,
-    "visual-system": 4,
+    task: null,
+    problem: 0,
+    solution: 1,
+    deliverables: 2,
+    "visual-system": 3,
     gallery: 0,
     result: 0
   }[sectionId];
-  const galleryItem = item.gallery[imageIndex] ?? item.gallery[0];
+  const galleryItem =
+    imageIndex === null ? undefined : item.gallery[imageIndex % item.gallery.length];
   const src = galleryItem?.src ?? item.coverImage;
   const alt = galleryItem?.alt ?? item.coverAlt;
 

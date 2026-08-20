@@ -4,15 +4,17 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { PaletteDots } from "@/components/ui/PaletteDots";
-import { authorPhotoPath } from "@/data/site";
+import { authorPhotoPaths } from "@/data/site";
 
 const blurDataUrl =
   "data:image/gif;base64,R0lGODlhAQABAIAAAAoLDAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
 export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
-  const hasPortrait = Boolean(
-    authorPhotoPath && existsSync(join(process.cwd(), "public", authorPhotoPath))
-  );
+  const configuredPhotos = Object.entries(authorPhotoPaths).flatMap(([kind, path]) => {
+    if (!path || !existsSync(join(process.cwd(), "public", path))) return [];
+    return [{ kind, path }];
+  });
+  const hasAuthorPhotos = configuredPhotos.length > 0;
   const Heading = asPage ? "h1" : "h2";
 
   return (
@@ -49,17 +51,26 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
           ) : null}
         </div>
 
-        {hasPortrait && authorPhotoPath ? (
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[12px] border border-main/15 bg-base shadow-tactile">
-            <Image
-              src={authorPhotoPath}
-              alt="Аким Коваленко, дизайнер презентаций"
-              fill
-              sizes="(min-width: 1024px) 42vw, 100vw"
-              placeholder="blur"
-              blurDataURL={blurDataUrl}
-              className="object-cover"
-            />
+        {hasAuthorPhotos ? (
+          <div className={`grid gap-4 ${configuredPhotos.length > 1 ? "grid-cols-2" : ""}`}>
+            {configuredPhotos.map((photo, index) => (
+              <div
+                key={photo.kind}
+                className={`relative overflow-hidden rounded-[12px] border border-main/15 bg-base shadow-tactile ${
+                  configuredPhotos.length > 1 && index === 0 ? "col-span-2 aspect-[16/10]" : "aspect-[4/5]"
+                }`}
+              >
+                <Image
+                  src={photo.path}
+                  alt={photo.kind === "portrait" ? "Аким Коваленко, дизайнер презентаций" : "Аким Коваленко за работой"}
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                  placeholder="blur"
+                  blurDataURL={blurDataUrl}
+                  className="object-cover"
+                />
+              </div>
+            ))}
           </div>
         ) : (
           <div className="grid px-2 sm:px-6">
