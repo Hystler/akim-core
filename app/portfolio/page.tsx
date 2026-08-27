@@ -4,12 +4,12 @@ import { PortfolioFilter } from "@/components/sections/PortfolioFilter";
 import { publishedPortfolioItems } from "@/data/portfolio";
 
 export const metadata: Metadata = {
-  title: "Кейсы",
-  description: "Презентации, сайты и рабочие инструменты Акима Коваленко.",
+  title: "Работы",
+  description: "Презентации, сайты и рабочие сервисы Акима Коваленко.",
   alternates: { canonical: "/portfolio" },
   openGraph: {
-    title: "Кейсы Акима Коваленко",
-    description: "Презентации, сайты и рабочие инструменты.",
+    title: "Работы Акима Коваленко",
+    description: "Презентации, сайты и рабочие сервисы.",
     url: "/portfolio"
   }
 };
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <>
-      <CaseArchiveIntro asPage />
+      <CaseArchiveIntro />
       <PortfolioFilter items={publishedPortfolioItems} />
     </>
   );

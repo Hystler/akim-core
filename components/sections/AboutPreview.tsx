@@ -21,23 +21,16 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
     <section className={`bg-paper ${asPage ? "pb-20 pt-16 sm:pb-28 sm:pt-24" : "py-20 sm:py-28"}`}>
       <div className="section-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
-          <p className="text-xs font-bold uppercase text-burgundy">
-            Обо мне
-          </p>
-          <Heading className={`text-balance mt-5 font-heading font-bold leading-[1.04] text-main ${asPage ? "text-4xl sm:text-6xl" : "text-3xl sm:text-5xl"}`}>
-            Сначала смысл.
+          <Heading className={`text-balance font-heading font-bold leading-[1.04] text-main ${asPage ? "text-4xl sm:text-6xl" : "text-3xl sm:text-5xl"}`}>
+            Аким Коваленко.
           </Heading>
-          <p className="mt-2 font-serif text-3xl font-medium italic text-burgundy sm:text-4xl">
-            Затем форма.
-          </p>
           <div className="mt-7 max-w-2xl space-y-5 text-base font-medium leading-8 text-main/70">
             <p>
-              Я дизайнер презентаций. Нахожу главную мысль, собираю структуру и
-              оформляю слайды.
+              Я дизайнер презентаций. Разбираюсь в материале, нахожу главную мысль
+              и собираю ясную визуальную историю.
             </p>
             <p>
-              Работаю с событиями, брендами, цифрами и продуктами. Быстро вхожу в
-              тему и убираю лишнее.
+              Работаю с событиями, цифрами, сайтами и сервисами для работы.
             </p>
           </div>
           {!asPage ? (
@@ -45,7 +38,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
               href="/about"
               className="focus-ring group mt-8 inline-flex items-center gap-2 border-b border-main/35 pb-1 text-sm font-bold text-main transition hover:border-burgundy hover:text-burgundy"
             >
-              Обо мне
+              Подробнее
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           ) : null}

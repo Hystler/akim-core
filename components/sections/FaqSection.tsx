@@ -6,13 +6,9 @@ export function FaqSection({ limit }: { limit?: number }) {
     <section className="bg-paper py-20 text-main sm:py-28">
       <div className="section-shell grid gap-12 lg:grid-cols-[0.55fr_1.45fr]">
         <div>
-          <p className="text-xs font-bold uppercase text-burgundy">
-            Вопросы
-          </p>
-          <h2 className="mt-5 font-heading text-3xl font-bold sm:text-5xl">Частые вопросы.</h2>
-          <p className="mt-2 font-serif text-2xl font-medium italic text-burgundy sm:text-3xl">
-            Коротко и по делу.
-          </p>
+          <h2 className="font-heading text-3xl font-bold sm:text-5xl">
+            Частые вопросы
+          </h2>
         </div>
 
         <div className="border-t border-main/20">

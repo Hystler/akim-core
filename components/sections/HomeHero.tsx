@@ -47,24 +47,17 @@ export function HomeHero() {
               Структура, текст и&nbsp;дизайн презентации под&nbsp;ключ.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 min-[420px]:flex-row sm:mt-10 lg:mt-7">
+            <div className="mt-8 sm:mt-10 lg:mt-7">
               <TrackedLink
                 href="/portfolio"
                 goal="hero_cases_click"
                 className="focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-burgundy bg-burgundy px-6 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-tactile"
               >
-                Смотреть кейсы
+                Смотреть работы
                 <ArrowUpRight
                   className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />
-              </TrackedLink>
-              <TrackedLink
-                href="/contact"
-                goal="hero_contact_click"
-                className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md border border-main/40 bg-paper/70 px-6 text-sm font-bold text-main transition-all duration-300 ease-out hover:-translate-y-1 hover:border-burgundy hover:bg-paper hover:shadow-press"
-              >
-                Обсудить проект
               </TrackedLink>
             </div>
           </div>

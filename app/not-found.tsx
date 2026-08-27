@@ -14,7 +14,7 @@ export default function NotFound() {
       <div className="section-shell">
         <p className="text-xs font-bold uppercase text-burgundy">Ошибка 404</p>
         <h1 className="text-balance mt-5 max-w-4xl font-heading text-5xl font-bold leading-[1.02] text-main sm:text-7xl">
-          Такой страницы нет, но кейсы на месте
+          Такой страницы нет, но работы на месте
         </h1>
         <p className="mt-6 max-w-xl text-base font-medium leading-8 text-main/70">
           Возможно, адрес изменился или в ссылке есть опечатка. Вернитесь на главную
@@ -32,7 +32,7 @@ export default function NotFound() {
             href="/portfolio"
             className="focus-ring inline-flex min-h-12 items-center justify-center border border-main/35 px-5 text-sm font-bold text-main transition hover:border-burgundy hover:text-burgundy"
           >
-            Смотреть кейсы
+            Смотреть работы
           </Link>
         </div>
       </div>

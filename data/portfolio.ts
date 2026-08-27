@@ -4,14 +4,12 @@ export type PortfolioCategory =
   | "digital-product"
   | "automation";
 
-export type PortfolioStatus = "client" | "internal" | "concept";
 export type PortfolioFocus =
   | "Атмосфера"
   | "Цифры"
   | "Образ"
   | "Сила"
-  | "Точность"
-  | "Система";
+  | "Точность";
 
 export type PortfolioGalleryItem = {
   src: string;
@@ -24,7 +22,6 @@ export type PortfolioItem = {
   slug: string;
   title: string;
   category: PortfolioCategory;
-  status: PortfolioStatus;
   focus: PortfolioFocus;
   projectType: string;
   year: string;
@@ -42,7 +39,6 @@ export type PortfolioItem = {
   published: boolean;
   coverImage?: string;
   coverAlt?: string;
-  coverLabel?: string;
   gallery: PortfolioGalleryItem[];
   externalUrl?: string;
   featured: boolean;
@@ -71,21 +67,15 @@ export const portfolioFilters: PortfolioFilter[] = [
   { label: "Все", value: "all" },
   { label: "Презентации", value: "presentation" },
   { label: "Сайты", value: "landing" },
-  { label: "Продукты", value: "digital-product" },
+  { label: "Сервисы", value: "digital-product" },
   { label: "Автоматизации", value: "automation" }
 ];
 
 export const portfolioCategoryLabels: Record<PortfolioCategory, string> = {
   presentation: "Презентация",
   landing: "Сайт",
-  "digital-product": "Продукт",
+  "digital-product": "Сервис",
   automation: "Автоматизация"
-};
-
-export const portfolioStatusLabels: Record<PortfolioStatus, string> = {
-  client: "Клиентский проект",
-  internal: "Свой продукт",
-  concept: "Концепт"
 };
 
 export const portfolioItems: PortfolioItem[] = ([
@@ -93,11 +83,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "northline",
     title: "NORTHLINE",
     category: "presentation",
-    status: "concept",
     focus: "Точность",
     projectType: "Логистика",
     year: "2026",
-    client: "Авторская работа",
+    client: "NORTHLINE",
     role: "Структура, коммерческая история, интерфейс и дизайн",
     scope: "10 слайдов + PDF",
     description:
@@ -107,7 +96,7 @@ export const portfolioItems: PortfolioItem[] = ([
     audience:
       "Директора по логистике и качеству, производители продуктов и логистические операторы.",
     sourceMaterials:
-      "Материалы WHO, FDA, GS1 и UNEP, модельные допущения концепта и авторские визуалы.",
+      "Материалы WHO, FDA, GS1 и UNEP, рабочие допущения и визуальные материалы.",
     problem:
       "Термологгеры, GPS и ручные отчёты часто объясняют инцидент уже после доставки, когда возможность оперативного вмешательства потеряна.",
     solution:
@@ -116,9 +105,9 @@ export const portfolioItems: PortfolioItem[] = ([
       "План презентации",
       "Исследование и источники",
       "Коммерческая история",
-      "Концепт интерфейса",
+      "Сценарий интерфейса",
       "Модель окупаемости",
-      "Авторские визуалы",
+      "Визуальные материалы",
       "PPTX и PDF"
     ],
     result: [
@@ -131,7 +120,6 @@ export const portfolioItems: PortfolioItem[] = ([
     coverImage: "/portfolio/northline/cover.webp",
     coverAlt:
       "Обложка презентации NORTHLINE с рефрижератором у холодного распределительного центра",
-    coverLabel: "Логистика",
     gallery: [
       {
         src: "/portfolio/northline/slide-01.webp",
@@ -160,7 +148,7 @@ export const portfolioItems: PortfolioItem[] = ([
       },
       {
         src: "/portfolio/northline/slide-06.webp",
-        alt: "Слайд NORTHLINE с концептом интерфейса мониторинга перевозок",
+        alt: "Слайд NORTHLINE с экраном интерфейса мониторинга перевозок",
         caption: "Маршруты, инцидент и следующий шаг в одном экране"
       },
       {
@@ -206,11 +194,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "grid-24",
     title: "GRID/24",
     category: "presentation",
-    status: "concept",
-    focus: "Система",
+    focus: "Точность",
     projectType: "Энергетика",
     year: "2026",
-    client: "Авторская работа",
+    client: "GRID/24",
     role: "Стратегия, структура, данные и дизайн",
     scope: "10 слайдов",
     description:
@@ -220,7 +207,7 @@ export const portfolioItems: PortfolioItem[] = ([
     audience:
       "Инфраструктурные инвесторы, энергетические операторы и городские партнёры.",
     sourceMaterials:
-      "Данные IEA, DOE и NREL, модельные допущения концепта и авторские визуалы.",
+      "Данные IEA, DOE и NREL, рабочие допущения и визуальные материалы.",
     problem:
       "Сложная энергетическая категория рисковала остаться набором технологий, цифр и обещаний без понятного инвестиционного маршрута.",
     solution:
@@ -230,7 +217,7 @@ export const portfolioItems: PortfolioItem[] = ([
       "Исследование и источники",
       "История для инвестора",
       "Графики и схемы",
-      "Авторские визуалы",
+      "Визуальные материалы",
       "10 слайдов"
     ],
     result: [
@@ -243,7 +230,6 @@ export const portfolioItems: PortfolioItem[] = ([
     coverImage: "/portfolio/grid-24/cover.webp",
     coverAlt:
       "Обложка презентации GRID/24 с городским модулем накопления энергии",
-    coverLabel: "Энергетика",
     gallery: [
       {
         src: "/portfolio/grid-24/slide-01.webp",
@@ -318,11 +304,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "chess-jazz",
     title: "Chess & Jazz",
     category: "presentation",
-    status: "concept",
     focus: "Атмосфера",
     projectType: "Фестиваль",
     year: "2026",
-    client: "Концепт для Chess & Jazz",
+    client: "Chess & Jazz",
     role: "Структура, текст и дизайн",
     scope: "10 слайдов",
     description: "Фестиваль шахмат и джаза в десяти слайдах.",
@@ -420,11 +405,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "velvet-whisper",
     title: "Velvet Whisper",
     category: "presentation",
-    status: "concept",
     focus: "Образ",
     projectType: "Мода",
     year: "2026",
-    client: "Концепт бренда одежды",
+    client: "Velvet Whisper",
     role: "Визуальная концепция и дизайн",
     scope: "5 слайдов",
     description: "Коллекция одежды в пяти спокойных слайдах.",
@@ -495,11 +479,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "astra-q1-2026",
     title: "Группа Астра Q1 2026",
     category: "presentation",
-    status: "concept",
     focus: "Цифры",
     projectType: "Отчёт",
     year: "2026",
-    client: "Концептуальный разбор публичной отчётности",
+    client: "Группа Астра",
     role: "Структура, цифры и дизайн",
     scope: "10 слайдов",
     description: "Квартальный отчёт, который читается как история.",
@@ -606,11 +589,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "termoland-shchelkovo",
     title: "Termoland Щёлково",
     category: "presentation",
-    status: "concept",
     focus: "Атмосфера",
     projectType: "Курорт",
     year: "2026",
-    client: "Концепт для Termoland Щёлково",
+    client: "Termoland Щёлково",
     role: "Структура, тексты и дизайн",
     scope: "11 слайдов",
     description: "Городской курорт как короткий отпуск рядом.",
@@ -713,11 +695,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "bivol-boxing-club",
     title: "Bivol Boxing Club",
     category: "presentation",
-    status: "concept",
     focus: "Сила",
     projectType: "Бокс",
     year: "2026",
-    client: "Концепт для Bivol Boxing Club",
+    client: "Bivol Boxing Club",
     role: "Структура, тексты и дизайн",
     scope: "11 вертикальных слайдов",
     description: "Клуб, метод и характер в вертикальной презентации.",
@@ -831,11 +812,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "shadow-strike",
     title: "Shadow Strike",
     category: "presentation",
-    status: "concept",
     focus: "Сила",
     projectType: "Бокс",
     year: "2026",
-    client: "Авторский концепт боксёрского клуба",
+    client: "Shadow Strike",
     role: "Позиционирование, тексты и дизайн",
     scope: "8 слайдов",
     description: "Образ премиального боксёрского клуба.",
@@ -928,11 +908,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "jk-finance",
     title: "JK Finance",
     category: "digital-product",
-    status: "client",
     focus: "Цифры",
     projectType: "Финансовая модель",
     year: "2026",
-    client: "Клиентский проект",
+    client: "JK Finance",
     role: "Расчёты, структура и интерфейс",
     scope: "Опубликованная рабочая версия",
     description: "Финансовая модель точки и франшизы.",
@@ -996,11 +975,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "contract-architect",
     title: "Contract Architect",
     category: "digital-product",
-    status: "internal",
     focus: "Точность",
     projectType: "Документы",
     year: "2026",
-    client: "Собственный продукт",
+    client: "Contract Architect",
     role: "Логика, интерфейс и разработка",
     scope: "Первая рабочая версия",
     description: "Готовые документы из шаблона за несколько шагов.",
@@ -1061,7 +1039,7 @@ export const portfolioItems: PortfolioItem[] = ([
         "Документ остаётся главным объектом",
         "Риски объясняются текстом, а не только цветом",
         "История действий всегда доступна",
-        "Вторичные инструменты не конкурируют с содержанием"
+        "Вторичные функции не конкурируют с содержанием"
       ]
     }
   },
@@ -1069,11 +1047,10 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "ai-youtube-script-agent",
     title: "AI YouTube Script Agent",
     category: "automation",
-    status: "client",
     focus: "Точность",
     projectType: "Сценарии",
     year: "2026",
-    client: "Клиентский проект",
+    client: "AI YouTube Script Agent",
     role: "Логика, сценарий и интерфейс",
     scope: "Рабочая версия для сценариев 60–90 минут",
     description: "Длинный сценарий из видео и материалов.",
@@ -1138,7 +1115,6 @@ export const portfolioItems: PortfolioItem[] = ([
     slug: "tatyana-vesennyaya",
     title: "Сайт Татьяны Весенней",
     category: "landing",
-    status: "client",
     focus: "Образ",
     projectType: "Сайт",
     year: "2026",
@@ -1170,7 +1146,6 @@ export const portfolioItems: PortfolioItem[] = ([
       "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-cover.png",
     coverAlt:
       "Обложка персонального лендинга 3D-визуализатора Татьяны Весенней",
-    coverLabel: "3D Visualizer",
     gallery: [
       {
         src: "/portfolio/tatyana-vesennyaya/tatyana-vesennyaya-screen-01.png",

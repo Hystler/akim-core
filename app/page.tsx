@@ -4,7 +4,6 @@ import { EditorialApproach } from "@/components/sections/EditorialApproach";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { HomeHero } from "@/components/sections/HomeHero";
 import { PortfolioPreview } from "@/components/sections/PortfolioPreview";
-import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { publishedPortfolioItems } from "@/data/portfolio";
@@ -34,7 +33,7 @@ export default function HomePage() {
           "Дизайн презентаций",
           "Коммерческие предложения",
           "Сайты",
-          "Рабочие инструменты"
+          "Сервисы для работы"
         ],
         areaServed: "Удалённо"
       }
@@ -48,7 +47,6 @@ export default function HomePage() {
       <PortfolioPreview items={previewItems} />
       <EditorialApproach />
       <ServicesPreview />
-      <ProcessSection />
       <AboutPreview />
       <FaqSection limit={4} />
       <ContactBlocks />

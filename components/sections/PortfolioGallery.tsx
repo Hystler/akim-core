@@ -56,7 +56,6 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
     }
 
     const previousOverflow = document.body.style.overflow;
-    const galleryTriggers = triggerRefs.current;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
     closeButtonRef.current?.focus();
@@ -64,10 +63,13 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
-      const triggerIndex = openedFromIndex.current;
-      if (triggerIndex !== null) galleryTriggers[triggerIndex]?.focus();
     };
   }, [isLightboxOpen, items.length]);
+
+  function restoreTriggerFocus() {
+    const triggerIndex = openedFromIndex.current;
+    if (triggerIndex !== null) triggerRefs.current[triggerIndex]?.focus();
+  }
 
   function showPrevious() {
     setActiveIndex((current) => {
@@ -144,7 +146,7 @@ export function PortfolioGallery({ items, title }: PortfolioGalleryProps) {
         })}
       </div>
 
-      <AnimatePresence>
+      <AnimatePresence onExitComplete={restoreTriggerFocus}>
         {activeItem ? (
           <motion.div
             ref={dialogRef}

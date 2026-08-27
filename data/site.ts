@@ -1,10 +1,3 @@
-export const directions = [
-  "Презентации",
-  "Предложения",
-  "Сайты",
-  "Инструменты"
-];
-
 // Add real photographs to public and change only these paths when they are ready.
 export const authorPhotoPaths: Record<"portrait" | "working" | "materials", string | null> = {
   portrait: null,

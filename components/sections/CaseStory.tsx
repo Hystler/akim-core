@@ -20,17 +20,9 @@ export function CaseStory({ item, sections }: CaseStoryProps) {
   return (
     <section className="bg-main py-20 text-paper sm:py-28">
       <div className="section-shell">
-        <div className="grid gap-7 lg:grid-cols-[0.45fr_1.55fr] lg:items-end">
-          <p className="text-xs font-bold uppercase text-paper/55">История проекта</p>
-          <div>
-            <h2 className="max-w-4xl font-heading text-4xl font-bold leading-[1.02] sm:text-6xl">
-              От задачи к решению.
-            </h2>
-            <p className="mt-2 font-serif text-3xl font-medium italic text-terracotta sm:text-5xl">
-              Коротко и на примерах.
-            </p>
-          </div>
-        </div>
+        <h2 className="max-w-4xl font-heading text-4xl font-bold leading-[1.02] sm:text-6xl">
+          О проекте.
+        </h2>
 
         <div className="mt-14 space-y-10 sm:mt-18 sm:space-y-14">
           {storySections.map((section, index) => (
@@ -57,12 +49,10 @@ function StorySection({
   index: number;
 }) {
   const isReversed = index % 2 === 1;
-  const surfaceClass = index % 3 === 1 ? "bg-kraft-texture" : index % 3 === 2 ? "bg-linen-texture" : "paper-surface";
-
   return (
     <article
       id={`case-${section.id}`}
-      className={`scroll-mt-24 rounded-[16px] border border-paper/15 p-5 text-main shadow-tactile-lg sm:p-8 lg:p-10 ${surfaceClass}`}
+      className="paper-surface scroll-mt-24 rounded-[14px] border border-paper/15 p-5 text-main shadow-tactile sm:p-8 lg:p-10"
     >
       <SectionMarker section={section} />
       <div className="mt-7 grid min-w-0 gap-8 lg:grid-cols-12 lg:items-center lg:gap-10">
@@ -216,7 +206,7 @@ function SectionMarker({ section }: { section: CaseSectionPlanItem }) {
   return (
     <div className="flex items-center justify-between border-b border-main/20 pb-4">
       <span className="text-xs font-bold uppercase text-burgundy">
-        {section.number} / {section.label}
+        {section.number}
       </span>
       <span className="h-2 w-2 rounded-full bg-burgundy" aria-hidden="true" />
     </div>

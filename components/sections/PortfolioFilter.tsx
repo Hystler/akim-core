@@ -13,6 +13,15 @@ type PortfolioFilterProps = {
   items: PublishedPortfolioItem[];
 };
 
+const editorialSpans = [
+  "lg:col-span-7",
+  "lg:col-span-5",
+  "lg:col-span-5",
+  "lg:col-span-7",
+  "lg:col-span-6",
+  "lg:col-span-6"
+];
+
 export function PortfolioFilter({ items }: PortfolioFilterProps) {
   const [activeCategory, setActiveCategory] =
     useState<PortfolioFilterType["value"]>("all");
@@ -35,9 +44,9 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
   return (
     <section id="cases-grid" className="scroll-mt-24 bg-base-texture pb-20 sm:pb-28">
       <div className="section-shell">
-        <h2 className="sr-only">Список кейсов</h2>
+        <h2 className="sr-only">Список работ</h2>
         <div className="border-y border-main/20 py-2">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-1" role="group" aria-label="Фильтры кейсов">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-1" role="group" aria-label="Фильтры работ">
             {availableFilters.map((filter) => {
               const isActive = activeCategory === filter.value;
 
@@ -61,10 +70,13 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
         </div>
 
         <p className="sr-only" aria-live="polite">
-          Показано кейсов: {filteredItems.length}
+          Показано работ: {filteredItems.length}
         </p>
 
-        <motion.div layout className="mt-12 grid min-w-0 gap-7 md:grid-cols-2 md:gap-9">
+        <motion.div
+          layout
+          className="mt-12 grid min-w-0 gap-7 md:grid-cols-2 md:gap-9 lg:grid-cols-12"
+        >
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, index) => (
               <motion.div
@@ -77,7 +89,7 @@ export function PortfolioFilter({ items }: PortfolioFilterProps) {
                   duration: shouldReduceMotion ? 0 : 0.22,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className="min-w-0"
+                className={`min-w-0 ${editorialSpans[index % editorialSpans.length]}`}
               >
                 <PortfolioCard item={item} priority={index < 2} layoutIndex={index} />
               </motion.div>

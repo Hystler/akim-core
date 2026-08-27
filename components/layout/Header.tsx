@@ -10,7 +10,7 @@ import { TrackedLink } from "@/components/ui/TrackedLink";
 const navItems = [
   { href: "/portfolio", label: "Работы" },
   { href: "/services", label: "Услуги" },
-  { href: "/#process", label: "Процесс" },
+  { href: "/services#process", label: "Процесс" },
   { href: "/about", label: "Обо мне" },
   { href: "/contact", label: "Контакты" }
 ];
@@ -42,7 +42,7 @@ export function Header() {
   }, [isOpen]);
 
   function isActive(href: string) {
-    if (href.startsWith("/#")) return false;
+    if (href.includes("#")) return pathname === href.split("#")[0];
     return pathname.startsWith(href);
   }
 

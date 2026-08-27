@@ -12,8 +12,7 @@ import {
   getNextPortfolioItem,
   getPortfolioItem,
   portfolioCategoryLabels,
-  publishedPortfolioItems,
-  portfolioStatusLabels
+  publishedPortfolioItems
 } from "@/data/portfolio";
 import { siteUrl } from "@/lib/site-config";
 import { getCaseSection, getCaseSectionPlan } from "@/lib/case-sections";
@@ -111,7 +110,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             className="focus-ring inline-flex items-center gap-2 text-sm font-bold text-main/70 transition hover:text-burgundy"
           >
             <ArrowLeft size={16} aria-hidden="true" />
-            Все кейсы
+            Работы
           </Link>
 
           <div className="mt-9 rounded-[16px] border border-main/15 bg-kraft-texture p-5 shadow-tactile sm:p-8 lg:p-10">
@@ -121,8 +120,6 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
               </span>
               <span aria-hidden="true">·</span>
               <span>{item.projectType}</span>
-              <span aria-hidden="true">·</span>
-              <span>{portfolioStatusLabels[item.status]}</span>
               <span aria-hidden="true">·</span>
               <span>{item.year}</span>
             </div>
@@ -267,14 +264,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
                 />
               </div>
             </TrackedLink>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/portfolio"
-                className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-main/35 px-5 text-sm font-bold text-main transition hover:border-burgundy hover:text-burgundy"
-              >
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                Все работы
-              </Link>
+            <div className="mt-8">
               <Link
                 href="/contact"
                 className="focus-ring inline-flex min-h-12 items-center justify-center rounded-md border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper transition hover:-translate-y-1 hover:shadow-press"
