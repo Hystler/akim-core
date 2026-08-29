@@ -1,15 +1,18 @@
 "use client";
 
-import { CheckCircle2, Paperclip, Send } from "lucide-react";
+import { CheckCircle2, Paperclip } from "lucide-react";
 import Link from "next/link";
-import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
-import { TrackedLink } from "@/components/ui/TrackedLink";
+import {
+  useRef,
+  useState,
+  type ChangeEvent,
+  type FormEvent
+} from "react";
 import { trackGoal } from "@/lib/analytics";
 import { siteEmail } from "@/lib/site-config";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
-const telegramBase = "https://t.me/loot_digger";
 const contactFormEndpoint =
   process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ??
   "https://formsubmit.co/ajax/" + siteEmail;
@@ -31,9 +34,18 @@ const bindingLoops = Array.from({ length: 9 }, (_, index) => index);
 
 export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
   const isSubmittingRef = useRef(false);
+  const telegramRef = useRef<HTMLInputElement>(null);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState("");
+  const [contactError, setContactError] = useState(false);
+
+  function clearContactError() {
+    if (!contactError) return;
+    setContactError(false);
+    setSubmitState("idle");
+    setMessage("");
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,6 +53,19 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const telegram = String(formData.get("contact") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+
+    if (!telegram && !email) {
+      setContactError(true);
+      setSubmitState("error");
+      setMessage("Оставьте Telegram или email, чтобы я мог ответить.");
+      telegramRef.current?.focus();
+      return;
+    }
+
+    // Keep the existing endpoint contract when email is the preferred contact.
+    formData.set("contact", telegram || email);
     const attachment = formData.get("attachment");
 
     if (attachment instanceof File && attachment.size > 10 * 1024 * 1024) {
@@ -61,6 +86,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
     }
 
     isSubmittingRef.current = true;
+    setContactError(false);
     setSubmitState("submitting");
     setMessage("");
 
@@ -85,7 +111,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
       trackGoal("contact_form_submit");
     } catch {
       setSubmitState("error");
-      setMessage("Не получилось отправить. Напишите в Telegram или на email.");
+      setMessage("Не получилось отправить. Попробуйте ещё раз чуть позже.");
     } finally {
       isSubmittingRef.current = false;
     }
@@ -99,47 +125,35 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
   }
 
   const fieldClass =
-    "min-h-11 w-full rounded-none border-0 border-b border-main/40 bg-transparent px-0 text-main outline-none placeholder:text-main/40 transition-colors hover:border-main/65 focus:border-burgundy focus:ring-0 focus-visible:border-burgundy";
+    "min-h-12 w-full rounded-[5px] border border-main/15 bg-paper/20 px-3.5 text-main outline-none placeholder:text-main/40 transition-colors duration-200 hover:border-main/25 focus:border-burgundy/65 focus:ring-2 focus:ring-burgundy/10";
+  const labelClass = "grid gap-2 text-[12px] font-semibold text-main/80";
   const Heading = asPage ? "h1" : "h2";
 
   return (
     <section
       id="contact"
-      className="scroll-mt-24 bg-base-texture py-16 sm:py-24"
+      className="light-atmosphere light-atmosphere-soft scroll-mt-24 bg-base-texture pb-28 pt-20 sm:pb-36 sm:pt-28"
     >
-      <div className="section-shell">
-        <div className="notebook-scene relative rounded-[18px] border border-main/15 p-3 shadow-tactile-lg sm:p-6 lg:p-9">
-          <div className="relative mx-auto grid max-w-[1080px] min-w-0 rounded-[12px] shadow-tactile-lg lg:grid-cols-[0.82fr_1.18fr]">
-            <aside className="notebook-page paper-surface relative flex min-h-[280px] flex-col rounded-t-[10px] border border-main/15 p-7 sm:min-h-[320px] sm:p-10 lg:min-h-[640px] lg:rounded-l-[10px] lg:rounded-tr-none lg:p-12">
+      <div className="mx-auto w-full max-w-[1320px] px-3 sm:px-8 lg:px-10">
+        <div className="notebook-scene">
+          <div className="notebook-spread notebook-page notebook-rules">
+            <aside className="notebook-intro-page notebook-page notebook-rules flex-col p-6 pb-5 pl-8 sm:p-9 sm:pb-4 sm:pl-10 min-[900px]:p-12 min-[900px]:pl-14">
               <div>
-                <p className="text-[10px] font-bold uppercase text-burgundy">
+                <p className="text-[12px] font-semibold tracking-[0.18em] text-main min-[900px]:text-[13px]">
                   AKIM CORE
                 </p>
-                <Heading className="mt-8 max-w-sm font-heading text-4xl font-bold leading-[1.02] text-main sm:text-5xl">
+                <Heading className="mt-7 font-serif text-[2rem] font-medium leading-none text-main sm:text-[2.35rem] min-[900px]:mt-14 min-[900px]:text-5xl">
                   Есть задача?
                 </Heading>
-                <p className="mt-3 max-w-sm font-serif text-3xl font-medium italic leading-tight text-burgundy sm:text-4xl">
+                <p className="mt-2 font-serif text-[1.35rem] font-medium italic leading-tight text-burgundy sm:text-[1.65rem] min-[900px]:text-4xl">
                   Расскажите коротко.
                 </p>
               </div>
 
-              <ul className="mt-10 grid gap-3 border-t border-main/20 pt-6 text-sm font-medium leading-6 text-main/65 lg:mt-auto">
-                <li>Можно прислать черновик</li>
-                <li>Обычно отвечаю в течение дня</li>
-              </ul>
+              <p className="mt-7 hidden max-w-[230px] text-sm font-medium leading-6 text-main/70 min-[900px]:mt-auto min-[900px]:block">
+                Презентации, сайты и&nbsp;сервисы для рабочих задач.
+              </p>
             </aside>
-
-            <div
-              className="notebook-mobile-binding flex items-center justify-center gap-2 border-x border-main/15 bg-gold py-2 lg:hidden"
-              aria-hidden="true"
-            >
-              {bindingLoops.slice(0, 7).map((loop) => (
-                <span
-                  key={loop}
-                  className="h-3 w-5 rounded-full border-2 border-gold-dark bg-gold-light"
-                />
-              ))}
-            </div>
 
             <form
               onSubmit={handleSubmit}
@@ -147,7 +161,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
               action={contactFormEndpoint}
               encType="multipart/form-data"
               aria-busy={submitState === "submitting"}
-              className="notebook-page notebook-rules paper-surface relative rounded-b-[10px] border border-t-0 border-main/15 p-7 sm:p-10 lg:rounded-r-[10px] lg:rounded-bl-none lg:border-l-0 lg:border-t lg:p-11"
+              className="notebook-form-page notebook-page notebook-rules p-5 pl-8 sm:p-8 sm:pt-5 sm:pl-10 min-[900px]:p-10 min-[1100px]:p-12"
             >
               <input
                 type="hidden"
@@ -163,9 +177,11 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                 className="hidden"
               />
 
-              <div className="grid gap-6 sm:grid-cols-2">
-                <label className="grid gap-1 text-sm font-bold text-main">
-                  Имя <span className="sr-only">обязательное поле</span>
+              <div className="grid gap-5 min-[900px]:grid-cols-2">
+                <label className={labelClass}>
+                  <span>
+                    Имя <span aria-hidden="true">*</span>
+                  </span>
                   <input
                     type="text"
                     name="name"
@@ -174,41 +190,65 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                     className={fieldClass}
                   />
                 </label>
-                <label className="grid gap-1 text-sm font-bold text-main">
-                  Telegram / email{" "}
-                  <span className="sr-only">обязательное поле</span>
+                <label className={labelClass}>
+                  Telegram
                   <input
+                    ref={telegramRef}
                     type="text"
                     name="contact"
-                    required
-                    autoComplete="email"
+                    autoComplete="off"
+                    aria-invalid={contactError}
+                    aria-describedby="contact-help"
+                    onChange={clearContactError}
                     className={fieldClass}
                   />
                 </label>
               </div>
 
-              <label className="mt-7 grid gap-1 text-sm font-bold text-main">
-                Что нужно <span className="sr-only">обязательное поле</span>
+              <label className={`${labelClass} mt-5`}>
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  aria-invalid={contactError}
+                  aria-describedby="contact-help"
+                  onChange={clearContactError}
+                  className={fieldClass}
+                />
+              </label>
+              <p
+                id="contact-help"
+                className={`mt-2 text-[11px] leading-5 ${
+                  contactError ? "font-semibold text-burgundy" : "text-main/55"
+                }`}
+              >
+                Оставьте Telegram или email.
+              </p>
+
+              <label className={`${labelClass} mt-5`}>
+                <span>
+                  Что нужно сделать? <span aria-hidden="true">*</span>
+                </span>
                 <textarea
                   name="description"
                   required
                   rows={5}
-                  placeholder="Расскажите о задаче"
-                  className={fieldClass + " min-h-36 resize-y py-3"}
+                  className={`${fieldClass} min-h-[112px] resize-y py-3 min-[900px]:min-h-[126px]`}
                 />
               </label>
 
-              <div className="mt-7 grid gap-6 sm:grid-cols-2">
-                <label className="grid gap-1 text-sm font-bold text-main">
-                  Когда нужно
+              <div className="mt-5 grid gap-5 min-[900px]:grid-cols-2">
+                <label className={labelClass}>
+                  Когда нужно?
                   <input
                     type="text"
                     name="deadline"
-                    placeholder="Например, 20 августа"
+                    placeholder="20 сентября"
                     className={fieldClass}
                   />
                 </label>
-                <label className="grid gap-1 text-sm font-bold text-main">
+                <label className={labelClass}>
                   Ссылка на материалы
                   <input
                     type="url"
@@ -220,101 +260,79 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                 </label>
               </div>
 
-              <div className="mt-7 grid gap-2 text-sm font-bold text-main">
-                <span className="flex items-center gap-2" id="attachment-label">
+              <div className="mt-5 grid gap-2 text-[12px] font-semibold text-main/80">
+                <span id="attachment-label">Материалы</span>
+                <label className="relative flex min-h-[92px] cursor-pointer items-center justify-center gap-3 rounded-[5px] border border-dashed border-main/20 px-4 text-center transition-colors duration-200 hover:border-burgundy/45 focus-within:border-burgundy/65 focus-within:ring-2 focus-within:ring-burgundy/10">
+                  <input
+                    id="contact-attachment"
+                    type="file"
+                    name="attachment"
+                    accept=".pdf,.ppt,.pptx,.key,.doc,.docx,.xls,.xlsx,.zip,.png,.jpg,.jpeg"
+                    aria-describedby="attachment-help"
+                    aria-labelledby="attachment-label"
+                    onChange={handleFileChange}
+                    className="absolute inset-0 size-full cursor-pointer opacity-0"
+                  />
                   <Paperclip
-                    className="h-4 w-4 text-burgundy"
+                    className="h-4 w-4 shrink-0 text-burgundy"
                     aria-hidden="true"
                   />
-                  Материалы / файл
-                </span>
-                <input
-                  id="contact-attachment"
-                  type="file"
-                  name="attachment"
-                  accept=".pdf,.ppt,.pptx,.key,.doc,.docx,.xls,.xlsx,.zip,.png,.jpg,.jpeg"
-                  aria-describedby="attachment-help"
-                  aria-labelledby="attachment-label"
-                  onChange={handleFileChange}
-                  className="peer sr-only"
-                />
-                <div className="flex min-w-0 flex-col gap-2 border-b border-main/40 pb-3 peer-focus-visible:ring-2 peer-focus-visible:ring-burgundy peer-focus-visible:ring-offset-2 sm:flex-row sm:items-center">
-                  <label
-                    htmlFor="contact-attachment"
-                    className="inline-flex min-h-11 w-fit cursor-pointer items-center border border-main/30 bg-transparent px-4 text-sm font-bold text-main transition hover:border-burgundy hover:text-burgundy"
-                  >
-                    Выбрать файл
-                  </label>
-                  <span className="min-w-0 truncate text-xs font-normal text-main/60">
-                    {fileName || "Файл не выбран"}
+                  <span className="max-w-[260px] text-sm font-medium leading-5 text-main/65">
+                    {fileName || (
+                      <>
+                        Перетащите файл или{" "}
+                        <br />
+                        нажмите для выбора
+                      </>
+                    )}
                   </span>
-                </div>
+                </label>
                 <span
                   id="attachment-help"
-                  className="text-xs font-normal leading-5 text-main/60"
+                  className="text-[11px] font-normal leading-5 text-main/55"
                 >
                   Документы, ZIP или изображения. До 10 МБ.
                 </span>
               </div>
 
-              <label className="mt-7 flex items-start gap-3 text-sm leading-6 text-main/70">
+              <label className="mt-5 flex items-start gap-3 text-[12px] leading-5 text-main/70">
                 <input
                   type="checkbox"
                   name="privacyConsent"
                   required
+                  aria-label="Я согласен с политикой конфиденциальности"
                   className="focus-ring mt-0.5 size-5 shrink-0 accent-burgundy"
                 />
                 <span>
-                  Согласен с{" "}
+                  Я согласен с{"\u00a0"}
                   <Link
                     href="/privacy"
                     className="font-medium text-main underline decoration-main/30"
                   >
                     политикой конфиденциальности
                   </Link>
-                  .
                 </span>
               </label>
 
               <button
                 type="submit"
                 disabled={submitState === "submitting"}
-                className="focus-ring mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-md border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper shadow-press transition-all duration-300 hover:-translate-y-0.5 hover:shadow-tactile disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                className="focus-ring mt-5 inline-flex min-h-[50px] w-full items-center justify-center rounded-[4px] border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper shadow-press transition-all duration-200 hover:-translate-y-0.5 hover:shadow-tactile disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {submitState === "submitting"
                   ? "Отправляю…"
                   : "Отправить заявку"}
               </button>
 
-              <div className="mt-6 border-t border-main/15 pt-5 text-sm">
-                <TrackedLink
-                  href={telegramBase}
-                  target="_blank"
-                  rel="noreferrer"
-                  goal="telegram_click"
-                  goalParams={{ source: "contact_notebook" }}
-                  className="focus-ring inline-flex min-h-11 items-center gap-2 font-bold text-main transition hover:text-burgundy"
-                >
-                  <Send className="h-4 w-4" aria-hidden="true" />
-                  Или написать напрямую в Telegram
-                </TrackedLink>
-                <a
-                  href={"mailto:" + siteEmail}
-                  className="focus-ring block w-fit break-all py-2 text-xs text-main/55 transition hover:text-main"
-                >
-                  {siteEmail}
-                </a>
-              </div>
-
               {message ? (
                 <div
                   aria-live="polite"
                   role={submitState === "error" ? "alert" : "status"}
                   className={
-                    "mt-5 flex gap-3 rounded-md border p-4 text-sm leading-6 " +
+                    "mt-4 flex gap-3 rounded-[5px] border p-3 text-sm leading-6 " +
                     (submitState === "success"
-                      ? "border-main/25 bg-paper/75 text-main"
-                      : "border-burgundy/40 bg-burgundy/10 text-main")
+                      ? "border-main/20 bg-paper/60 text-main"
+                      : "border-burgundy/35 bg-burgundy/[0.06] text-main")
                   }
                 >
                   {submitState === "success" ? (
@@ -328,18 +346,22 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
               ) : null}
             </form>
 
-            <div
-              className="notebook-binding absolute inset-y-8 left-[41%] z-30 hidden -translate-x-1/2 flex-col justify-around lg:flex"
-              aria-hidden="true"
-            >
+            <div className="notebook-mobile-binding" aria-hidden="true">
               {bindingLoops.map((loop) => (
-                <span
-                  key={loop}
-                  className="block h-4 w-14 rounded-full border-[3px] border-gold-dark bg-gold shadow-press"
-                />
+                <span key={loop} className="notebook-ring" />
+              ))}
+            </div>
+
+            <div className="notebook-desktop-binding" aria-hidden="true">
+              {bindingLoops.map((loop) => (
+                <span key={loop} className="notebook-ring" />
               ))}
             </div>
           </div>
+
+          <span className="notebook-pen" aria-hidden="true" />
+          <span className="notebook-pen-holder" aria-hidden="true" />
+          <span className="notebook-ribbon" aria-hidden="true" />
         </div>
       </div>
     </section>

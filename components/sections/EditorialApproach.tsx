@@ -42,7 +42,7 @@ const principles = [
 
 export function EditorialApproach() {
   return (
-    <section className="bg-main py-20 text-paper sm:py-28">
+    <section className="dark-surface py-20 text-paper sm:py-28">
       <div className="section-shell">
         <div className="max-w-3xl">
           <p className="text-xs font-bold uppercase text-terracotta">Подход</p>

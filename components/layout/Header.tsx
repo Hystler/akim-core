@@ -1,7 +1,13 @@
 "use client";
 
-import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
-import { ArrowUpRight, Menu, Send, X } from "lucide-react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring
+} from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -18,11 +24,16 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY, scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 30,
     mass: 0.3
+  });
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 10);
   });
 
   useEffect(() => {
@@ -42,35 +53,42 @@ export function Header() {
   }, [isOpen]);
 
   function isActive(href: string) {
-    if (href.includes("#")) return pathname === href.split("#")[0];
+    if (href.includes("#")) return false;
     return pathname.startsWith(href);
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-main/20 bg-paper">
+    <header
+      className="site-header sticky top-0 z-50 border-b border-main/10"
+      data-scrolled={isScrolled}
+    >
+      <div
+        className="absolute inset-x-0 bottom-[-1px] h-px bg-main/[0.08]"
+        aria-hidden="true"
+      />
       <motion.div
-        className="absolute inset-x-0 bottom-[-1px] h-[2px] origin-left bg-burgundy"
+        className="absolute inset-x-0 bottom-[-1px] h-px origin-left bg-gradient-to-r from-[#761127] to-[#8d1a36]"
         style={{ scaleX: progress }}
       />
       <nav
-        className="section-shell flex h-16 items-center justify-between gap-4 md:h-[72px]"
+        className="section-shell flex h-16 items-center justify-between gap-3 md:h-20 md:gap-5"
         aria-label="Основная навигация"
       >
         <Link
           href="/"
-          className="focus-ring font-heading text-base font-bold text-main"
+          className="focus-ring whitespace-nowrap font-heading text-[14px] font-semibold tracking-[0.3em] text-main sm:text-[15px] lg:text-[16px]"
           aria-label="AKIM CORE — главная"
           onClick={() => setIsOpen(false)}
         >
-          AKIM CORE
+          AKIM&nbsp; CORE
         </Link>
 
-        <div className="hidden items-center gap-7 lg:flex">
+        <div className="hidden items-center gap-8 lg:flex xl:gap-10">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`focus-ring relative rounded-sm py-2 text-sm transition-colors ${
+              className={`focus-ring relative py-3 text-[14px] font-medium tracking-[0.04em] transition-colors ${
                 isActive(item.href)
                   ? "text-burgundy after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:bg-burgundy"
                   : "text-main/70 hover:text-main"
@@ -81,34 +99,26 @@ export function Header() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <Link
+        <div className="flex shrink-0 items-center gap-2">
+          <TrackedLink
             href="/contact"
-            className="focus-ring group hidden min-h-11 items-center gap-2 border border-burgundy bg-burgundy px-4 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-2xl sm:inline-flex"
+            goal="hero_contact_click"
+            goalParams={{ source: "header" }}
+            className="focus-ring group inline-flex min-h-11 items-center gap-1.5 border border-burgundy bg-burgundy px-3 text-xs font-bold text-paper shadow-press transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-tactile sm:gap-2 sm:px-5 sm:text-sm"
           >
-            Обсудить проект
+            <span className="hidden min-[390px]:inline">Обсудить проект</span>
+            <span className="min-[390px]:hidden">Обсудить</span>
             <ArrowUpRight
-              className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 sm:h-4 sm:w-4"
               aria-hidden="true"
             />
-          </Link>
-          <TrackedLink
-            href="https://t.me/loot_digger"
-            target="_blank"
-            rel="noreferrer"
-            goal="telegram_click"
-            goalParams={{ source: "mobile_header" }}
-            aria-label="Написать в Telegram"
-            className="focus-ring grid size-11 place-items-center border border-burgundy bg-burgundy text-paper shadow-press transition-all duration-300 hover:-translate-y-0.5 lg:hidden"
-          >
-            <Send className="h-4 w-4" aria-hidden="true" />
           </TrackedLink>
           <button
             type="button"
             aria-label={isOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={isOpen}
             onClick={() => setIsOpen((value) => !value)}
-            className="focus-ring grid size-11 place-items-center border border-main/30 text-main transition-all duration-300 hover:-translate-y-0.5 hover:bg-base lg:hidden"
+            className="focus-ring grid size-11 place-items-center border border-main/25 text-main transition-all duration-200 hover:-translate-y-0.5 hover:border-main/45 lg:hidden"
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -122,7 +132,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="max-h-[calc(100svh-64px)] overflow-y-auto border-t border-main/15 bg-paper px-5 py-5 shadow-tactile md:max-h-[calc(100svh-72px)] lg:hidden"
+            className="max-h-[calc(100svh-64px)] overflow-y-auto border-t border-main/10 bg-paper px-5 py-5 shadow-tactile md:max-h-[calc(100svh-80px)] lg:hidden"
           >
             <div className="mx-auto grid max-w-7xl">
               {navItems.map((item) => (
@@ -137,13 +147,6 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="mt-5 inline-flex min-h-12 items-center justify-center bg-burgundy px-4 text-sm font-bold text-paper"
-              >
-                Обсудить проект
-              </Link>
             </div>
           </motion.div>
         ) : null}

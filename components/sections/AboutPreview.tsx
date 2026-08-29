@@ -18,7 +18,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
   const Heading = asPage ? "h1" : "h2";
 
   return (
-    <section className={`bg-paper ${asPage ? "pb-20 pt-16 sm:pb-28 sm:pt-24" : "py-20 sm:py-28"}`}>
+    <section className={`light-atmosphere light-atmosphere-soft bg-paper ${asPage ? "pb-20 pt-16 sm:pb-28 sm:pt-24" : "py-20 sm:py-28"}`}>
       <div className="section-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
           <Heading className={`text-balance font-heading font-bold leading-[1.04] text-main ${asPage ? "text-4xl sm:text-6xl" : "text-3xl sm:text-5xl"}`}>
@@ -87,7 +87,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
             </div>
             <div className="mt-5 flex items-center justify-between border-t border-main/15 pt-4">
               <span className="text-xs font-bold uppercase text-main/70">Атмосфера / образ</span>
-              <PaletteDots colors={["#2A2120", "#6B1A2C", "#EAE5DE", "#B7A99B"]} darkBorder />
+              <PaletteDots colors={["#2B211F", "#7F102B", "#EFE4D5", "#8D7D72"]} darkBorder />
             </div>
           </div>
         )}

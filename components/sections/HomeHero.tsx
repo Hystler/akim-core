@@ -7,7 +7,7 @@ const blurDataUrl =
 
 const heroWorks = [
   {
-    src: "/portfolio/chess-jazz/chess-jazz-cover.png",
+    src: "/images/hero-chess-jazz.avif",
     alt: "Обложка презентации Chess & Jazz",
     className: "left-[7%] top-[10%] w-[66%] -rotate-[1.5deg]"
   },
@@ -17,7 +17,7 @@ const heroWorks = [
     className: "bottom-[8%] right-[5%] w-[55%] rotate-[1.2deg]"
   },
   {
-    src: "/portfolio/velvet-whisper/velvet-whisper-cover.png",
+    src: "/images/hero-velvet-whisper.avif",
     alt: "Обложка презентации Velvet Whisper",
     className: "right-[2%] top-[4%] hidden w-[40%] rotate-[2deg] xl:block"
   }
@@ -25,7 +25,7 @@ const heroWorks = [
 
 export function HomeHero() {
   return (
-    <section className="border-b border-main/20 bg-base-texture py-7 sm:py-10 lg:py-12">
+    <section className="light-atmosphere border-b border-main/15 bg-base-texture py-7 sm:py-10 lg:py-12">
       <div className="section-shell">
         <div className="flex items-center justify-between gap-5 border-b border-main/25 pb-4 text-[11px] font-bold uppercase text-main/70 sm:text-xs">
           <span>Аким Коваленко</span>
@@ -89,9 +89,12 @@ export function HomeHero() {
                     <Image
                       src={work.src}
                       alt={work.alt}
-                      fill
+                      width={1600}
+                      height={900}
+                      loading={index < 2 ? "eager" : "lazy"}
+                      unoptimized
                       sizes="(min-width: 1280px) 420px, (min-width: 768px) 48vw, 82vw"
-                      className="object-cover"
+                      className="h-full w-full object-cover"
                     />
                   </div>
                 </div>
@@ -99,7 +102,7 @@ export function HomeHero() {
               <div className="absolute bottom-[4%] left-[5%] z-10 flex items-center gap-3 rounded-sm border border-main/10 bg-paper/95 px-3 py-2 shadow-press">
                 <span className="text-[10px] font-bold uppercase text-main/70">Фрагменты работ</span>
                 <span className="flex gap-1" aria-hidden="true">
-                  {["#6B1A2C", "#B79B64", "#2A2120"].map((color) => (
+                  {["#7F102B", "#A88952", "#2B211F"].map((color) => (
                     <span key={color} className="size-2 rounded-full border border-main/20" style={{ backgroundColor: color }} />
                   ))}
                 </span>

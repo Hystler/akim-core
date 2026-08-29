@@ -23,8 +23,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "50px 58px",
-          color: "#2A2120",
-          background: "#DCD3CB",
+          color: "#2B211F",
+          background: "#F1ECE3",
           fontFamily: "Arial, sans-serif"
         }}
       >
@@ -34,12 +34,12 @@ export default function OpenGraphImage() {
             alignItems: "center",
             justifyContent: "space-between",
             paddingBottom: "20px",
-            borderBottom: "1px solid rgba(42,33,32,0.22)",
+            borderBottom: "1px solid rgba(43,33,31,0.18)",
             fontSize: "16px"
           }}
         >
           <span style={{ fontWeight: 700 }}>AKIM CORE</span>
-          <span style={{ color: "#6B1A2C", fontWeight: 700 }}>PRESENTATION DESIGN</span>
+          <span style={{ color: "#7F102B", fontWeight: 700 }}>PRESENTATION DESIGN</span>
         </div>
 
         <div style={{ display: "flex", flex: 1, alignItems: "center", paddingTop: "38px" }}>
@@ -53,7 +53,7 @@ export default function OpenGraphImage() {
                 maxWidth: "570px",
                 fontSize: "29px",
                 lineHeight: 1.35,
-                color: "#6B1A2C",
+                color: "#7F102B",
                 fontFamily: "Georgia, serif",
                 fontStyle: "italic"
               }}
@@ -65,7 +65,7 @@ export default function OpenGraphImage() {
                 marginTop: "34px",
                 width: "92px",
                 height: "3px",
-                background: "#6B1A2C"
+                background: "#7F102B"
               }}
             />
           </div>
@@ -80,7 +80,7 @@ export default function OpenGraphImage() {
                   top: `${index * 72}px`,
                   width: "370px",
                   height: "208px",
-                  border: "10px solid #EAE5DE",
+                  border: "10px solid #EFE4D5",
                   backgroundImage: `url(${siteUrl}${cover})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",

@@ -53,7 +53,7 @@ export function CaseArchiveIntro() {
               </div>
 
               <div className="absolute bottom-[2%] left-[6%] z-30 rounded-md border border-main/15 bg-paper px-3 py-2 shadow-press">
-                <PaletteDots colors={["#6B1A2C", "#B7A99B", "#DCD3CB", "#2A2120"]} darkBorder />
+                <PaletteDots colors={["#7F102B", "#8D7D72", "#F1ECE3", "#2B211F"]} darkBorder />
               </div>
             </div>
           </div>

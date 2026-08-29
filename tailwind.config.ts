@@ -9,15 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: "#DCD3CB",
-        main: "#2A2120",
-        burgundy: "#6B1A2C",
-        terracotta: "#B7A99B",
-        paper: "#EAE5DE",
+        base: "#F1ECE3",
+        main: "#2B211F",
+        chocolate: "#291D1A",
+        burgundy: "#7F102B",
+        terracotta: "#8D7D72",
+        paper: "#EFE4D5",
         gold: {
-          DEFAULT: "#B79B64",
-          dark: "#786435",
-          light: "#D6BD76"
+          DEFAULT: "#A88952",
+          dark: "#6E5838",
+          light: "#C9B07A"
         }
       },
       fontFamily: {
@@ -27,10 +28,10 @@ const config: Config = {
       },
       boxShadow: {
         tactile:
-          "0 24px 60px rgba(42, 33, 32, 0.16), 0 4px 12px rgba(42, 33, 32, 0.1)",
+          "0 12px 32px rgba(43, 33, 31, 0.10), 0 2px 6px rgba(43, 33, 31, 0.05)",
         "tactile-lg":
-          "0 36px 90px rgba(42, 33, 32, 0.22), 0 10px 24px rgba(42, 33, 32, 0.12)",
-        press: "0 10px 24px rgba(42, 33, 32, 0.14)"
+          "0 30px 70px rgba(32, 19, 15, 0.16), 0 8px 20px rgba(32, 19, 15, 0.10)",
+        press: "0 6px 18px rgba(43, 33, 31, 0.10)"
       }
     }
   },
