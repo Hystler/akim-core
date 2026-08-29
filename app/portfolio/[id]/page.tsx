@@ -218,7 +218,7 @@ export default async function PortfolioCasePage({ params }: PortfolioCasePagePro
             {item.result.map((result) => (
               <li
                 key={result}
-                className="flex gap-4 border-b border-main/20 py-6 text-base font-medium leading-7"
+                className="flex gap-4 border-b border-main/20 py-6 text-[16px] font-medium leading-7"
               >
                 <Check className="mt-1 h-5 w-5 shrink-0" aria-hidden="true" />
                 {result}

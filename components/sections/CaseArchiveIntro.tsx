@@ -13,7 +13,7 @@ export function CaseArchiveIntro() {
             <h1 className="font-heading text-5xl font-bold leading-[0.94] text-main sm:text-7xl lg:text-8xl">
               Работы.
             </h1>
-            <p className="mt-7 max-w-lg text-pretty text-base font-medium leading-8 text-main/70">
+            <p className="mt-7 max-w-lg text-pretty text-[16px] font-medium leading-8 text-main/70">
               Презентации, сайты и&nbsp;сервисы для рабочих задач.
             </p>
           </div>

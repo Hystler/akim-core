@@ -16,7 +16,7 @@ export default function NotFound() {
         <h1 className="text-balance mt-5 max-w-4xl font-heading text-5xl font-bold leading-[1.02] text-main sm:text-7xl">
           Такой страницы нет, но работы на месте
         </h1>
-        <p className="mt-6 max-w-xl text-base font-medium leading-8 text-main/70">
+        <p className="mt-6 max-w-xl text-[16px] font-medium leading-8 text-main/70">
           Возможно, адрес изменился или в ссылке есть опечатка. Вернитесь на главную
           или откройте каталог работ.
         </p>

@@ -58,7 +58,7 @@ export function EditorialApproach() {
           {principles.map((principle, index) => (
             <article
               key={principle.marker}
-              className={`editorial-composition grid min-w-0 gap-8 rounded-[16px] border border-paper/15 p-5 shadow-tactile-lg sm:p-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:p-10 ${
+              className={`editorial-composition mx-auto grid max-w-[1120px] min-w-0 gap-8 rounded-[16px] border border-paper/20 p-5 shadow-tactile-lg sm:p-8 lg:grid-cols-12 lg:items-center lg:gap-10 lg:p-10 ${
                 principle.theme === "kraft"
                   ? "bg-kraft-texture"
                   : principle.theme === "linen"
@@ -76,7 +76,7 @@ export function EditorialApproach() {
                 <p className="mt-2 font-serif text-2xl font-medium italic leading-snug text-burgundy sm:text-3xl">
                   {principle.accent}
                 </p>
-                <p className="mt-6 max-w-md text-base font-medium leading-7 text-main/70">
+                <p className="mt-6 max-w-md text-[16px] font-medium leading-7 text-main/70">
                   {principle.text}
                 </p>
                 <div className="mt-7">

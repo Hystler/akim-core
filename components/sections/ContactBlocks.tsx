@@ -132,7 +132,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
   return (
     <section
       id="contact"
-      className="light-atmosphere light-atmosphere-soft scroll-mt-24 bg-base-texture pb-28 pt-20 sm:pb-36 sm:pt-28"
+      className="contact-notebook-section dark-surface scroll-mt-24 border-t border-paper/10 pb-28 pt-20 sm:pb-36 sm:pt-28"
     >
       <div className="mx-auto w-full max-w-[1320px] px-3 sm:px-8 lg:px-10">
         <div className="notebook-scene">

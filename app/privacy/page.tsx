@@ -67,7 +67,7 @@ export default function PrivacyPage() {
                 <h2 className="font-heading text-xl font-bold text-main">
                   {section.title}
                 </h2>
-                <p className="mt-4 max-w-3xl text-base font-medium leading-8 text-main/70">
+                <p className="mt-4 max-w-3xl text-[16px] font-medium leading-8 text-main/70">
                   {section.text}
                 </p>
               </section>

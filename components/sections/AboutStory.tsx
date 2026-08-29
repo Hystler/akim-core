@@ -17,7 +17,7 @@ export function AboutStory() {
           <h2 className="font-heading text-3xl font-bold text-main sm:text-5xl">
             В работе
           </h2>
-          <div className="mt-7 max-w-3xl space-y-5 text-base font-medium leading-8 text-main/70">
+          <div className="mt-7 max-w-3xl space-y-5 text-[16px] font-medium leading-8 text-main/70">
             <p>
               Могу начать с таблиц, заметок или сырого черновика. Сначала выясняю,
               что нужно понять зрителю, затем оставляю только нужное.

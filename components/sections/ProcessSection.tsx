@@ -37,7 +37,7 @@ export function ProcessSection() {
               <h3 className="mt-9 font-heading text-3xl font-bold leading-tight sm:text-4xl">
                 {step.title}
               </h3>
-              <p className="mt-4 max-w-md text-base font-medium leading-7 text-main/70">
+              <p className="mt-4 max-w-md text-[16px] font-medium leading-7 text-main/70">
                 {step.text}
               </p>
               <p className="mt-auto pt-8 font-serif text-2xl font-medium italic text-burgundy sm:text-3xl">
@@ -47,7 +47,7 @@ export function ProcessSection() {
           ))}
         </div>
 
-        <p className="mt-10 max-w-3xl border-l-2 border-burgundy pl-5 text-base font-medium leading-8 text-paper/70">
+        <p className="mt-10 max-w-3xl border-l-2 border-burgundy pl-5 text-[16px] font-medium leading-8 text-paper/70">
           Техническое задание не&nbsp;обязательно. Достаточно материалов и&nbsp;цели.
         </p>
       </div>

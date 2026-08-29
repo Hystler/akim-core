@@ -54,7 +54,7 @@ export function PortfolioCard({
         <h3 className="mt-3 font-heading text-2xl font-bold leading-tight text-main sm:text-[1.75rem]">
           {item.title}
         </h3>
-        <p className="mt-3 max-w-xl text-sm font-medium leading-6 text-main/70 sm:text-base sm:leading-7">
+        <p className="mt-3 max-w-xl text-sm font-medium leading-6 text-main/70 sm:text-[16px] sm:leading-7">
           {item.description}
         </p>
 

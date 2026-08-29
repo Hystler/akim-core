@@ -23,7 +23,7 @@ export function FaqSection({ limit }: { limit?: number }) {
                   +
                 </span>
               </summary>
-              <p className="max-w-2xl pb-6 text-base font-medium leading-8 text-main/70">
+              <p className="max-w-2xl pb-6 text-[16px] font-medium leading-8 text-main/70">
                 {item.answer}
               </p>
             </details>

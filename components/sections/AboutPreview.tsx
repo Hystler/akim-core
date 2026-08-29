@@ -24,7 +24,7 @@ export function AboutPreview({ asPage = false }: { asPage?: boolean }) {
           <Heading className={`text-balance font-heading font-bold leading-[1.04] text-main ${asPage ? "text-4xl sm:text-6xl" : "text-3xl sm:text-5xl"}`}>
             Аким Коваленко.
           </Heading>
-          <div className="mt-7 max-w-2xl space-y-5 text-base font-medium leading-8 text-main/70">
+          <div className="mt-7 max-w-2xl space-y-5 text-[16px] font-medium leading-8 text-main/70">
             <p>
               Я дизайнер презентаций. Разбираюсь в материале, нахожу главную мысль
               и собираю ясную визуальную историю.

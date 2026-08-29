@@ -140,7 +140,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`min-h-12 border-b border-main/15 px-1 py-4 text-base font-medium transition ${
+                  className={`min-h-12 border-b border-main/15 px-1 py-4 text-[16px] font-medium transition ${
                     isActive(item.href) ? "text-burgundy" : "text-main/70 hover:text-main"
                   }`}
                 >

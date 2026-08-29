@@ -20,7 +20,7 @@ export function ServicesDetails() {
                 <h2 className="mt-4 font-heading text-3xl font-bold text-main sm:text-5xl">
                   {service.title}
                 </h2>
-                <p className="mt-5 max-w-xl text-base font-medium leading-8 text-main/70">
+                <p className="mt-5 max-w-xl text-[16px] font-medium leading-8 text-main/70">
                   {service.description}
                 </p>
               </div>

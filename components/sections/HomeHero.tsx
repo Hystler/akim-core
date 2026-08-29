@@ -2,56 +2,42 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { TrackedLink } from "@/components/ui/TrackedLink";
 
-const blurDataUrl =
-  "data:image/gif;base64,R0lGODlhAQABAIAAAOjk3gAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
-
 const heroWorks = [
   {
     src: "/images/hero-chess-jazz.avif",
     alt: "Обложка презентации Chess & Jazz",
-    className: "left-[7%] top-[10%] w-[66%] -rotate-[1.5deg]"
-  },
-  {
-    src: "/portfolio/northline/cover.webp",
-    alt: "Обложка презентации NORTHLINE",
-    className: "bottom-[8%] right-[5%] w-[55%] rotate-[1.2deg]"
+    className: "hero-print-primary"
   },
   {
     src: "/images/hero-velvet-whisper.avif",
     alt: "Обложка презентации Velvet Whisper",
-    className: "right-[2%] top-[4%] hidden w-[40%] rotate-[2deg] xl:block"
+    className: "hero-print-secondary"
   }
-];
+] as const;
 
 export function HomeHero() {
   return (
-    <section className="light-atmosphere border-b border-main/15 bg-base-texture py-7 sm:py-10 lg:py-12">
-      <div className="section-shell">
-        <div className="flex items-center justify-between gap-5 border-b border-main/25 pb-4 text-[11px] font-bold uppercase text-main/70 sm:text-xs">
-          <span>Аким Коваленко</span>
-          <span className="text-right text-burgundy">Дизайн презентаций</span>
-        </div>
-
-        <div className="grid gap-10 py-10 sm:py-14 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10 lg:py-10 xl:gap-12 min-[1400px]:py-16">
+    <section className="hero-editorial light-atmosphere border-b border-main/10 bg-base-texture">
+      <div className="section-shell grid min-h-[680px] items-center gap-8 py-14 sm:min-h-[720px] sm:py-16 lg:min-h-[calc(100svh-80px)] lg:grid-cols-[0.86fr_1.14fr] lg:gap-12 lg:py-12 xl:gap-16">
           <div className="relative z-10 min-w-0">
-            <p className="text-xs font-bold uppercase text-burgundy sm:text-sm">
-              Презентации для бизнеса
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-burgundy sm:text-xs">
+              Аким Коваленко · дизайн презентаций
             </p>
-            <h1 className="mt-5 max-w-[760px] font-heading text-[2.7rem] font-bold leading-[0.98] text-main sm:text-6xl lg:text-[4rem] xl:text-[4.5rem] min-[1400px]:text-[5rem] min-[1536px]:text-[5.25rem]">
+            <h1 className="mt-5 max-w-[600px] font-heading text-[2.75rem] font-bold leading-[0.98] text-main sm:text-[3.6rem] lg:text-[3.75rem] xl:text-[4.25rem]">
               <span className="block">Сложное становится ясным.</span>
-              <span className="mt-2 block font-serif text-[1.04em] font-medium italic leading-[0.98] text-burgundy sm:mt-3">
+              <span className="mt-2 block font-serif text-[1.02em] font-medium italic leading-[0.98] text-burgundy sm:mt-3">
                 И&nbsp;начинает убеждать.
               </span>
             </h1>
-            <p className="mt-7 max-w-[520px] text-pretty text-base font-medium leading-7 text-main/75 sm:text-lg sm:leading-8 lg:mt-5 xl:mt-7">
+            <p className="mt-7 max-w-[460px] text-pretty text-[15px] font-medium leading-7 text-main/70 sm:text-[16px] sm:leading-7">
               Структура, текст и&nbsp;дизайн презентации под&nbsp;ключ.
             </p>
 
-            <div className="mt-8 sm:mt-10 lg:mt-7">
+            <div className="mt-8 sm:mt-9">
               <TrackedLink
                 href="/portfolio"
                 goal="hero_cases_click"
-                className="focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-burgundy bg-burgundy px-6 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-tactile"
+                className="focus-ring group inline-flex min-h-12 items-center justify-center gap-2 rounded-[2px] border border-burgundy bg-burgundy px-6 text-sm font-bold text-paper shadow-press transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-tactile"
               >
                 Смотреть работы
                 <ArrowUpRight
@@ -62,54 +48,37 @@ export function HomeHero() {
             </div>
           </div>
 
-          <div className="relative min-w-0">
-            <div className="editorial-stage relative aspect-[4/3] overflow-hidden rounded-[14px] border border-main/15 shadow-tactile-lg">
-              <Image
-                src="/images/editorial-desk-hero-v1.jpg"
-                alt="Рабочий стол с бумажными листами, книгами, ручкой и палитрами"
-                fill
-                priority
-                sizes="(min-width: 1024px) 55vw, 100vw"
-                placeholder="blur"
-                blurDataURL={blurDataUrl}
-                className="object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-main/[0.1]" aria-hidden="true" />
-              <div
-                className="absolute inset-[7%] rotate-[1.2deg] rounded-md border border-main/10 bg-paper/55 shadow-press"
-                aria-hidden="true"
-              />
-              {heroWorks.map((work, index) => (
-                <div
-                  key={work.src}
-                  className={`absolute aspect-[16/9] rounded-md border border-main/20 bg-paper p-1.5 shadow-tactile sm:p-2 ${work.className}`}
-                  style={{ zIndex: index + 1 }}
-                >
-                  <div className="relative h-full overflow-hidden rounded-sm border border-main/10 bg-main">
-                    <Image
-                      src={work.src}
-                      alt={work.alt}
-                      width={1600}
-                      height={900}
-                      loading={index < 2 ? "eager" : "lazy"}
-                      unoptimized
-                      sizes="(min-width: 1280px) 420px, (min-width: 768px) 48vw, 82vw"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
+          <div className="hero-work-stage relative mx-auto aspect-[5/4] w-full max-w-[680px] min-w-0" aria-label="Фрагменты работ">
+            <span className="hero-stage-sheet" aria-hidden="true" />
+            {heroWorks.map((work, index) => (
+              <figure
+                key={work.src}
+                className={`hero-print absolute aspect-[16/9] bg-paper p-2 sm:p-2.5 ${work.className}`}
+                style={{ zIndex: index + 1 }}
+              >
+                <div className="relative h-full overflow-hidden border border-main/12 bg-main">
+                  <Image
+                    src={work.src}
+                    alt={work.alt}
+                    width={1600}
+                    height={900}
+                    priority={index === 0}
+                    unoptimized
+                    sizes="(min-width: 1280px) 420px, (min-width: 768px) 48vw, 82vw"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
-              ))}
-              <div className="absolute bottom-[4%] left-[5%] z-10 flex items-center gap-3 rounded-sm border border-main/10 bg-paper/95 px-3 py-2 shadow-press">
-                <span className="text-[10px] font-bold uppercase text-main/70">Фрагменты работ</span>
-                <span className="flex gap-1" aria-hidden="true">
-                  {["#7F102B", "#A88952", "#2B211F"].map((color) => (
-                    <span key={color} className="size-2 rounded-full border border-main/20" style={{ backgroundColor: color }} />
-                  ))}
-                </span>
-              </div>
+              </figure>
+            ))}
+            <div className="hero-stage-meta absolute bottom-[2%] left-[9%] z-10 flex items-center gap-3 px-2 py-1.5">
+              <span className="text-[9px] font-bold uppercase tracking-[0.06em] text-main/60 sm:text-[10px]">Атмосфера / образ</span>
+              <span className="flex gap-1" aria-hidden="true">
+                {["#7F102B", "#A88952", "#2B211F"].map((color) => (
+                  <span key={color} className="size-2 rounded-full border border-main/20" style={{ backgroundColor: color }} />
+                ))}
+              </span>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );

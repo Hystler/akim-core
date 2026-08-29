@@ -18,7 +18,7 @@ export function CtaSection() {
             </p>
           </div>
           <div className="lg:justify-self-end">
-            <p className="max-w-md text-base leading-8 text-main/70">
+            <p className="max-w-md text-[16px] leading-8 text-main/70">
               Для старта достаточно материалов, цели и&nbsp;срока.
             </p>
             <TrackedLink
