@@ -125,8 +125,8 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
   }
 
   const fieldClass =
-    "min-h-12 w-full rounded-[5px] border border-main/15 bg-paper/20 px-3.5 text-main outline-none placeholder:text-main/40 transition-colors duration-200 hover:border-main/25 focus:border-burgundy/65 focus:ring-2 focus:ring-burgundy/10";
-  const labelClass = "grid gap-2 text-[12px] font-semibold text-main/80";
+    "notebook-field min-h-11 w-full px-3.5 text-main outline-none placeholder:text-main/35 transition-all duration-200 hover:border-main/30 focus:border-burgundy/70 focus:ring-2 focus:ring-burgundy/10";
+  const labelClass = "grid gap-1.5 text-[12px] font-semibold text-main/80";
   const Heading = asPage ? "h1" : "h2";
 
   return (
@@ -136,16 +136,16 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
     >
       <div className="mx-auto w-full max-w-[1320px] px-3 sm:px-8 lg:px-10">
         <div className="notebook-scene">
-          <div className="notebook-spread notebook-page notebook-rules">
-            <aside className="notebook-intro-page notebook-page notebook-rules flex-col p-6 pb-5 pl-8 sm:p-9 sm:pb-4 sm:pl-10 min-[900px]:p-12 min-[900px]:pl-14">
+          <div className="notebook-spread">
+            <aside className="notebook-intro-page notebook-page notebook-rules flex-col p-6 pb-4 pl-8 sm:p-9 sm:pb-5 sm:pl-10 min-[900px]:p-11 min-[900px]:pl-12">
               <div>
                 <p className="text-[12px] font-semibold tracking-[0.18em] text-main min-[900px]:text-[13px]">
                   AKIM CORE
                 </p>
-                <Heading className="mt-7 font-serif text-[2rem] font-medium leading-none text-main sm:text-[2.35rem] min-[900px]:mt-14 min-[900px]:text-5xl">
+                <Heading className="mt-7 font-serif text-[2rem] font-medium leading-none text-main sm:text-[2.35rem] min-[900px]:mt-16 min-[900px]:text-[3.25rem]">
                   Есть задача?
                 </Heading>
-                <p className="mt-2 font-serif text-[1.35rem] font-medium italic leading-tight text-burgundy sm:text-[1.65rem] min-[900px]:text-4xl">
+                <p className="mt-2 whitespace-nowrap font-serif text-[1.2rem] font-medium italic leading-tight text-burgundy sm:text-[1.65rem] min-[900px]:text-[2.35rem]">
                   Расскажите коротко.
                 </p>
               </div>
@@ -161,7 +161,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
               action={contactFormEndpoint}
               encType="multipart/form-data"
               aria-busy={submitState === "submitting"}
-              className="notebook-form-page notebook-page notebook-rules p-5 pl-8 sm:p-8 sm:pt-5 sm:pl-10 min-[900px]:p-10 min-[1100px]:p-12"
+              className="notebook-form-page notebook-page p-5 pl-8 sm:p-7 sm:pt-5 sm:pl-10 min-[900px]:p-8 min-[1100px]:p-9"
             >
               <input
                 type="hidden"
@@ -177,7 +177,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                 className="hidden"
               />
 
-              <div className="grid gap-5 min-[900px]:grid-cols-2">
+              <div className="grid gap-4 min-[900px]:grid-cols-2">
                 <label className={labelClass}>
                   <span>
                     Имя <span aria-hidden="true">*</span>
@@ -205,7 +205,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                 </label>
               </div>
 
-              <label className={`${labelClass} mt-5`}>
+              <label className={`${labelClass} mt-4`}>
                 Email
                 <input
                   type="email"
@@ -226,7 +226,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                 Оставьте Telegram или email.
               </p>
 
-              <label className={`${labelClass} mt-5`}>
+              <label className={`${labelClass} mt-4`}>
                 <span>
                   Что нужно сделать? <span aria-hidden="true">*</span>
                 </span>
@@ -234,11 +234,11 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                   name="description"
                   required
                   rows={5}
-                  className={`${fieldClass} min-h-[112px] resize-y py-3 min-[900px]:min-h-[126px]`}
+                  className={`${fieldClass} min-h-[104px] resize-y py-3 min-[900px]:min-h-[112px]`}
                 />
               </label>
 
-              <div className="mt-5 grid gap-5 min-[900px]:grid-cols-2">
+              <div className="mt-4 grid gap-4 min-[900px]:grid-cols-2">
                 <label className={labelClass}>
                   Когда нужно?
                   <input
@@ -260,9 +260,9 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                 </label>
               </div>
 
-              <div className="mt-5 grid gap-2 text-[12px] font-semibold text-main/80">
+              <div className="mt-4 grid gap-1.5 text-[12px] font-semibold text-main/80">
                 <span id="attachment-label">Материалы</span>
-                <label className="relative flex min-h-[92px] cursor-pointer items-center justify-center gap-3 rounded-[5px] border border-dashed border-main/20 px-4 text-center transition-colors duration-200 hover:border-burgundy/45 focus-within:border-burgundy/65 focus-within:ring-2 focus-within:ring-burgundy/10">
+                <label className="notebook-upload relative flex min-h-[78px] cursor-pointer items-center justify-center gap-3 px-4 text-center transition-all duration-200 hover:border-burgundy/50 focus-within:border-burgundy/70 focus-within:ring-2 focus-within:ring-burgundy/10">
                   <input
                     id="contact-attachment"
                     type="file"
@@ -295,7 +295,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
                 </span>
               </div>
 
-              <label className="mt-5 flex items-start gap-3 text-[12px] leading-5 text-main/70">
+              <label className="mt-4 flex items-start gap-3 text-[12px] leading-5 text-main/70">
                 <input
                   type="checkbox"
                   name="privacyConsent"
@@ -317,7 +317,7 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
               <button
                 type="submit"
                 disabled={submitState === "submitting"}
-                className="focus-ring mt-5 inline-flex min-h-[50px] w-full items-center justify-center rounded-[4px] border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper shadow-press transition-all duration-200 hover:-translate-y-0.5 hover:shadow-tactile disabled:cursor-not-allowed disabled:opacity-50"
+                className="notebook-submit focus-ring mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-[3px] border border-burgundy bg-burgundy px-5 text-sm font-bold text-paper shadow-press transition-all duration-200 hover:-translate-y-0.5 hover:shadow-tactile disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {submitState === "submitting"
                   ? "Отправляю…"

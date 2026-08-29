@@ -18,9 +18,9 @@
   --radius-sm: 5px;
   --radius-md: 10px;
   --radius-lg: 16px;
-  --shadow-micro: 0 4px 11px rgba(43, 33, 31, 0.09);
-  --shadow-object: 0 22px 48px rgba(43, 33, 31, 0.18), 0 5px 14px rgba(43, 33, 31, 0.1);
-  --shadow-notebook: 0 52px 110px rgba(22, 13, 10, 0.5), 0 18px 38px rgba(22, 13, 10, 0.3);
+  --shadow-micro: 0 6px 15px rgba(43, 33, 31, 0.14), 0 2px 5px rgba(43, 33, 31, 0.08);
+  --shadow-object: 0 30px 62px rgba(43, 33, 31, 0.25), 0 8px 20px rgba(43, 33, 31, 0.15);
+  --shadow-notebook: 0 72px 150px rgba(13, 8, 7, 0.7), 0 24px 58px rgba(13, 8, 7, 0.48);
 }
 
 * {
@@ -188,13 +188,13 @@ svg {
     linear-gradient(rgba(241, 236, 227, 0.94), rgba(241, 236, 227, 0.94)),
     url("/images/matte-paper-texture.webp");
   background-size: auto, 800px 800px;
-  box-shadow: 0 15px 34px rgba(47, 32, 27, 0.13), 0 3px 8px rgba(47, 32, 27, 0.06);
+  box-shadow: 0 20px 44px rgba(47, 32, 27, 0.19), 0 5px 12px rgba(47, 32, 27, 0.1);
   transition: background-color 240ms ease, box-shadow 240ms ease;
 }
 
 .site-header[data-scrolled="true"] {
   background-color: rgba(241, 236, 227, 0.93);
-  box-shadow: 0 18px 42px rgba(47, 32, 27, 0.16), 0 4px 10px rgba(47, 32, 27, 0.08);
+  box-shadow: 0 26px 58px rgba(47, 32, 27, 0.23), 0 7px 16px rgba(47, 32, 27, 0.12);
   backdrop-filter: blur(12px);
 }
 
@@ -209,7 +209,7 @@ svg {
   border-radius: 42% 58% 46% 54%;
   content: "";
   background: rgba(91, 67, 55, 0.12);
-  box-shadow: 0 45px 85px rgba(62, 43, 36, 0.2);
+  box-shadow: 0 58px 105px rgba(62, 43, 36, 0.3);
   filter: blur(34px);
   transform: rotate(-7deg);
 }
@@ -224,7 +224,7 @@ svg {
   border: 1px solid rgba(67, 47, 40, 0.12);
   content: "";
   background: rgba(239, 228, 213, 0.82);
-  box-shadow: 0 24px 48px rgba(53, 36, 30, 0.16);
+  box-shadow: 0 32px 66px rgba(53, 36, 30, 0.23), 0 8px 18px rgba(53, 36, 30, 0.12);
   transform: rotate(4.2deg);
 }
 
@@ -241,7 +241,7 @@ svg {
     linear-gradient(rgba(239, 228, 213, 0.9), rgba(239, 228, 213, 0.9)),
     url("/images/matte-paper-texture.webp");
   background-size: auto, 800px 800px;
-  box-shadow: 0 24px 52px rgba(49, 33, 27, 0.16);
+  box-shadow: 0 34px 70px rgba(49, 33, 27, 0.24), 0 8px 18px rgba(49, 33, 27, 0.12);
   transform: rotate(-4deg);
 }
 
@@ -251,7 +251,7 @@ svg {
     linear-gradient(rgba(239, 228, 213, 0.96), rgba(239, 228, 213, 0.96)),
     url("/images/matte-paper-texture.webp");
   background-size: auto, 800px 800px;
-  box-shadow: 0 34px 62px rgba(45, 29, 24, 0.25), 0 8px 18px rgba(45, 29, 24, 0.14);
+  box-shadow: 0 44px 82px rgba(45, 29, 24, 0.34), 0 12px 26px rgba(45, 29, 24, 0.2);
   transition: box-shadow 300ms ease, transform 300ms ease;
 }
 
@@ -287,12 +287,12 @@ svg {
 
 @media (hover: hover) {
   .hero-print-primary:hover {
-    box-shadow: 0 42px 76px rgba(45, 29, 24, 0.29), 0 10px 22px rgba(45, 29, 24, 0.16);
+    box-shadow: 0 54px 96px rgba(45, 29, 24, 0.39), 0 15px 30px rgba(45, 29, 24, 0.22);
     transform: rotate(-1.1deg) translateY(-6px);
   }
 
   .hero-print-secondary:hover {
-    box-shadow: 0 42px 76px rgba(45, 29, 24, 0.29), 0 10px 22px rgba(45, 29, 24, 0.16);
+    box-shadow: 0 54px 96px rgba(45, 29, 24, 0.39), 0 15px 30px rgba(45, 29, 24, 0.22);
     transform: rotate(0.9deg) translateY(-6px);
   }
 }
@@ -311,45 +311,69 @@ svg {
   position: relative;
   isolation: isolate;
   width: 100%;
-  max-width: 1220px;
+  max-width: 1120px;
   margin-inline: auto;
-  padding: 14px 28px 18px 26px;
-  border: 1px solid rgba(239, 228, 213, 0.2);
-  border-radius: 15px;
-  background-color: #291914;
+  padding: 14px 30px 20px 26px;
+  border: 1px solid rgba(239, 228, 213, 0.28);
+  border-radius: 20px;
+  background-color: #241510;
   background-image:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.07), transparent 22% 72%, rgba(0, 0, 0, 0.2)),
+    radial-gradient(ellipse at 46% 5%, rgba(139, 101, 76, 0.2), transparent 44%),
+    linear-gradient(118deg, rgba(255, 255, 255, 0.08), transparent 21% 72%, rgba(0, 0, 0, 0.3)),
     repeating-linear-gradient(7deg, rgba(255, 255, 255, 0.024) 0 1px, transparent 1px 4px),
-    linear-gradient(rgba(41, 25, 20, 0.94), rgba(41, 25, 20, 0.94)),
+    linear-gradient(rgba(36, 21, 16, 0.94), rgba(36, 21, 16, 0.94)),
     url("/images/matte-paper-texture.webp");
-  background-size: auto, auto, auto, 800px 800px;
+  background-size: auto, auto, auto, auto, 800px 800px;
   box-shadow: var(--shadow-notebook);
+  transform: rotate(-0.12deg);
 }
 
 .notebook-scene::before {
   position: absolute;
-  inset: 7px;
+  inset: 8px;
   z-index: 0;
   pointer-events: none;
-  border: 1px dashed rgba(201, 176, 122, 0.26);
-  border-radius: 10px;
+  border: 1px dashed rgba(218, 193, 151, 0.32);
+  border-radius: 14px;
   content: "";
+  box-shadow: inset 0 0 0 1px rgba(11, 7, 6, 0.28);
+}
+
+.notebook-scene::after {
+  position: absolute;
+  inset: 12px 20px 12px 14px;
+  z-index: 1;
+  pointer-events: none;
+  border: 1px solid rgba(8, 5, 4, 0.55);
+  border-radius: 13px;
+  content: "";
+  box-shadow:
+    inset 0 14px 22px rgba(255, 244, 224, 0.035),
+    inset 0 -16px 28px rgba(5, 3, 3, 0.36),
+    0 12px 22px rgba(5, 3, 3, 0.44);
 }
 
 .notebook-spread {
   position: relative;
   z-index: 2;
+  overflow: hidden;
+  border: 1px solid rgba(78, 58, 49, 0.24);
+  border-radius: 10px;
+  background: var(--color-paper);
+  box-shadow:
+    0 18px 30px rgba(12, 7, 6, 0.42),
+    0 4px 9px rgba(12, 7, 6, 0.28);
 }
 
 .notebook-page {
   position: relative;
   background-color: var(--color-paper);
   background-image:
-    radial-gradient(circle at 16% 9%, rgba(255, 250, 240, 0.42), transparent 28%),
-    linear-gradient(rgba(239, 228, 213, 0.955), rgba(239, 228, 213, 0.955)),
+    radial-gradient(circle at 16% 9%, rgba(255, 250, 240, 0.58), transparent 30%),
+    linear-gradient(rgba(239, 228, 213, 0.94), rgba(239, 228, 213, 0.94)),
     url("/images/matte-paper-texture.webp");
   background-size: auto, auto, 800px 800px;
-  box-shadow: 0 14px 32px rgba(24, 14, 11, 0.2), 0 3px 9px rgba(24, 14, 11, 0.12);
+  box-shadow: 0 18px 38px rgba(24, 14, 11, 0.3), 0 5px 12px rgba(24, 14, 11, 0.18);
 }
 
 .notebook-page::after {
@@ -380,7 +404,7 @@ svg {
 
 .notebook-rules {
   background-image:
-    linear-gradient(rgba(239, 228, 213, 0.935), rgba(239, 228, 213, 0.935)),
+    linear-gradient(rgba(239, 228, 213, 0.92), rgba(239, 228, 213, 0.92)),
     repeating-linear-gradient(
       to bottom,
       transparent 0,
@@ -392,17 +416,46 @@ svg {
   background-size: auto, auto, 800px 800px;
 }
 
+.notebook-field,
+.notebook-upload {
+  border: 1px solid rgba(69, 49, 42, 0.2);
+  border-radius: 4px;
+  background: rgba(255, 250, 240, 0.16);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 253, 248, 0.66),
+    inset 0 -1px 2px rgba(77, 54, 44, 0.05);
+}
+
+.notebook-field:focus,
+.notebook-upload:focus-within {
+  background: rgba(255, 250, 240, 0.28);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 253, 248, 0.72),
+    0 0 0 3px rgba(127, 16, 43, 0.07);
+}
+
+.notebook-upload {
+  border-style: dashed;
+}
+
+.notebook-submit {
+  box-shadow:
+    0 16px 32px rgba(70, 8, 25, 0.3),
+    0 5px 10px rgba(43, 12, 20, 0.17),
+    inset 0 1px rgba(255, 241, 226, 0.16);
+}
+
 .notebook-mobile-binding {
   position: absolute;
-  top: 32px;
-  bottom: 32px;
-  left: -14px;
+  top: 26px;
+  bottom: 26px;
+  left: -16px;
   z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   pointer-events: none;
-  filter: drop-shadow(0 3px 3px rgba(22, 14, 11, 0.32));
+  filter: drop-shadow(0 5px 4px rgba(16, 10, 8, 0.48));
 }
 
 .notebook-desktop-binding {
@@ -410,38 +463,71 @@ svg {
 }
 
 .notebook-ring {
+  position: relative;
   display: block;
-  width: 30px;
-  height: 10px;
-  border: 2px solid #67533c;
+  width: 34px;
+  height: 12px;
+  border: 2px solid #4c3928;
   border-radius: 999px;
-  background: linear-gradient(180deg, #c7ad78 0%, #796443 46%, #d2ba84 100%);
-  box-shadow: inset 0 1px rgba(255, 247, 222, 0.58), 0 4px 7px rgba(18, 10, 8, 0.34);
+  background: linear-gradient(180deg, #d6bd83 0%, #806842 43%, #d9c28a 66%, #695337 100%);
+  box-shadow:
+    inset 0 2px rgba(255, 248, 219, 0.72),
+    inset 0 -2px rgba(46, 32, 20, 0.28),
+    0 5px 9px rgba(18, 10, 8, 0.44);
+}
+
+.notebook-ring::before,
+.notebook-ring::after {
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  content: "";
+  background: #2a1d17;
+  box-shadow:
+    inset 0 2px 3px rgba(7, 4, 3, 0.7),
+    0 1px rgba(255, 246, 225, 0.24);
+  transform: translateY(-50%);
+}
+
+.notebook-ring::before {
+  left: 2px;
+}
+
+.notebook-ring::after {
+  right: 2px;
 }
 
 .notebook-pen {
   position: absolute;
-  top: 14%;
-  right: 8px;
-  bottom: 12%;
+  top: 11%;
+  right: 9px;
+  bottom: 9%;
   z-index: 4;
-  width: 10px;
+  width: 13px;
   pointer-events: none;
-  border: 1px solid rgba(12, 8, 7, 0.88);
+  border: 1px solid rgba(204, 172, 105, 0.42);
   border-radius: 999px;
-  background: linear-gradient(90deg, #0b0908, #33251f 48%, #090706);
-  box-shadow: 0 5px 10px rgba(13, 8, 6, 0.35);
+  background:
+    linear-gradient(90deg, #080706, #3b2c25 36%, #090706 76%),
+    #0b0908;
+  box-shadow:
+    0 18px 28px rgba(8, 5, 4, 0.58),
+    0 5px 10px rgba(8, 5, 4, 0.42),
+    inset 2px 0 rgba(255, 239, 207, 0.12);
 }
 
 .notebook-pen::before {
   position: absolute;
   top: -4px;
   left: 50%;
-  width: 7px;
-  height: 23%;
+  width: 9px;
+  height: 24%;
   border-radius: 999px 999px 2px 2px;
   content: "";
-  background: linear-gradient(90deg, #715a30, #c3a35d 48%, #6a532d);
+  background: linear-gradient(90deg, #604723, #d4b46a 48%, #664b25);
+  box-shadow: 0 5px 9px rgba(8, 5, 4, 0.34);
   transform: translateX(-50%);
 }
 
@@ -449,8 +535,8 @@ svg {
   position: absolute;
   bottom: -7px;
   left: 50%;
-  width: 5px;
-  height: 13px;
+  width: 6px;
+  height: 15px;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
   content: "";
   background: #9e7f48;
@@ -459,37 +545,42 @@ svg {
 
 .notebook-pen-holder {
   position: absolute;
-  top: 42%;
-  right: 3px;
+  top: 41%;
+  right: 1px;
   z-index: 5;
-  width: 20px;
-  height: 86px;
+  width: 25px;
+  height: 96px;
   pointer-events: none;
-  border: 1px solid rgba(231, 208, 178, 0.12);
-  border-radius: 8px 0 0 8px;
-  background: #3b261f;
-  box-shadow: 0 6px 14px rgba(17, 10, 8, 0.28);
+  border: 1px solid rgba(231, 208, 178, 0.16);
+  border-radius: 9px 0 0 9px;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.07), transparent 45%),
+    #3a241d;
+  box-shadow:
+    0 12px 22px rgba(9, 5, 4, 0.46),
+    inset 0 0 10px rgba(0, 0, 0, 0.18);
 }
 
 .notebook-ribbon {
   position: absolute;
   bottom: -24px;
-  left: 57%;
+  left: 50%;
   z-index: 1;
   width: 22px;
   height: 48px;
   pointer-events: none;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
   background: linear-gradient(90deg, #680c22, #8a1833 52%, #650b21);
-  box-shadow: 0 7px 12px rgba(39, 13, 20, 0.16);
+  box-shadow: 0 12px 20px rgba(39, 13, 20, 0.32);
 }
 
 .contact-notebook-section {
   background-image:
-    radial-gradient(ellipse at 50% 44%, rgba(137, 100, 77, 0.2), transparent 58%),
-    linear-gradient(rgba(33, 23, 20, 0.93), rgba(33, 23, 20, 0.93)),
+    radial-gradient(ellipse at 50% 42%, rgba(166, 121, 87, 0.27), transparent 56%),
+    radial-gradient(ellipse at 50% 52%, rgba(66, 41, 32, 0.2), transparent 68%),
+    linear-gradient(rgba(29, 20, 17, 0.94), rgba(29, 20, 17, 0.94)),
     url("/images/matte-paper-texture.webp");
-  background-size: auto, auto, 800px 800px;
+  background-size: auto, auto, auto, 800px 800px;
 }
 
 .contact-notebook-section::before {
@@ -559,13 +650,24 @@ select:-webkit-autofill {
 
 @media (min-width: 900px) {
   .notebook-scene {
-    padding: 24px 64px 28px 24px;
+    padding: 26px 76px 34px 28px;
+    border-radius: 25px;
+  }
+
+  .notebook-scene::before {
+    inset: 10px;
+    border-radius: 18px;
+  }
+
+  .notebook-scene::after {
+    inset: 16px 60px 18px 17px;
     border-radius: 18px;
   }
 
   .notebook-spread {
     display: grid;
-    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
     border: 0;
     border-radius: 0;
     background: transparent;
@@ -578,16 +680,24 @@ select:-webkit-autofill {
 
   .notebook-intro-page {
     display: flex;
-    min-height: 690px;
+    min-height: 640px;
     border: 1px solid rgba(78, 58, 49, 0.18);
     border-right: 0;
-    border-radius: 11px 0 0 11px;
+    border-radius: 13px 0 0 13px;
+    box-shadow:
+      inset -30px 0 38px rgba(73, 51, 42, 0.085),
+      0 22px 42px rgba(12, 7, 6, 0.34),
+      -7px 7px 14px rgba(12, 7, 6, 0.16);
   }
 
   .notebook-form-page {
-    min-height: 690px;
+    min-height: 640px;
     border-left: 0;
-    border-radius: 0 11px 11px 0;
+    border-radius: 0 13px 13px 0;
+    box-shadow:
+      inset 30px 0 38px rgba(73, 51, 42, 0.075),
+      0 22px 42px rgba(12, 7, 6, 0.34),
+      7px 7px 14px rgba(12, 7, 6, 0.16);
   }
 
   .notebook-mobile-binding {
@@ -596,42 +706,65 @@ select:-webkit-autofill {
 
   .notebook-desktop-binding {
     position: absolute;
-    inset-block: 30px;
-    left: 43%;
+    inset-block: 26px;
+    left: 50%;
     z-index: 12;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     pointer-events: none;
-    filter: drop-shadow(0 4px 4px rgba(22, 14, 11, 0.32));
+    filter: drop-shadow(0 6px 5px rgba(15, 9, 7, 0.5));
+    transform: translateX(-50%);
+  }
+
+  .notebook-desktop-binding::before {
+    position: absolute;
+    top: -26px;
+    bottom: -26px;
+    left: 50%;
+    z-index: -1;
+    width: 58px;
+    content: "";
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(71, 49, 40, 0.08) 24%,
+      rgba(38, 25, 21, 0.16) 50%,
+      rgba(71, 49, 40, 0.07) 76%,
+      transparent
+    );
     transform: translateX(-50%);
   }
 
   .notebook-desktop-binding .notebook-ring {
-    width: 58px;
-    height: 14px;
+    width: 74px;
+    height: 17px;
     border-width: 3px;
   }
 
+  .notebook-desktop-binding .notebook-ring::before,
+  .notebook-desktop-binding .notebook-ring::after {
+    width: 9px;
+    height: 9px;
+  }
+
   .notebook-pen {
-    top: 12%;
-    right: 22px;
-    bottom: 10%;
-    width: 14px;
+    top: 10%;
+    right: 25px;
+    bottom: 8%;
+    width: 17px;
   }
 
   .notebook-pen-holder {
-    right: 11px;
-    width: 34px;
-    height: 112px;
+    right: 9px;
+    width: 45px;
+    height: 124px;
   }
 }
 
 @media (max-width: 899px) {
   .notebook-spread {
-    overflow: hidden;
-    border: 1px solid rgba(78, 58, 49, 0.18);
-    border-radius: 8px;
+    border-radius: 9px;
   }
 
   .notebook-intro-page,
