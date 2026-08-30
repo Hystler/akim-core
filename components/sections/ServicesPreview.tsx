@@ -4,7 +4,7 @@ import { services } from "@/data/services";
 
 export function ServicesPreview() {
   return (
-    <section className="bg-paper py-16 sm:py-24">
+    <section className="light-atmosphere light-shadow-d py-16 sm:py-24">
       <div className="section-shell">
         <h2 className="font-heading text-4xl font-bold leading-tight text-main sm:text-6xl">
           Что можно сделать

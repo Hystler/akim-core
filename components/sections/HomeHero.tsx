@@ -17,7 +17,7 @@ const heroWorks = [
 
 export function HomeHero() {
   return (
-    <section className="hero-editorial light-atmosphere border-b border-main/10 bg-base-texture">
+    <section className="hero-editorial light-atmosphere light-shadow-a border-b border-main/10 bg-base-texture">
       <div className="section-shell grid min-h-[680px] items-center gap-8 py-14 sm:min-h-[720px] sm:py-16 lg:min-h-[calc(100svh-80px)] lg:grid-cols-[0.86fr_1.14fr] lg:gap-12 lg:py-12 xl:gap-16">
           <div className="relative z-10 min-w-0">
             <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-burgundy sm:text-xs">

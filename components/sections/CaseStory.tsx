@@ -18,7 +18,7 @@ export function CaseStory({ item, sections }: CaseStoryProps) {
   const storySections = sections.filter((section) => storyIds.has(section.id));
 
   return (
-    <section className="dark-surface py-20 text-paper sm:py-28">
+    <section className="dark-surface dark-shadow-b py-20 text-paper sm:py-28">
       <div className="section-shell">
         <h2 className="max-w-4xl font-heading text-4xl font-bold leading-[1.02] sm:text-6xl">
           О проекте.

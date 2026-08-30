@@ -8,7 +8,7 @@ type PageIntroProps = {
 
 export function PageIntro({ eyebrow, title, text }: PageIntroProps) {
   return (
-    <MotionSection className="bg-base-texture border-b border-main/20 pb-12 pt-20 sm:pb-16 sm:pt-28">
+    <MotionSection className="light-atmosphere light-shadow-b border-b border-main/20 pb-12 pt-20 sm:pb-16 sm:pt-28">
       <div className="section-shell">
         <div className="grid gap-8 lg:grid-cols-[0.35fr_1.65fr] lg:items-start">
           <p className="text-xs font-bold uppercase text-burgundy">

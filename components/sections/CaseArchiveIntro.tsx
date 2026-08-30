@@ -6,7 +6,7 @@ const blurDataUrl =
 
 export function CaseArchiveIntro() {
   return (
-    <section className="bg-base-texture pb-14 pt-20 sm:pb-20 sm:pt-28">
+    <section className="light-atmosphere light-shadow-c pb-14 pt-20 sm:pb-20 sm:pt-28">
       <div className="section-shell">
         <div className="grid min-w-0 gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-14">
           <div className="min-w-0">

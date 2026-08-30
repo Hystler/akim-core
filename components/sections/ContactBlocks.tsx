@@ -30,7 +30,89 @@ const allowedFileExtensions = new Set([
   "jpg",
   "jpeg"
 ]);
-const bindingLoops = Array.from({ length: 9 }, (_, index) => index);
+const desktopBindingLoops = Array.from({ length: 9 }, (_, index) => index);
+const mobileBindingLoops = Array.from({ length: 11 }, (_, index) => index);
+
+function NotebookRing() {
+  return (
+    <svg
+      className="notebook-ring"
+      viewBox="0 0 34 18"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <ellipse
+        cx="17"
+        cy="9"
+        rx="14.5"
+        ry="6.5"
+        fill="none"
+        stroke="#241B16"
+        strokeWidth="4"
+      />
+      <ellipse
+        cx="17"
+        cy="9"
+        rx="14.5"
+        ry="6.5"
+        fill="none"
+        stroke="#5E4C39"
+        strokeWidth="2.35"
+      />
+      <path
+        d="M4.8 7.4c4.2-5.2 20.2-5.2 24.4 0"
+        fill="none"
+        stroke="rgba(223, 194, 145, 0.72)"
+        strokeLinecap="round"
+        strokeWidth="1.05"
+      />
+    </svg>
+  );
+}
+
+function NotebookPen() {
+  return (
+    <svg
+      className="notebook-pen"
+      viewBox="0 0 34 420"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <linearGradient id="notebook-pen-body" x1="0" x2="1">
+          <stop offset="0" stopColor="#090706" />
+          <stop offset="0.34" stopColor="#49362D" />
+          <stop offset="0.68" stopColor="#17110E" />
+          <stop offset="1" stopColor="#050404" />
+        </linearGradient>
+        <linearGradient id="notebook-pen-metal" x1="0" x2="1">
+          <stop offset="0" stopColor="#5C4325" />
+          <stop offset="0.5" stopColor="#D0AD67" />
+          <stop offset="1" stopColor="#604523" />
+        </linearGradient>
+      </defs>
+      <rect x="8" y="25" width="18" height="350" rx="8" fill="url(#notebook-pen-body)" />
+      <rect x="7" y="18" width="20" height="42" rx="8" fill="url(#notebook-pen-metal)" />
+      <rect x="8" y="56" width="18" height="7" fill="#A7864A" opacity="0.86" />
+      <path
+        d="M25 40c5 34 5 82-3 116"
+        fill="none"
+        stroke="#B89555"
+        strokeLinecap="round"
+        strokeWidth="2.8"
+      />
+      <path
+        d="M11 373h12l-2.2 25L17 416l-3.8-18z"
+        fill="url(#notebook-pen-metal)"
+        stroke="#3D2C1B"
+        strokeWidth="1"
+      />
+      <path d="M17 398v13" stroke="#3D2C1B" strokeWidth="1" />
+      <path d="M11 82v250" stroke="rgba(255,247,226,0.12)" strokeWidth="1.3" />
+    </svg>
+  );
+}
 
 export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
   const isSubmittingRef = useRef(false);
@@ -132,10 +214,23 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
   return (
     <section
       id="contact"
-      className="contact-notebook-section dark-surface scroll-mt-24 border-t border-paper/10 pb-28 pt-20 sm:pb-36 sm:pt-28"
+      className="contact-notebook-section dark-surface dark-shadow-d scroll-mt-24 border-t border-paper/10 pb-28 pt-20 sm:pb-36 sm:pt-28"
     >
       <div className="mx-auto w-full max-w-[1320px] px-3 sm:px-8 lg:px-10">
         <div className="notebook-scene">
+          <span
+            className="notebook-paper-stack notebook-paper-stack-one"
+            aria-hidden="true"
+          />
+          <span
+            className="notebook-paper-stack notebook-paper-stack-two"
+            aria-hidden="true"
+          />
+          <span
+            className="notebook-paper-stack notebook-paper-stack-three"
+            aria-hidden="true"
+          />
+
           <div className="notebook-spread">
             <aside className="notebook-intro-page notebook-page notebook-rules flex-col p-6 pb-4 pl-8 sm:p-9 sm:pb-5 sm:pl-10 min-[900px]:p-11 min-[900px]:pl-12">
               <div>
@@ -347,19 +442,19 @@ export function ContactBlocks({ asPage = false }: { asPage?: boolean }) {
             </form>
 
             <div className="notebook-mobile-binding" aria-hidden="true">
-              {bindingLoops.map((loop) => (
-                <span key={loop} className="notebook-ring" />
+              {mobileBindingLoops.map((loop) => (
+                <NotebookRing key={loop} />
               ))}
             </div>
 
             <div className="notebook-desktop-binding" aria-hidden="true">
-              {bindingLoops.map((loop) => (
-                <span key={loop} className="notebook-ring" />
+              {desktopBindingLoops.map((loop) => (
+                <NotebookRing key={loop} />
               ))}
             </div>
           </div>
 
-          <span className="notebook-pen" aria-hidden="true" />
+          <NotebookPen />
           <span className="notebook-pen-holder" aria-hidden="true" />
           <span className="notebook-ribbon" aria-hidden="true" />
         </div>

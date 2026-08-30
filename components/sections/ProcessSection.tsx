@@ -10,7 +10,7 @@ const stepNotes = [
 
 export function ProcessSection() {
   return (
-    <section id="process" className="dark-surface scroll-mt-24 py-20 text-paper sm:py-28">
+    <section id="process" className="dark-surface dark-shadow-b scroll-mt-24 py-20 text-paper sm:py-28">
       <div className="section-shell">
         <div className="grid gap-7 lg:grid-cols-[0.45fr_1.55fr] lg:items-end">
           <p className="text-xs font-bold uppercase text-paper/55">Процесс</p>

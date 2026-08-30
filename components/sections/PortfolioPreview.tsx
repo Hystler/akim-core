@@ -15,7 +15,7 @@ export function PortfolioPreview({ items }: PortfolioPreviewProps) {
   const visibleItems = items.slice(0, 4);
 
   return (
-    <MotionSection className="bg-base-texture py-20 sm:py-28">
+    <MotionSection className="light-atmosphere light-shadow-d py-20 sm:py-28">
       <div className="section-shell">
         <h2 className="font-heading text-4xl font-bold leading-tight text-main sm:text-6xl">
           Выбранные работы

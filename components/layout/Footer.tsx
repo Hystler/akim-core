@@ -9,7 +9,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="dark-surface min-h-[340px] border-t border-paper/10 py-16 text-paper sm:min-h-[390px] sm:py-20">
+    <footer className="dark-surface dark-shadow-c min-h-[340px] border-t border-paper/10 py-16 text-paper sm:min-h-[390px] sm:py-20">
       <div className="section-shell flex min-h-[212px] flex-col sm:min-h-[230px]">
         <div className="grid flex-1 gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-start">
           <div>

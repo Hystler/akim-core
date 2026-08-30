@@ -28,10 +28,11 @@ const config: Config = {
       },
       boxShadow: {
         tactile:
-          "0 30px 62px rgba(43, 33, 31, 0.25), 0 8px 20px rgba(43, 33, 31, 0.15)",
+          "0 4px 8px rgba(20, 12, 8, 0.10), 0 18px 35px rgba(20, 12, 8, 0.11), 0 38px 72px rgba(20, 12, 8, 0.065)",
         "tactile-lg":
-          "0 52px 108px rgba(32, 19, 15, 0.38), 0 16px 36px rgba(32, 19, 15, 0.23)",
-        press: "0 14px 34px rgba(43, 33, 31, 0.23), 0 4px 10px rgba(43, 33, 31, 0.13)"
+          "0 5px 10px rgba(20, 12, 8, 0.12), 0 22px 44px rgba(20, 12, 8, 0.15), 0 50px 92px rgba(20, 12, 8, 0.09)",
+        press:
+          "0 3px 7px rgba(43, 33, 31, 0.11), 0 12px 24px rgba(43, 33, 31, 0.09)"
       }
     }
   },

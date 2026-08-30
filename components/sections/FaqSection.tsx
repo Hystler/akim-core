@@ -3,7 +3,7 @@ import { faqItems } from "@/data/site";
 export function FaqSection({ limit }: { limit?: number }) {
   const items = typeof limit === "number" ? faqItems.slice(0, limit) : faqItems;
   return (
-    <section className="bg-paper py-20 text-main sm:py-28">
+    <section className="light-atmosphere light-shadow-d py-20 text-main sm:py-28">
       <div className="section-shell grid gap-12 lg:grid-cols-[0.55fr_1.45fr]">
         <div>
           <h2 className="font-heading text-3xl font-bold sm:text-5xl">
